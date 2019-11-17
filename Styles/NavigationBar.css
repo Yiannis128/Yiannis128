@@ -2,7 +2,7 @@ header
 {
   background-color: rgb(50,50,50);
 
-  margin-top: 40px;
+  margin-top: 50px; /* Inital offset from top of page. */
 
   padding: 0 200px;
 }
@@ -57,7 +57,7 @@ ul
 
 li
 {
-  float:left;
+  float: left; /* Determines order in which li are ordered. */
 }
 
 .NavBarItemText
@@ -80,4 +80,18 @@ li a:hover
   background-color: rgb(20,20,20);
 
   transition: 0.2s linear;
+}
+
+@media only screen and (max-width: 1250px)
+{
+  header
+  {
+    padding: 0;
+  }
+
+  li
+  {
+    float: none;
+    display: block; /* On phone screens we want list to be verticle. */
+  }
 }
