@@ -1,0 +1,83 @@
+header
+{
+  background-color: rgb(50,50,50);
+
+  margin-top: 40px;
+
+  padding: 0 200px;
+}
+
+.StickyElement
+{
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0; /* Distance before it becomes fixed. */
+}
+
+.ClearFix::after
+{
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.LogoContainer
+{
+  float: left;
+}
+
+.Logo
+{
+  height: 45px;
+  image-rendering: pixelated;
+  float: left;
+  margin: 5px 0 0 0;
+}
+
+.LogoText
+{
+  float: left;
+  margin: 0;
+  color: white;
+  margin: 10px 0 0 25px;
+}
+
+nav
+{
+  float: right; /* Determines the location that the bar will appear. */
+}
+
+ul 
+{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li
+{
+  float:left;
+}
+
+.NavBarItemText
+{
+  display: block;
+  text-align: center;
+  padding: 20px 16px;
+
+  color: white;
+  text-decoration: none;
+
+  transition: 0.2s linear;
+
+  width: 100px; /* The width of the buttons. */
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover 
+{
+  background-color: rgb(20,20,20);
+
+  transition: 0.2s linear;
+}

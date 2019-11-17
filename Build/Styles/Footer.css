@@ -1,0 +1,1 @@
+footer {     position: fixed;      margin: 0;     padding: 10px 0;          bottom: 0;     left: 0;     right: 0;          background-color: rgb(200,200,200); }  footer::after {     content: "";     display: table;     clear: both; }  footer > div {     width: 80%;     margin: 0 auto;     padding: auto; }  footer h6 {     color: rgb(40,40,40); }
