@@ -31,6 +31,12 @@ main
 {
   text-decoration: none;
   color: black;
+  background: transparent;
+}
+
+.HeaderStyledLink:hover, .TextStyledLink:hover /* <a> Link that is styled like normal text. */
+{
+  background: transparent;
 }
 
 .HeaderStyledButton /* <button> that is styled like normal header.  */
