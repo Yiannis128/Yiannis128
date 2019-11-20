@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
 
-    @(CommonCSS.html)@
-
+    @(Common.html)@
 
 </head>
 
@@ -17,7 +16,24 @@
     @(Header.html)@
 
     <main>
-        <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+        <h1 class="MainContentSectionTitle">Information</h1>
+        
+        <div class="MainContentSectionContainer">
+            <h3 class="MainContentSectionTitle">Educational Background</h3>
+            <ul>
+                <li>Studying for a BSc Computer Science degree at The University of Manchester.</li>
+                <li>Computer Science BSc First Year GPA: First</li>
+            </ul>
+        </div>
+
+        <div class="MainContentSectionContainer">
+            <h3 class="MainContentSectionContainer">Skills</h3>
+            <ul>
+                <li>Communication & Teamwork: I have worked in teams before where communication was a key element in keeping the team's productivity high,
+                    furthermore having an efficient team requires good communication skills that I have developed over the years.</li>
+                <li>Leadership: There have been many times where I was assigned a leading role in a team, this has developed my leadership skills over the years.</li>
+            </ul>
+        </div>
     </main>
 
     @(Footer.html)@

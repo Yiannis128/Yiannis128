@@ -1,8 +1,7 @@
 footer
 {
-    position: fixed;
+    position: relative;
 
-    margin: 0;
     padding: 10px 0;
     
     bottom: 0;
@@ -29,4 +28,5 @@ footer > div
 footer h6
 {
     color: rgb(40,40,40);
+    margin: 0;
 }

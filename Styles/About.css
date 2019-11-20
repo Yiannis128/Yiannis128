@@ -1,0 +1,19 @@
+.ContactLinkImage
+{
+  width: 100px;
+}
+
+.ContactLinkGridRow
+{
+  
+}
+
+.ContactLinkGridColumn
+{
+
+}
+
+.ContactLink:hover
+{
+  background: none; /* Without this for some reason a black band appears under the image when mouse is hovered over. */
+}

@@ -8,7 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
 
-    @(CommonCSS.html)@
+    @(Common.html)@
+
+    <link rel="stylesheet" type="text/css" media="screen" href="Styles/About.css"/>
 
 </head>
 
@@ -24,7 +26,7 @@
                 <a class="TextStyledLink" href="https://www.manchester.ac.uk/">The University of Manchester</a>.
                 <br/>
                 <br/>
-                I know how to program in various programming languages including: C, Java ☕, C#, PHP, Visual Basic and Python. On top
+                I know how to program in various programming languages including: C, Java ☕, C#, PHP, Visual Basic and Python, Bash and PowerShell. On top
                 of that, I have experience with using Unreal Engine 4 and Unity in creating fun little games.
                 <br/>
                 <br/>
@@ -35,9 +37,26 @@
     
         <div class="MainContentSectionContainer">
             <h1 class="MainContentSectionTitle">Contact Details</h1>
-            <h2><a class="HeaderStyledLink" href="https://www.linkedin.com/in/yiannis-charalambous-504b60197/">• LinkedIn</a></h2>
-            <h2><button class="HeaderStyledButton" onclick="window.open('mailto:yiannis128@hotmail.com');">• Email</button></h2>
-            <h2><a class="HeaderStyledLink" href="https://github.com/Yiannis128/">• GitHub</a></h2>
+
+            <div class="ContactLinkGridRow">
+                <div class="ContactLinkGridColumn">
+                    <a class="ContactLink" href="https://www.linkedin.com/in/yiannis-charalambous-504b60197/">
+                        <img class="ContactLinkImage" src="Resources/Images/LinkedInLogo.png"/>
+                    </a>
+                </div>
+
+                <div class="ContactLinkGridColumn">
+                    <button class="HeaderStyledButton" onclick="window.open('mailto:yiannis128@hotmail.com');">
+                        <img class="ContactLinkImage" src="Resources/Images/Email.png"/>
+                    </button>
+                </div>
+
+                <div class="ContactLinkGridColumn">
+                    <a class="ContactLink" href="https://github.com/Yiannis128/">
+                        <img class="ContactLinkImage" src="Resources/Images/GitHubLogo.png"/>
+                    </a>
+                </div>
+            </div>
         </div>
     </main>
 

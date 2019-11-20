@@ -47,7 +47,7 @@ nav
   float: right; /* Determines the location that the bar will appear. */
 }
 
-ul 
+.NavigationBarItemsList 
 {
   list-style-type: none;
   margin: 0;
@@ -55,13 +55,9 @@ ul
   overflow: hidden;
 }
 
-li
+.NavigationBarMainListItem
 {
   float: left; /* Determines order in which li are ordered. */
-}
-
-nav ul li
-{
   display: block;
   height: 60px;
 }

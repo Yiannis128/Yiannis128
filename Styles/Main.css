@@ -45,10 +45,15 @@ main
   font-size: inherit;
 }
 
-.ImageRightAllignedInText
+.ImageRightAlignedInText
 {
   float:right;
   display:block;
+}
+
+.MainContentSectionContainer p
+{
+  text-align: justify;
 }
 
 @media only screen and (max-width: 1250px)
