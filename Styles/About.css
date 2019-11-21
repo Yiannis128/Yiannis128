@@ -1,19 +1,37 @@
-.ContactLinkImage
+.ContactLinksGridContainer
 {
-  width: 100px;
-}
+  margin-top: 50px;
+  margin-bottom: 50px;
 
-.ContactLinkGridRow
-{
-  
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 0;
 }
 
 .ContactLinkGridColumn
 {
+  text-align: center;
+}
 
+.ContactLink
+{
+  display:block;
+  text-decoration: none;
+  color: black;
+  background: transparent;
 }
 
 .ContactLink:hover
 {
   background: none; /* Without this for some reason a black band appears under the image when mouse is hovered over. */
+}
+
+.ContactLinkImage
+{
+  width: 100px;
+}
+
+.HeaderStyledButton#centeredButtonForContactLinkImage:hover 
+{
+  cursor: pointer;
 }
