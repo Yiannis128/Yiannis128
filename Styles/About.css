@@ -13,10 +13,25 @@
   text-align: center;
 }
 
+.ContactLinkGridColumn .HeaderStyledButton
+{
+  font-weight: normal;
+  font-size: x-large;
+}
+
+.ContactLinkGridColumn p
+{
+  margin: 0;
+}
+
 .ContactLink
 {
   display:block;
   text-decoration: none;
+
+  font-size: x-large;
+  margin: 0;
+  
   color: black;
   background: transparent;
 }
