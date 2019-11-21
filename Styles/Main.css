@@ -57,7 +57,7 @@ main
   display:block;
 }
 
-.MainContentSectionContainer p
+.MainContentSectionContainer .TextParagraph
 {
   text-align: justify;
 }
