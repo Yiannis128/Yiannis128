@@ -29,7 +29,7 @@ main
 
 .HeaderStyledLink, .TextStyledLink /* <a> Link that is styled like normal text. */
 {
-  text-decoration: none;
+  text-decoration: underline;
   color: black;
   background: transparent;
 }
