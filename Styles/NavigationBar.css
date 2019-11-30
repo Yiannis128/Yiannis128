@@ -74,21 +74,21 @@ nav
 }
 
 /* Change the link color to #111 (black) on hover */
-li a:hover 
+.NavigationBarMainListItem .NavBarItemText:hover 
 {
   background-color: rgb(20,20,20);
 
   transition: 0.2s ease-in-out;
 }
 
-@media only screen and (max-width: 1250px)
+@media only screen and (max-width: 1350px)
 {
   header
   {
     padding: 0;
   }
 
-  li
+  li.NavigationBarMainListItem
   {
     float: none;
     display: block; /* On phone screens we want list to be verticle. */

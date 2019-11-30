@@ -1,0 +1,23 @@
+.GridLayout
+{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.GridLayoutRow
+{
+  display: grid;
+  grid-template-columns: 33% 33% 34%;
+  padding: 0;
+  margin: 0;
+}
+
+.GridLayoutItem
+{
+  text-align: center;
+}
+
+.GridLayoutItem p
+{
+  margin: 0;
+}
