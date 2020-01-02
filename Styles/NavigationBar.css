@@ -39,7 +39,6 @@ header
 .LogoText
 {
   float: left;
-  margin: 0;
   color: white;
   margin: 10px 0 0 25px;
 }
@@ -61,6 +60,7 @@ nav
 {
   float: left; /* Determines order in which li are ordered. */
   display: block;
+  width: 80px; /* The width of the buttons. */
   height: 60px;
 }
 
@@ -71,8 +71,6 @@ nav
   display: block;
   text-align: center;
   padding: 20px 16px;
-
-  width: 100px; /* The width of the buttons. */
 }
 
 /* Change the link color to #111 (black) on hover */
@@ -83,8 +81,44 @@ nav
   transition: 0.2s ease-in-out;
 }
 
-@media only screen and (max-width: 1350px)
+.NavigationBarMenuDropdownButton
 {
+  float: right;
+  display: none; /* Disabled for bigger screens. */
+}
+
+/* This section of CSS is designed for smaller screens.
+   In this case, there will be a drop down menu button in the navigation bar
+   that will show the rest of the menu. */
+@media only screen and (max-width: 1300px)
+{
+
+  .NavigationBarMenuDropdownButton
+  {
+    display: block; /* Show button for smaller screens. */
+    height: 50px;
+    width: 50px;
+
+    border: none;
+    background-color: transparent;
+
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    color: white;
+  }
+
+  .NavigationBarMenuDropdownButton:focus
+  {
+    outline: none;
+  }
+
+  /* By default, the list of menus is collapsed, until button is pressed. */
+  .NavigationBarItemsList
+  {
+    display: none;
+  }
+
   header
   {
     padding: 0;
@@ -94,5 +128,22 @@ nav
   {
     float: none;
     display: block; /* On phone screens we want list to be verticle. */
+  }
+
+  .Logo
+  {
+    margin: 2px 0 0 0;
+  }
+
+  /* Make the logo container take less space so the button can be on the right side. */
+  .LogoText
+  {
+    font-size: 16pt;
+    margin: 12px 0 12px 10px;
+  }
+
+  .NavigationBarMainListItem
+  {
+    width: 100vw; /* Set the button to take the whole page. */
   }
 }

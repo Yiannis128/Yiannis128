@@ -21,3 +21,18 @@
 {
   margin: 0;
 }
+
+@media only screen and (max-width: 1300px)
+{
+  /* Phone screens are too small to display a grid, so put each element as a straight vertical line. */
+  .GridLayoutRow
+  {
+    display: block;
+  }
+
+  /* Since they are displayed as a line, add some spacing between elements that would be on the same row. */
+  .GridLayoutItem
+  {
+    padding: 15px 0;
+  }
+}

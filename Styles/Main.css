@@ -57,6 +57,11 @@ main
   font-size: inherit;
 }
 
+.HeaderStyledButton:focus
+{
+  outline: none;
+}
+
 .ImageRightAlignedInText
 {
   float:right;
