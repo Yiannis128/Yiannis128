@@ -2,7 +2,7 @@ header
 {
   background-color: rgba(50, 50, 50, 0.8);
   
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(6px);
 
   margin-top: 50px; /* Inital offset from top of page. */
 
