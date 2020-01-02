@@ -60,7 +60,7 @@ nav
 {
   float: left; /* Determines order in which li are ordered. */
   display: block;
-  width: 80px; /* The width of the buttons. */
+  width: 100px; /* The width of the buttons. */
   height: 60px;
 }
 
