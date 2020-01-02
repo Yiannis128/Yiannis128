@@ -90,7 +90,7 @@ nav
 /* This section of CSS is designed for smaller screens.
    In this case, there will be a drop down menu button in the navigation bar
    that will show the rest of the menu. */
-@media only screen and (max-width: 1300px)
+@media only screen and (max-width: 1350px)
 {
 
   .NavigationBarMenuDropdownButton

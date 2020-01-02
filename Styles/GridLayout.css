@@ -22,7 +22,7 @@
   margin: 0;
 }
 
-@media only screen and (max-width: 1300px)
+@media only screen and (max-width: 1350px)
 {
   /* Phone screens are too small to display a grid, so put each element as a straight vertical line. */
   .GridLayoutRow
