@@ -62,10 +62,10 @@ main
   outline: none;
 }
 
-.ImageRightAlignedInText
+.DynamicSizedImage
 {
-  float:right;
-  display:block;
+  margin: 0 10px;
+  max-width: 100%;
 }
 
 .MainContentSectionContainer .TextParagraph
@@ -73,11 +73,17 @@ main
   text-align: justify;
 }
 
-@media only screen and (max-width: 1250px)
+@media only screen and (max-width: 1300px)
 {
   main
   {
     width: 80%;
     margin: auto;
+  }
+
+  .DynamicSizedImage
+  {
+    margin: 10px 0;
+    max-width: 100%;
   }
 }
