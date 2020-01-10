@@ -48,13 +48,12 @@ nav
   float: right; /* Determines the location that the bar will appear. */
 }
 
-.NavigationBarItemsList 
+#NavigationBarItemsList 
 {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  display: block;
 }
 
 .NavigationBarMainListItem
@@ -101,6 +100,10 @@ nav
     width: 50px;
 
     border: none;
+    border-left-color: gray;
+    border-left-width: 1px;
+    border-left-style: solid;
+
     background-color: transparent;
 
     font-family: inherit;
@@ -112,12 +115,6 @@ nav
   .NavigationBarMenuDropdownButton:focus
   {
     outline: none;
-  }
-
-  /* By default, the list of menus is collapsed, until button is pressed. */
-  .NavigationBarItemsList
-  {
-    display: none;
   }
 
   header
