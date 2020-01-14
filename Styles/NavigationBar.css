@@ -7,6 +7,10 @@ header
   margin-top: 50px; /* Inital offset from top of page. */
 
   padding: 0 200px;
+
+  /* Drop shadows and other effects draw in front of 0 index elements. 
+  So drop shadows that are not in the header will draw over the header if index is not 0. */
+  z-index: 1;
 }
 
 .StickyElement
@@ -121,6 +125,8 @@ nav
   {
     padding: 0;
   }
+
+
 
   li.NavigationBarMainListItem
   {
