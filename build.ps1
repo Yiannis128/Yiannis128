@@ -218,7 +218,7 @@ $REPLACE_TAG = "@(.*)@";
 $ReplaceResourcesPath = "Imports";
 
 $IGNORE_DIRECTORIES = "Build", $ReplaceResourcesPath, ".git", ".vscode";
-$IGNORE_FILES = "README.md", "build.ps1", "clean.ps1", ".gitignore";
+$IGNORE_FILES = "README.md", "build.ps1", "clean.ps1", ".gitignore", "ps.sh";
 
 $PARSED_EXTENTIONS = ".html", ".css";
 
