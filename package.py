@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# HTML Packager is made by Yiannis Charalambous - 2020
+
 from io import TextIOWrapper
 import os
 from shutil import copyfile
