@@ -46,7 +46,9 @@ def parse_file(templates_path : str, content : str) -> str:
         imported_soup : BeautifulSoup = BeautifulSoup(import_content, "html.parser")
         import_tag.replace_with(imported_soup)
 
-    return str(soup)
+    result : str = str(soup)
+
+    return result
 
 def scan_file(dir : str, path : str) -> None:
     print("   Scanning File: " + path)
@@ -92,7 +94,7 @@ templates_folder : str = "Templates"
 
 import_tag_name : str = "import"
 
-allowed_file_formats = [".html", ".css", ".js"]
+allowed_file_formats = [".html"]
 
 print("Base Directory: " + base_directory)
 print("Source Folder: " + source_folder)
