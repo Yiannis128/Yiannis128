@@ -1,0 +1,23 @@
+{
+  "name": "yiannis-charalambous",
+  "version": "1.0.0",
+  "description": "My website",
+  "main": "index.js",
+  "scripts": {
+    "live-server": "live-server Public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Yiannis128/WebsiteIndev.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Yiannis128/WebsiteIndev/issues"
+  },
+  "homepage": "https://github.com/Yiannis128/WebsiteIndev#readme",
+  "dependencies": {
+    "live-server": "^1.2.1"
+  }
+}
