@@ -4,7 +4,8 @@
   "description": "My website",
   "main": "index.js",
   "scripts": {
-    "live-server": "live-server Public"
+    "live-server": "live-server Public",
+    "build-css": "tailwindcss-cli build Source/Styles/Styles.css -o Public/Styles/Styles.css"
   },
   "repository": {
     "type": "git",
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/Yiannis128/WebsiteIndev#readme",
   "dependencies": {
-    "live-server": "^1.2.1"
+    "live-server": "^1.2.1",
+    "tailwindcss-cli": "^0.1.2"
   }
 }

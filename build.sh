@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "Running packager"
-./packager.sh
+./package.py
 
 echo "Building latest tailwindcss..."
-npx tailwindcss-cli@latest build Source/Styles/Styles.css -o Public/Styles/Styles.css
+npm run build-css

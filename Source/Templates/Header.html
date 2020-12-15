@@ -1,17 +1,27 @@
-<header class="StickyElement ClearFix">
-    <div class="LogoContainer">
-        <img class="Logo" src="Resources/Images/Logo.PNG"/>
-        <h1 class="LogoText">Yiannis Charalambous</h1>
-    </div>
+<header class="sticky top-0 bg-gray-800 bg-opacity-80 px-4 md:px-8 2xl:px-72 mt-12 ease-in-out duration-200">
+    <div class="flex flex-col md:flex-row justify-between">
+        <div id="logoContainer" class="flex items-center">
+            <img class="inline-block w-auto p-2" src="Resources/Images/Logo.PNG"/>
+            <h1 class="mx-4 text-white text-2xl font-weight-bold">Yiannis Charalambous</h1>
+        </div>
     
-    <button class="NavigationBarMenuDropdownButton" onclick="navBarDropDownButtonClick()">=</button>
-
-    <nav>
-        <ul id="NavigationBarItemsList">
-            <li class="NavigationBarMainListItem"><a class="NavBarItemText" href="index.html">Home</a></li>
-            <li class="NavigationBarMainListItem"><a class="NavBarItemText" href="CV.html">CV</a></li>
-            <li class="NavigationBarMainListItem"><a class="NavBarItemText" href="Projects.html">Projects</a></li>
-            <li class="NavigationBarMainListItem"><a class="NavBarItemText" href="About.html">Contact</a></li>
-        </ul>
-    </nav>
+        <nav class="p-0 m-0 flex h-16 md:h-auto items-stretch md:justify-between">
+            <a class="NavBarItemText flex w-1/4 md:w-24 lg:w-28 px-2 mx-auto lg:mx-2
+            items-center justify-center hover:bg-gray-900 ease-in-out duration-200" href="index.html">
+                <span>Home</span>
+            </a>
+            <a class="NavBarItemText flex w-1/4 md:w-24 lg:w-28 px-2 mx-auto lg:mx-2
+            items-center justify-center hover:bg-gray-900 ease-in-out duration-200" href="CV.html">
+                <span>CV</span>
+            </a>
+            <a class="NavBarItemText flex w-1/4 md:w-24 lg:w-28 px-2 mx-auto lg:mx-2
+            items-center justify-center hover:bg-gray-900 ease-in-out duration-200" href="Projects.html">
+                <span>Projects</span>
+            </a>
+            <a class="NavBarItemText flex w-1/4 md:w-24 lg:w-28 px-2 mx-auto lg:mx-2
+            items-center justify-center hover:bg-gray-900 ease-in-out duration-200" href="About.html">
+                <span>Contact</span>
+            </a>
+        </nav>
+    </div>
 </header>

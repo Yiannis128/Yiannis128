@@ -8,54 +8,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
 
-    <import src="Common.html"/>
+    <import src="Common.html" />
 
-    <link rel="stylesheet" type="text/css" media="screen" href="Styles/GridLayout.css"/>
-    <link rel="stylesheet" type="text/css" media="screen" href="Styles/About.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="Styles/GridLayout.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="Styles/About.css" />
 
 </head>
 
 <body>
-    <import src="Header.html"/>
+    <import src="Header.html" />
 
     <main>
-        <div class="MainContentContainer">
-            
-            <div class="MainContentSectionContainer">
-                <h1 class="PageTitle">Contact Details</h1>
-    
-                <div class="GridLayout">
-                    <div class="GridLayoutRow">
+        <div class="ContentCard">
+            <div class="ContentCardSection ContentCardSectionLast w-full">
+                <h1>Contact</h1>
 
-                        <div class="GridLayoutItem ContactLinkGridColumn">
-                            <a class="ContactLink" href="https://www.linkedin.com/in/yiannis-charalambous-504b60197/">
-                                <img class="ContactLinkImage" src="Resources/Images/External/LinkedInLogo.png"/>
-                                <p>LinkedIn</p>
-                            </a>
-                        </div>
+                <div class="my-6 flex flex-row justify-around">
+                    <a class="hover:bg-gray-200 rounded-md p-4" href="https://www.linkedin.com/in/yiannis-charalambous-504b60197/">
+                        <img width="64" src="Resources/Images/External/LinkedInLogo.png" />
+                        <p class="flex justify-center">LinkedIn</p>
+                    </a>
 
-                        <div class="GridLayoutItem ContactLinkGridColumn">
-                            <button class="HeaderStyledButton" id="centeredButtonForContactLinkImage" onclick="window.open('mailto:yiannis128@hotmail.com');">
-                                <img class="ContactLinkImage AlignCenter" src="Resources/Images/External/Email.png"/>
-                                <p>Email</p>
-                            </button>
-                        </div>
-        
-                        <div class="GridLayoutItem ContactLinkGridColumn">
-                            <a class="ContactLink" href="https://github.com/Yiannis128/">
-                                <img class="ContactLinkImage AlignRight" src="Resources/Images/External/GitHubLogo.png"/>
-                                <p>GitHub</p>
-                            </a>
-                        </div>
+                    <button class="hover:bg-gray-200 rounded-md p-4" onclick="window.open('mailto:yiannis128@hotmail.com');">
+                        <img width="64" src="Resources/Images/External/Email.png" />
+                        <p class="flex justify-center">Email</p>
+                    </button>
 
-                    </div>
+                    <a class="hover:bg-gray-200 rounded-md p-4" href="https://github.com/Yiannis128/">
+                        <img width="64" src="Resources/Images/External/GitHubLogo.png" />
+                        <p class="flex justify-center">GitHub</p>
+                    </a>
                 </div>
-
             </div>
         </div>
     </main>
 
-    <import src="Footer.html"/>
+    <import src="Footer.html" />
 </body>
 
 </html>
