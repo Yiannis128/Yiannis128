@@ -1,2 +1,7 @@
+#!/usr/bin/env bash
 
-NODE_ENV=production
+echo "Running packager"
+./package.py
+
+echo "Building latest tailwindcss..."
+npm run build-css-production
