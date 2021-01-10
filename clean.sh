@@ -2,5 +2,5 @@
 
 if [ -d "Public" ]
 then
-    rm -r "Public/*"
+    rm -r "Public/"
 fi
