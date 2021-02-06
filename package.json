@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Yiannis128/WebsiteIndev#readme",
   "dependencies": {
     "live-server": "^1.2.1",
+    "npm": "^7.5.2",
     "tailwindcss-cli": "^0.1.2"
   }
 }

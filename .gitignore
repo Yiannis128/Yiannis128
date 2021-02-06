@@ -2,3 +2,4 @@ Build
 .vscode
 ps.sh
 Public
+node_modules/*
