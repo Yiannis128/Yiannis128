@@ -1,65 +1,175 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 body
 {
-    @apply bg-gray-200 font-sans;
+  background-color: rgb(229, 231, 235);
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 main
 {
-  @apply px-6 lg:px-32 2xl:px-64 mt-14 ease-in-out duration-200;
+  margin-top: 25px;
+  padding: 3rem 4rem;
+  width: auto;
+  align-self: auto;
+}
+
+/* Small screens */
+@media screen and (max-width: 800px)
+{
+  main
+  {
+    padding: 0 1.5rem;
+  }
+}
+
+/* Large screens */
+@media screen and (min-width: 1400px)
+{
+  main
+  {
+    padding: 3rem 0;
+    
+    width: 1000px;
+    align-self: center;
+  }
 }
 
 .ContentCard
 {
-  /**
-   * When the screen is xl, then display cards in flex.
-   */
-  @apply md:flex mb-12;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .ContentCardSection
 {
-  @apply mb-4 md:mb-0 md:mr-2 p-4;
-  @apply bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl shadow-xl;
+  margin: 0 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+
+  border-radius: 1rem;
+  filter: drop-shadow(10px 15px 10px rgba(0, 0, 0, 0.1));
+
+  flex: auto;
+
+  background-image: linear-gradient(to bottom right, #f3f4f6, #e5e7eb);
 }
 
 .ContentCardSectionLast
 {
-  /**
-   * This undos the last ContentCardSection right margin value, since
-   * there is nothing after it.
-   */
-  @apply md:mr-0;
+  margin-bottom: 0rem;
+}
+
+@media screen and (max-width: 800px)
+{
+  .ContentCardSection
+  {
+    margin: 1rem 0;
+
+    flex: 100%;
+  }
+
+  .ContentCardSectionLast
+  {
+    margin-bottom: 1rem;
+  }
 }
 
 .ContentCardSection h1
 {
-  @apply text-3xl mb-6;
-  @apply border-b-2 border-gray-900;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  margin-bottom: 1.5rem;
+  border-color: rgb(17, 24, 39);
+  border-bottom-width: 2px;
 }
 
-.ContentCardSection h2
+/**
+ * Content card but it's a button.
+ */
+.ContentCardButton
 {
-  @apply text-xl mb-6;
+  padding: 0;
+}
+
+.ContentCardButton > a
+{
+  padding: 1rem;
+  display: block;
+  align-items: center;
+  text-decoration: none;
+}
+
+.ContentCardButton > a > img
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ContentCardButton > a > p
+{
+  text-align: center;
+}
+
+img
+{
+  display: inline-block;
+  max-width: 100%;
+  border-radius: 0.5rem;
+}
+
+video
+{
+  display: inline-block;
+  max-width: 100%;
+  border-radius: 0.5rem;
 }
 
 .HSep
 {
-  @apply mx-0 xl:mx-72 ease-in-out duration-200;
-  @apply mb-12 shadow-inner-3 rounded-xl p-4;
+  margin: 0 6rem 3rem 6rem;
+  padding: 1rem;
+  box-shadow: 0 4px 6px inset rgba(0, 0, 0, 0.3);
+  border-radius: 0.75rem;
+}
+
+/* Small screens */
+@media screen and (max-width: 800px)
+{
+  .HSep
+  {
+    margin: 0;
+  }
+}
+
+/* Large screens */
+@media screen and (min-width: 1400px)
+{
+  .HSep
+  {
+    margin-left: 12rem;
+    margin-right: 12rem;
+  }
 }
 
 .HSep h2
 {
-  @apply text-xl text-gray-500 text-center;
+  font-size: 1.5em;
+  text-align: center;
+  color: rgb(107, 114, 128);
+  line-height: 1em;
 }
 
-.LinkButton
+a
 {
-  @apply bg-gradient-to-br from-blue-400 to-blue-500 hover:to-blue-400;
-  @apply border-blue-600 border-2 text-white text-center rounded-md;
-  @apply p-2;
+  text-decoration: none;
+  color: darkslategray;
 }
+
+h1, h2, h3
+{
+  margin: 0;
+}
+
