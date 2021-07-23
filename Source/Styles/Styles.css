@@ -176,10 +176,11 @@ h1, h2, h3
 .LinkButton
 {
   text-decoration: none;
-    color: #f5ebeb;
-    border: darkslategray solid;
-    border-radius: 0.6rem;
-    border-width: 2px;
-    padding: 0.6rem;
-    background: linear-gradient(135deg, #2772db, #3ab1c8);
+  color: #f5ebeb;
+  border: darkslategray solid;
+  border-radius: 0.6rem;
+  border-width: 2px;
+  padding: 0.6rem;
+
+  background-color: #2772db;
 }
