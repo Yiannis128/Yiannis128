@@ -4,6 +4,7 @@
 
 from io import TextIOWrapper
 import os
+from sys import argv
 from shutil import copyfile
 from pathlib import Path
 from bs4 import BeautifulSoup, Tag
@@ -61,7 +62,7 @@ def scan_file(dir : str, path : str) -> None:
 
     file : TextIOWrapper = open(path, mode="r")
     content : str = file.read()
-    build_content = parse_file(os.path.join(source_folder, templates_folder), content)
+    build_content = parse_file(os.path.join(dir, templates_folder), content)
 
     # Make the path if it doesn't exist
     create_directory(build_path)
@@ -75,7 +76,7 @@ def scan_file(dir : str, path : str) -> None:
 
 def scan_directory(path : str) -> None:
     # Walk through the files...
-    for subdir, dirs, files in os.walk(path):
+    for subdir, _dirs, files in os.walk(path):
         for file in files:
             # Only scan the file if it has the correct file format.
             splitext : str = os.path.splitext(file)
@@ -98,10 +99,21 @@ import_tag_name : str = "import"
 
 allowed_file_formats = [".html"]
 
-print("Base Directory: " + base_directory)
-print("Source Folder: " + source_folder)
-print("Build Folder: " + build_folder)
-print()
-
 if __name__ == "__main__":
+    # Parse commandline arguments.
+    if len(argv) != 3:
+        print("Wrong number of arguments.")
+        print("Usage: [Source] [Target]")
+        exit(1)
+
+    source_folder = argv[1]
+    build_folder = argv[2]
+
+    print("Base Directory: " + base_directory)
+    print("Source Folder: " + source_folder)
+    print("Build Folder: " + build_folder)
+    print()
+
     scan_directory(source_folder)
+
+

@@ -1,5 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 echo "Running packager"
-./package.py
+./package.py Source Public
+
 

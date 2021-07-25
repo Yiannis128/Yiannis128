@@ -81,8 +81,13 @@ main
   font-size: 1.875rem;
   line-height: 2.25rem;
   margin-bottom: 1.5rem;
-  border-color: rgb(17, 24, 39);
-  border-bottom-width: 2px;
+}
+
+.ContentCardSection h2
+{
+  font-size: 1.2rem;
+  line-height: 1.85rem;
+  margin: 1rem 0;
 }
 
 /**
@@ -181,6 +186,7 @@ h1, h2, h3
   border-radius: 0.6rem;
   border-width: 2px;
   padding: 0.6rem;
+  line-height: 2rem;
 
   background-color: #2772db;
 }
