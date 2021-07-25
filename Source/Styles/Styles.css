@@ -35,6 +35,12 @@ main
   }
 }
 
+h1, h2, h3
+{
+  margin: 0;
+}
+
+
 .ContentCard
 {
   margin-bottom: 3rem;
@@ -171,11 +177,6 @@ a
 {
   text-decoration: none;
   color: darkslategray;
-}
-
-h1, h2, h3
-{
-  margin: 0;
 }
 
 .LinkButton
