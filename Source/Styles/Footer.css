@@ -29,6 +29,8 @@ footer h6
     display: inline-block;
     color: rgb(40,40,40);
     margin: 0;
+    word-wrap: break-word;
+    max-width: 100%;
 }
 
 /* This code allows the footer to be at the bottom of the viewport
