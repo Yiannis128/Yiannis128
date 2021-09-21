@@ -16,8 +16,8 @@
     9 / 16 16:9 ratio 
     padding top and bottom to align child text in the center.
   */
-  padding-top: 28.125%;
-  padding-bottom: 28.125%;
+  padding-top: 24%;
+  padding-bottom: 24%;
 
   border-radius: 1rem;
 
@@ -34,6 +34,21 @@
   background-size: 125%;
 }
 
+#blenderBarShowcaseRevealText
+{
+  color: rgba(255, 255, 255, 0);
+  transition: color ease-in-out 0.25s;
+  text-shadow: none;
+  text-align: center;
+  margin-top: 0.1rem;
+}
+
+#blenderBarShowcase:hover #blenderBarShowcaseRevealText
+{
+  color: white;
+  text-shadow: 2px 2px #000000;
+}
+
 @media screen and (max-width: 800px)
 {
   #blenderBarShowcase
@@ -44,5 +59,11 @@
   #blenderBarShowcase:hover
   {
     background-size: 180%;
+  }
+
+  #blenderBarShowcaseRevealText
+  {
+    color: white;
+    text-shadow: 2px 2px #000000;
   }
 }
