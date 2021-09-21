@@ -36,8 +36,9 @@
 
 #blenderBarShowcaseRevealText
 {
+  transition: color ease-in-out 0.25s,text-shadow ease-in-out 0.25s;
+  
   color: rgba(255, 255, 255, 0);
-  transition: color ease-in-out 0.25s;
   text-shadow: none;
   text-align: center;
   margin-top: 0.1rem;
