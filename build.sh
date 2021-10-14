@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 echo "Compiling articles"
+echo
 ./compile-articles.sh
 
 echo "Running packager"
