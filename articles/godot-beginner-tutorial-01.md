@@ -1,5 +1,7 @@
 # Learn Godot - For Absolute Beginners: 1
 
+## Warning, this article is still in development! Do not use for learning yet!
+
 ## Introduction
 
 This tutorial is designed for people with little to no experience with 
@@ -274,7 +276,12 @@ by Godot, you can use this to write comments about your code for documentation
 and readability purposes.
 
 Each node in Godot has a set of pre-made methods that can be extended in
-scripts. These pre-made methods are invoked at specific times, for example the
+scripts. A method in programming a series of instructions that the computer will
+follow when told so. Methods and functions will be used interchangeably in this
+tutorial, there is a small difference between them in reality, however, this
+difference does not apply in Godot. Methods can take a series of pre-defined
+inputs, and can also output a value back to the statement that had invoked the
+method. These pre-made methods are invoked at specific times, for example the
 `_physics_process` method is called at a constant rate every second. So it is
 good for writing behaviour that is continuous. We will be extending this method
 in order to make the player ship rotate.
@@ -301,8 +308,14 @@ The code for rotating the ship can be copied to the bottom of the script:
 The `func _physics_process(delta: float) -> void:` is a method declaration, also
 known as a function declaration. The node that this script extends,
 `CharacterBody2D` has this `_physics_process` method already defined, this
-allows us to implicitly override that method and so, when the method in the
-base class is invoked, it will call the method in the Player script instead.
+allows us to implicitly override that method and so, when the method in the base
+class is invoked, it will call the method in the Player script instead. As can
+be seen, the `_physics_process` method takes a `float` as an input, a float is
+basically a number that can have decimal points. The inputs to the function are
+called _parameters_ and they are defined all inside the brackets at the top of
+the function declaration (called the function header). The `-> void` denotes
+that this function is _void of output_. This means that it will not return any
+type of value back to the caller.
 
 So any code we write in the `_physics_process` method will be called at a
 constant rate every second. This means that we can write code to rotate the ship
@@ -325,7 +338,96 @@ then it will rotate clockwise. Before we pass it `move_dir`, we multiply it
 with `delta` because that allows it to move at constant speed, regardless of
 how many FPS the game is running with.
 
-We have now typed the 
+We have now completed the script that when attached to the _Player_ node will
+cause it to rotate. However, the Player node cannot accept the script in its
+current form, recall the first line in the Player script; `extends
+CharacterBody2D`, this line allows the Player script to use functions that will
+rotate the player ship, however, the player ship is not a CharacterBody2D node,
+it is a Node2D. The root node of the Player scene needs to be converted into
+a CharacterBody2D node first before it can be attached without any errors
+appearing. Doing so is very simple, open the _Player.tscn_ scene, and right
+click the root node that we have previously named _Player_ and select
+_Change Type_, from the dialog that appears, select _CharacterBody2D_, the
+type of the root node of _Player.tscn_ is now a _CharacterBody2D_.
+
+You will notice that a yellow warning signal has appeared next to the name root
+node's name, hovering over it will reveal why the warning is there.
+
+![](godot-beginner-tutorial-01/godot_13.png)
+
+> Node configuration warning:
+>
+> * This node has no shape, so it can't collide or interact with other objects.
+>
+> Consider adding a CollisionShape2D or CollisionPolygon2D as a child to define
+> its shape.
+
+This warning is self evident, we need to add either a CollisionShape2D or a
+CollisionPolygon2D node as a child of the root node in order to define
+which region of the player is solid. Right click on the _Player_ node and
+select _Add Child Node_, in the dialog that shows up, select _CollisionShape2D_
+as the type of the new node to add. Once it is added, a new warning should
+appear, this time next to the newly added node's name.
+
+![](godot-beginner-tutorial-01/godot_14.png)
+
+> Node configuration warning:
+>
+> * A shape must be provided for CollisionShape2D to function. Please create a
+> shape resource for it.
+
+While nodes in Godot serve a functional purpose, resources function as data
+containers. They don't have a functional purpose themselves, instead they are
+used by nodes as data. So CollisionShape2D wants a resources that describes
+what shape it shall have. Resources are added from the _Inspector_ panel. While
+having the _CollisionShape2D_ node selected, the inspector panel will look like
+this:
+
+![](godot-beginner-tutorial-01/godot_15.png)
+
+Notice that the _Shape_ property is marked as `[empty]`, this is the property
+that the warning was describing, it needs a shape assigned to it, click on the
+`[empty]` text, a menu will appear allowing you to select from a wide variety
+of shapes. Select _CircleShape2D_ as the shape. A small circle will appear at
+coordinates (0, 0) in the _Player.tscn_ scene. Depending on the player ship
+sprite was placed, it is most likely that the shape will not overlap the ship.
+It is vital we center the ship to (0,0) as this will solve a lot of issues that
+would have appeared in the future. You can either drag the ship sprite to the
+origin coordinate (0,0) or set the coordinates to 0 through the inspector in
+`Transform->Position`.
+
+Select the collision shape again and click on the `CircleShape2D` resource in
+the inspector that has replaced the `[empty]` value. The property should now
+expand, revealing all the parameters that can be edited to customize the
+circle shape. Increasing the _Radius_ property to 40 covers most of the ship,
+this is how the editor should look like after the change:
+
+![](godot-beginner-tutorial-01/godot_16.png)
+
+It is time to assign the script we have created previously to the _Player_ node,
+drag the script from the _FileSystem_ to the _Player_ node. Once done, a little
+scroll icon will appear next to the name, when clicked, it will open the script
+in the script editor mode.
+
+![](godot-beginner-tutorial-01/godot_17.png)
+
+## Running The Game
+
+Pressing the `F5` key or clicking on the _Play_ button at the top right of the
+editor window will run the game. If all went correctly, you should see the
+meteors we placed down previously, along with the player ship. Pressing the
+left or right keys will cause it to rotate clockwise and counter-clockwise.
+
+### Getting Help
+
+Godot's scripting editor has a useful feature that allows you to search for help
+regarding all of Godot's types. Notice in the top right corner of the script
+editor, there is a button labelled _Search Help_, when clicked, a dialog will be
+revealed allowing you to search and view information on the type you are
+interested in, here is help regarding the float type that the `_physics_process`
+method took:
+
+![](godot-beginner-tutorial-01/godot_12.png)
 
 ## Project Files
 
@@ -335,12 +437,14 @@ get stuck while following the tutorial.
 
 ## Useful Links
 
-Here are some Godot documentation pages which describe some of the topics
-that we have explored today. It is highly recommended you read them when you
-are ready as this tutorial does not explain the way the underlying systems
-work in Godot, that is not the goal. The goal of this tutorial is to get
-beginners introduced into the engine and get them to a point where they
-are comfortable enough to explore and learn by themselves.
+Here are some Godot documentation pages which describe some of the topics that
+we have explored today. It is highly recommended you read them when you are
+ready as this tutorial does not explain the way the underlying systems work in
+Godot, that is not the goal. The goal of this tutorial is to get beginners
+introduced into the engine and get them to a point where they are comfortable
+enough to explore and learn by themselves. It would be impossible to create a
+tutorial that fully explains every aspcect of game creation and Godot while at
+the same time being able to be completed in about an hour.
 
 1. [Introduction to Godot's editor](https://docs.godotengine.org/en/stable/getting_started/step_by_step/intro_to_the_editor_interface.html)
 2. [Scenes and nodes](https://docs.godotengine.org/en/stable/getting_started/step_by_step/scenes_and_nodes.html)

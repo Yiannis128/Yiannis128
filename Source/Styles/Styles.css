@@ -96,6 +96,13 @@ h1, h2, h3
   margin: 1rem 0;
 }
 
+.ContentCardSection h3
+{
+  font-size: 1.0rem;
+  line-height: 1.25rem;
+  margin: 0.5rem 0;
+}
+
 /**
  * Content card but it's a button.
  */
