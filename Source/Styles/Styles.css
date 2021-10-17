@@ -211,5 +211,5 @@ code
 
 ul > li
 {
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
