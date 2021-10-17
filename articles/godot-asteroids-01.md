@@ -21,7 +21,7 @@ adds an extra layer of complexity that is unnecessary.
 **This tutorial was developed using Linux, this shouldn't be a problem most of
 the time as Godot is mostly platform independent, if there's different ways
 of doing the same thing depending on the OS currently running, then there will
-be instructions for Windows and MacOS also included, but they may be inacurate.
+be instructions for Windows and MacOS also included, but they may be inaccurate.
 If you find any mistakes then email me for a correction.**
 
 ![](godot-asteroids/godot_logo_vertical_light.png)
@@ -49,16 +49,16 @@ likely won't break any compatibility._
 ### Creating a New Project
 
 Once Godot is running, you will be greeted by the project manager. Godot
-allows you to work on multiple projects, here is where you cna manage them.
+allows you to work on multiple projects, here is where you can manage them.
 The window is divided into two sections, the section on the left is the
 list of projects that are currently on your computer. If this is
 your first time using Godot, then the list on the left should be blank. The
 list on the right is for managing those projects, each button allows for
 a different action. Currently click on the button with the text "New Project".
 
-The project creation window should now appear. The top text box labelled
+The project creation window should now appear. The top text box labeled
 "Project Name" should allow you to name your project. The text box below that
-labelled "Project Path" allows you to select a location to where the project
+labeled "Project Path" allows you to select a location to where the project
 will be saved upon creation. Godot only lets you create a project in an empty
 folder, so if you pick a folder that is not empty, you can click the 
 "Create Folder" button to create an empty folder to place your project in.
@@ -186,7 +186,7 @@ next section, the node system will be briefly introduced.
 
 ### The Node System
 
-Nodes are fundumental to Godot, they are used for creating creating each element
+Nodes are fundamental to Godot, they are used for creating creating each element
 of a game. The Node2D created in our _Main.tscn_ is in fact a node. What makes
 nodes so special is the fact that they can be a child or a parent of another
 node. Right click on _Node2D_ in the _Scene_ panel and click on _Rename_.
@@ -210,8 +210,8 @@ the sprite in our project, that is how it is able to be shown as a node.
 We will now create our a character that can shoot bullets and break those
 meteors that we have placed. Create a new folder in the _FileSystem_ called
 _objects_. Our player will indeed be a node, the player node will have some
-behaviour attached to it that will allow it to be controlled by us. We will
-save the player and behaviour as a separate scene inside of the objects folder.
+behavior attached to it that will allow it to be controlled by us. We will
+save the player and behavior as a separate scene inside of the objects folder.
 It is worth noting that scenes are nodes that are saved into the file system.
 
 At the top left menu of the editor window, click `Scenes->New Scene`. A new
@@ -236,7 +236,7 @@ _Player_.
 We can now drag the Player object into the Main scene we had created before.
 If we run the game now, we can see the meteors and our player ship, however,
 we cannot do anything yet because we have not programmed anything in the game
-yet. In the next section, we will program some basic behaviour and attach
+yet. In the next section, we will program some basic behavior and attach
 it to the player scene.
 
 ![](godot-asteroids/godot_10.png)
@@ -245,7 +245,7 @@ it to the player scene.
 
 **It is recommended you take a break at this part of the tutorial**
 
-The base version of Godot has 3 ways of adding behaviour to objects:
+The base version of Godot has 3 ways of adding behavior to objects:
 
 * GDScript: Writing code in Godot's own scripting language.
 * VisualScript: Visual scripting, drag and drop blocks.
@@ -266,7 +266,7 @@ Double click on the newly created file in the file system to switch to the
 scripting mode in editor. The viewport will now be replaced with the script
 editor. In the center there is a text field you type your GDScript code.
 On the top left of the viewport, you have a list of currently open scripts.
-On the bottom left you have a summary of your currently openned file's code,
+On the bottom left you have a summary of your currently opened file's code,
 it will currently be empty with just `_ready` being visible. On the right of
 the code editor, there is an overview map of the text in the code.
 
@@ -285,7 +285,7 @@ difference does not apply in Godot. Methods can take a series of pre-defined
 inputs, and can also output a value back to the statement that had invoked the
 method. These pre-made methods are invoked at specific times, for example the
 `_physics_process` method is called at a constant rate every second. So it is
-good for writing behaviour that is continuous. We will be extending this method
+good for writing behavior that is continuous. We will be extending this method
 in order to make the player ship rotate.
 
 The code for rotating the ship can be copied to the bottom of the script:
@@ -328,7 +328,7 @@ initially to it. We then have two `if` statements, an `if` statement allows for
 a question to be asked in code, in this case, Godot has a function we can call,
 that returns a value of type `bool`, `bool` values either be `true` or `false`.
 The `if` statement, looks at the `bool` value, and if it is `true` it will
-execute the code that is indented underneat the `if` statement in question.
+execute the code that is indented underneath the `if` statement in question.
 
 The two functions used in each if statement, `Input.is_key_pressed` are only
 true if the value passed to them, `KEY_LEFT` or `KEY_RIGHT` are pressed. So,
@@ -424,7 +424,7 @@ left or right keys will cause it to rotate clockwise and counter-clockwise.
 
 Godot's scripting editor has a useful feature that allows you to search for help
 regarding all of Godot's types. Notice in the top right corner of the script
-editor, there is a button labelled _Search Help_, when clicked, a dialog will be
+editor, there is a button labeled _Search Help_, when clicked, a dialog will be
 revealed allowing you to search and view information on the type you are
 interested in, here is help regarding the float type that the `_physics_process`
 method took:
@@ -445,7 +445,7 @@ ready as this tutorial does not explain the way the underlying systems work in
 Godot, that is not the goal. The goal of this tutorial is to get beginners
 introduced into the engine and get them to a point where they are comfortable
 enough to explore and learn by themselves. It would be impossible to create a
-tutorial that fully explains every aspcect of game creation and Godot while at
+tutorial that fully explains every aspect of game creation and Godot while at
 the same time being able to be completed in about an hour.
 
 1. [Introduction to Godot's editor](https://docs.godotengine.org/en/stable/getting_started/step_by_step/intro_to_the_editor_interface.html)
