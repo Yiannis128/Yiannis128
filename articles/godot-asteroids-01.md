@@ -437,6 +437,13 @@ The project files for this tutorial can be accessed on
 [GitHub](www.github.com). You can use these files as reference material if you
 get stuck while following the tutorial.
 
+## What's Next
+
+Part 2 of the tutorial series can be accessed [here](godot-asteroids-02.html).
+It is recommended that at some point you check the useful links section in order
+to get a better understanding of some of the concepts that appeard in this
+article.
+
 ## Useful Links
 
 Here are some Godot documentation pages which describe some of the topics that
