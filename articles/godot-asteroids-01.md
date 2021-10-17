@@ -1,4 +1,4 @@
-# Learn Godot - For Absolute Beginners: 1
+# Godot - Asteroids Game For Complete Beginners: 1
 
 ## Warning, this article is still in development! Do not use for learning yet!
 
@@ -24,7 +24,7 @@ of doing the same thing depending on the OS currently running, then there will
 be instructions for Windows and MacOS also included, but they may be inacurate.
 If you find any mistakes then email me for a correction.**
 
-![](godot-beginner-tutorial-01/godot_logo_vertical_light.png)
+![](godot-asteroids/godot_logo_vertical_light.png)
 
 ## Setup
 
@@ -66,14 +66,14 @@ There are more options in this dialog box, but for now, they are not necessary.
 When you are finished, click on the "Create & Edit" button to create your
 new project.
 
-![Godot New Project Dialog](godot-beginner-tutorial-01/godot_01.png)
+![Godot New Project Dialog](godot-asteroids/godot_01.png)
 
 ## Editor Basics
 
 The editor should appear upon creating your new project. The image below shows
 the editor once it has launched with a newly created project.
 
-![](godot-beginner-tutorial-01/godot_02.png)
+![](godot-asteroids/godot_02.png)
 
 In the center of the scene you can see your viewport, it is the large window
 that is displaying the 3D grid. In this tutorial, we will be making a 2D game,
@@ -82,7 +82,7 @@ viewport. Alongside it are other buttons, 2D, 3D, Script and AssetLib. For now
 we will be in 2D mode, however, we will go over what all the other buttons do
 aside from the 3D mode button.
 
-![](godot-beginner-tutorial-01/godot_05.png)
+![](godot-asteroids/godot_05.png)
 
 You will notice that the viewport has now changed, instead of a 3D grid,
 there's now a 2D gray surface instead, this is the 2D viewport. Also notice 
@@ -110,14 +110,14 @@ at the bottom left of the editor window now, in the panel called _FileSystem_,
 you now see the newly created _scene_ folder, clicking the arrow next to it
 will expand it revealing the _Main.tscn_ scene that we have just saved.
 
-![View of the FileSystem panel.](godot-beginner-tutorial-01/godot_03.png)
+![View of the FileSystem panel.](godot-asteroids/godot_03.png)
 
 The _FileSystem_ panel allows us to view all the assets and resources that
 are accessible to our project. Now that we have a scene saved, we can run
 the project. At the top right corner of the editor window, there are five
 buttons, _Play_, _Pause_, _Stop_, _Play Scene_, _Play Custom Scene_.
 
-![View of the play buttons.](godot-beginner-tutorial-01/godot_04.png)
+![View of the play buttons.](godot-asteroids/godot_04.png)
 
 All these buttons allow us to run the game, pause it, and stop it from running.
 Press the _Play_ button, which is the left-most button in the list.
@@ -152,7 +152,7 @@ a list of assets that we can import for free into our project! All these
 assets can also be found on the Godot website's 
 [Asset](https://godotengine.org/asset-library/asset) page.
 
-![](godot-beginner-tutorial-01/godot_06.png)
+![](godot-asteroids/godot_06.png)
 
 The 2D sprite pack we want however can be found
 [here](https://opengameart.org/content/space-shooter-redux). We will manually
@@ -178,7 +178,7 @@ pack into the sprites folder:
 After importing the sprites into the project, the _FileSystem_ should look
 like this:
 
-![Picture of the FileSystem.](godot-beginner-tutorial-01/godot_07.png)
+![Picture of the FileSystem.](godot-asteroids/godot_07.png)
 
 The assets just imported can now be used in our project. It is important to
 understand the node system that Godot has in place before we continue, in the
@@ -203,7 +203,7 @@ currently selected node.
 We can see the _Sprite2D_ node has a property called _Texture_ that references
 the sprite in our project, that is how it is able to be shown as a node.
 
-![](godot-beginner-tutorial-01/godot_08.png)
+![](godot-asteroids/godot_08.png)
 
 ## Creating the Player Ship
 
@@ -231,7 +231,7 @@ folder in our file system. You will notice that Godot has automatically chosen
 the name _Player.tscn_ for our scene, this is because the root node is named
 _Player_.
 
-![](godot-beginner-tutorial-01/godot_09.png)
+![](godot-asteroids/godot_09.png)
 
 We can now drag the Player object into the Main scene we had created before.
 If we run the game now, we can see the meteors and our player ship, however,
@@ -239,9 +239,11 @@ we cannot do anything yet because we have not programmed anything in the game
 yet. In the next section, we will program some basic behaviour and attach
 it to the player scene.
 
-![](godot-beginner-tutorial-01/godot_10.png)
+![](godot-asteroids/godot_10.png)
 
 ## Programming Basics
+
+**It is recommended you take a break at this part of the tutorial**
 
 The base version of Godot has 3 ways of adding behaviour to objects:
 
@@ -268,7 +270,7 @@ On the bottom left you have a summary of your currently openned file's code,
 it will currently be empty with just `_ready` being visible. On the right of
 the code editor, there is an overview map of the text in the code.
 
-![](godot-beginner-tutorial-01/godot_11.png)
+![](godot-asteroids/godot_11.png)
 
 The grayed out text are comments, comments are created by using the `#`, 
 anything to the right side of `#` will be a comment. It will not be processed
@@ -353,7 +355,7 @@ type of the root node of _Player.tscn_ is now a _CharacterBody2D_.
 You will notice that a yellow warning signal has appeared next to the name root
 node's name, hovering over it will reveal why the warning is there.
 
-![](godot-beginner-tutorial-01/godot_13.png)
+![](godot-asteroids/godot_13.png)
 
 > Node configuration warning:
 >
@@ -369,7 +371,7 @@ select _Add Child Node_, in the dialog that shows up, select _CollisionShape2D_
 as the type of the new node to add. Once it is added, a new warning should
 appear, this time next to the newly added node's name.
 
-![](godot-beginner-tutorial-01/godot_14.png)
+![](godot-asteroids/godot_14.png)
 
 > Node configuration warning:
 >
@@ -383,7 +385,7 @@ what shape it shall have. Resources are added from the _Inspector_ panel. While
 having the _CollisionShape2D_ node selected, the inspector panel will look like
 this:
 
-![](godot-beginner-tutorial-01/godot_15.png)
+![](godot-asteroids/godot_15.png)
 
 Notice that the _Shape_ property is marked as `[empty]`, this is the property
 that the warning was describing, it needs a shape assigned to it, click on the
@@ -402,14 +404,14 @@ expand, revealing all the parameters that can be edited to customize the
 circle shape. Increasing the _Radius_ property to 40 covers most of the ship,
 this is how the editor should look like after the change:
 
-![](godot-beginner-tutorial-01/godot_16.png)
+![](godot-asteroids/godot_16.png)
 
 It is time to assign the script we have created previously to the _Player_ node,
 drag the script from the _FileSystem_ to the _Player_ node. Once done, a little
 scroll icon will appear next to the name, when clicked, it will open the script
 in the script editor mode.
 
-![](godot-beginner-tutorial-01/godot_17.png)
+![](godot-asteroids/godot_17.png)
 
 ## Running The Game
 
@@ -427,7 +429,7 @@ revealed allowing you to search and view information on the type you are
 interested in, here is help regarding the float type that the `_physics_process`
 method took:
 
-![](godot-beginner-tutorial-01/godot_12.png)
+![](godot-asteroids/godot_12.png)
 
 ## Project Files
 
