@@ -198,3 +198,8 @@ a
 
   background-color: #2772db;
 }
+
+pre
+{
+  white-space: pre-wrap;
+}
