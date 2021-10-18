@@ -3,5 +3,5 @@ Build
 ps.sh
 Public
 node_modules/*
-Source/articles/*
-!Source/articles/Templates
+Source/articles/**
+!Source/articles/Templates/*
