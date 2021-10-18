@@ -433,9 +433,9 @@ method took:
 
 ## Project Files
 
-The project files for this tutorial can be accessed on 
-[GitHub](www.github.com). You can use these files as reference material if you
-get stuck while following the tutorial.
+The project files for this tutorial can be accessed on
+[GitHub](https://github.com/Yiannis128/godot-asteroids/tree/part-1). You can use
+these files as reference material if you get stuck while following the tutorial.
 
 ## What's Next
 
