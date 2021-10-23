@@ -2,7 +2,7 @@
 
 # Compiles articles from the article directory, turns them into
 # html and places them into Source/articles directory.
-
+ARTICLES_DIR="articles"
 OUTPUT_DIR="Source/articles"
 TEMPLATE_FILE="article_template.html"
 
@@ -26,7 +26,8 @@ compile_article() {
     echo "compiled article: $output_path"
 }
 
-for file in articles/*; do
+# Scan every file and folder inside the articles directory.
+for file in $ARTICLES_DIR/*; do
     # Check if the file name ends with md. If it does, then
     # it needs to be compiled, else it needs to be just copied.
     if [[ "$file" == *".md" ]];
@@ -45,3 +46,5 @@ for file in articles/*; do
         fi
     fi
 done
+
+
