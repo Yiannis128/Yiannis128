@@ -420,6 +420,8 @@ editor window will run the game. If all went correctly, you should see the
 meteors we placed down previously, along with the player ship. Pressing the
 left or right keys will cause it to rotate clockwise and counter-clockwise.
 
+![](godot-asteroids/godot_19.png)
+
 ### Getting Help
 
 Godot's scripting editor has a useful feature that allows you to search for help
