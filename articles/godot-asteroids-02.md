@@ -21,28 +21,142 @@ outlined in [part 1](godot-asteroids-01.html) of this tutorial series.
 
 First start by creating a new scene `Scene->New Scene` at the top menu bar, this
 scene will be used to represent a single bullet. Once the new scene is created,
-in the _Scene_ panel, create a _2D Scene_. Rename the root node from _Node2D_
-to _ShipBullet_ and save the scene into the objects folder in the project files.
-Like before, change the root node's type to _CharacterBody2D_, this is because
-the bullet will need to move. Proceed to add a new node as a child of type
-_CollisionShape2D_. In the _Inspector_ panel, click on the `[empty]` value of
-the shape property and assign a _New CircleShape2D_.
+in the _Scene_ panel, create a _2D Scene_. Rename the root node from _Node2D_ to
+_ShipBullet_ and save the scene into the objects folder in the project files.
+Change the root node's type to _Area2D_, this is because, while the bullet will
+move, we will only change the position of the bullet and check if it overlaps
+with any asteroids, and _Area2D_ is a good candidate for this. Proceed to add a
+new node as a child of type _CollisionShape2D_. In the _Inspector_ panel, click
+on the `[empty]` value of the shape property and assign a _New CircleShape2D_.
 
 From the _FileSystem_ panel, the _sprites_ folder, drag the 
 _meteorBrown\_tiny1.png_ into the scene to use as the sprite for the bullet.
 Like before, make sure to center it to the origin of the scene so it overlaps
-with the CollisionShape2D. 
+with the CollisionShape2D.
 
 ![](godot-asteroids/godot_18.png)
 
 ## The Bullet Code
 
-It is time to create a script that will cause the bullet to move forward,
-along with assigning it to the scene. 
+It is time to create a script that will cause the bullet to move forward, along
+with assigning it to the scene. In the FileSystem panel, right click the _code_
+folder and click on _New Script_, name it `ShipBullet.gd`. Make sure it inherits
+`Area2D` Drag and drop the newly created script from the FileSystem panel to the
+_ShipBullet_ root node in the Scene panel.
+
+![](godot-asteroids/godot_20.png)
+
+In FileSystem, double-click the script to open it. The ship bullet code should
+look like this:
+
+    extends Area2D
+
+    var speed : float = 500
+
+    # Called every frame. 'delta' is the elapsed time since the previous frame.
+    func _process(delta: float) -> void:
+        position += Vector2(speed * delta, 0).rotated(rotation)
+
+This code will make the bullet to move forward, the `_process` function will
+be called repeatedly, the position of the ship will be updated from its previous
+value to 500 pixels forward every second. `position` is a built-in property of
+Area2D along with many other basic types. The `+=` adds to the position with the
+value on the right of it. The value on the right is a `Vector2D`, it is a
+value that represents a direction in this case, but it can also represent a
+position, in reality, it is just a group of 2 numbers, so it can be used to
+represent many things, in this case, it represents a change in position.
+The respective `X` and `Y` values of the change in position are entered inside
+the brackets and are separated by commas. In this case, the `X` change in speed
+is `speed * delta` (which in short, means that the bullet will progress by
+speed amount of pixels per second, which is 500 as set above), the `Y` change
+is 0. The vector is then rotated by calling the function `rotated` and passing
+the built in rotation variable as a parameter.
+
+This means that the final vector that is added to the position will be a vector
+that points forward from where the bullet is facing. So, when the bullet is
+going to be created, it can be assigned a position (which will be the ship's
+position), and it will be assigned a rotation (the ship's rotation), and then it
+will move away from the ship in the direction that it is fired from.
 
 ## Shooting the Bullets
 
+This section will cover how to spawn the bullets from the ship, when the space
+button is pressed. First start by openning the `code/Player.gd` file in the
+FileSystem panel. This is the code that should be added to the player ship
+script to allow it to fire bullets:
+
+    @export var fire_cooldown : float = 0.75
+    var fire_cooldown_left : float = 0
+    const bulletPackedScene : PackedScene = preload("res://objects/ShipBullet.tscn")
+
+    func fire_bullet():
+        var bullet : Node = bulletPackedScene.instantiate()
+        add_sibling(bullet)
+        bullet.global_rotation = global_rotation - PI / 2
+        bullet.global_position = global_position
+
+    func _process(delta: float) -> void:
+        # If space is pressed and the timer has reached or is less than 0, then
+        # fire the bullet and reset the timer.
+        if Input.is_key_pressed(KEY_SPACE) and fire_cooldown_left <= 0:
+            fire_bullet()
+            fire_cooldown_left = fire_cooldown
+        
+        # If the timer is not less than 0, then decrement it by the delta.
+        if fire_cooldown_left > 0:
+            fire_cooldown_left -= delta
+
+The script first declares some variables which are accessible by every method in
+the script. This is because the variables `fire_cooldown`, `fire_cooldown_left`,
+and `bulletPackedScene` are declared outside of any method.
+
+The method `fire_bullet` when called will:
+
+- Spawn a bullet.
+- Add the bullet into the "level" where everything exists.
+- Set the rotation of the bullet so that it faces away from the ship.
+- Set the position of the bullet to be the same as the ship.
+
+_Each line in the `fire_bullet` method maps directly to one line in the
+explanation._
+
+The `_process` is responsible for calling `fire_bullet` when the space bar is
+pressed, the only issue is that there needs to be a cooldown, since if there is
+no cooldown, a bullet will be created everytime `_process` is called, which will
+create a very large amount of bullets. The `fire_cooldown` variable declared
+earlier stores the amount of time we want the ship to cooldown before firing
+another bullet. The time has been set to `0.75` seconds. `fire_cooldown_left`
+will store how much time is left before the timer hits `0`. So, in essense,
+`fire_cooldown_left` is the amount of time left on the timer, and
+`fire_cooldown` is the time it gets reset to when `fire_bullet` is called.
+
+The `_process` method only has two if statements:
+
+- The first checks if the timer for the fire cooldown is less than or equal to
+  `0`. If it is then it calls `fire_bullet` which spawns a bullet and fires it.
+  Then, it sets the `fire_cooldown_left` to `fire_cooldown`.
+- The second if statement checks if the `fire_cooldown_left` is greater than
+  `0`, if it is, then it decrements it by `delta`.
+
+This effectively makes `fire_cooldown_left` a timer that gets reset everytime
+space is pressed and a bullet is fired.
+
+### What is a delta?
+
+`delta` is an argument that appears for methods like `_process` and
+`_physics_process`, it represents the amount of time, in seconds, that the
+same method was called. This allows for useful calculations such as measuring
+the amount of time that has passed.
+
 ## Breaking the Asteroids
+
+In order to make the asteroids breakable, we will create a scene that contains
+an `Area2D`, in order for it to be able to intersect and be detected by the
+bullet's `Area2D`. The scene will also have a `Sprite2D` that will be used to
+show the asteroid, and it will also have a script attached so that the asteroid
+can be made to move slowly towards the ship.
+
+
 
 ## Project Files
 
