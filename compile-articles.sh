@@ -1,10 +1,15 @@
 #!/usr/bin/env sh
 
+# Yiannis Charalambous 2021
+
 # Compiles articles from the article directory, turns them into
 # html and places them into Source/articles directory.
+
 ARTICLES_DIR="articles"
 OUTPUT_DIR="Source/articles"
 TEMPLATE_FILE="article_template.html"
+
+# TODO Add argument processing
 
 compile_article() {
     # Path to the file
@@ -18,6 +23,9 @@ compile_article() {
     # Get the title of the article to substitute into the template.
     export html_title="$(head -n 1 $file_path | sed 's/# //g')"
     
+    # This embedded perl script scans every line for a title and article tag
+    # and substitutes it with the html file content. It then pipes it into
+    # the output path.
     perl -pe '
         s/{title}/$ENV{html_title}/g;
         s/{article}/$ENV{html_file}/g;
