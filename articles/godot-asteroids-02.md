@@ -156,10 +156,72 @@ bullet's `Area2D`. The scene will also have a `Sprite2D` that will be used to
 show the asteroid, and it will also have a script attached so that the asteroid
 can be made to move slowly towards the ship.
 
+The asteroids placed in the level already in the previous tutorial will all need
+to be selected and deleted since they are just `Sprite2D` nodes. In the Scene
+panel, select all the asteroids and right click and select `Delete Node(s)`.
+It is worth noting, that multiple nodes can be selected at the same time by
+holding down shift. With just the ship left in the level alone, click on the
+`Scene` button at the top left of the window, then click on `New Scene`. An
+empty scene will be created, in the Scene panel select the `2D Scene` option.
 
+Rename the Node2D just created to Asteroid. Change the type of the node from
+`Node2D` to `Area2D`. Save the scene at `objects/Asteroid.tscn` Like before when
+creating an `Area2D`, right click on the node in the Scene panel and add a
+`CollisionShape2D` node as a child. Select the newly created collision shape 2D
+and in the Inspector panel, the _Shape_ property will have a value of `[empty]`,
+clicking the value will allow you to select the `New CircleShape2D` option which
+will create a circle shape resource for the `CollisionShape2D` node that we just
+created. Additionally, drag a sprite of your choosing into the center of the
+Asteroid scene from the `res://sprites/meteorBrown_big1.png` folder in order to
+make the asteroid visible. Adjust the `CollisionShape2D` size to approximatley
+cover the asteroid sprite. 
+
+Create the asteroid script in the FileSystem panel by right clicking on the
+_code_ folder and selecting the _New Script_ option. The script will inherit
+Area2D, and be saved in the `code/Asteroid.gd` folder. Don't forget to drag and
+drop the `Asteroid.gd` script from the FileSystem panel to the Scene panel and
+onto the _Asteroid_ node. The code that `Asteroid.gd` contains is shown below:
+
+    extends Area2D
+
+    func _ready() -> void:
+        connect("area_entered", area_entered)
+
+    func area_entered(area : Area2D) -> void:
+        queue_free()
+
+This is a very simple script. In the `_ready` method, the script initializes a
+_signal_. Signals allow for event driven programming, when the Area2D overlaps
+with another Area2D, it will cause the `area_entered` signal to emit. The
+`connect` function connects the `area_entered` signal, to the `area_entered`
+method we have created below.
+
+The `area_entered` method's purpose is to delete the asteroid node when it
+overlaps with another `Area2D`. This method will be called by the `Area2D` node
+automatically. The method takes an `Area2D` parameter called `area`, while this
+is not used, it is necessary since in order to connect the signal, the method
+needs to have that parameter. All it does is it calls the `queue_free` method
+that deletes the asteroid node from the scene.
+
+Now, it is time to place asteroids in the level by dragging them from the
+FileSystem panel into the viewport. When the game is executed (with `F5`), the
+ship can now shoot and destroy the asteroids placed in the level.
 
 ## Project Files
 
+The project files for this tutorial can be accessed on
+[GitHub](https://github.com/Yiannis128/godot-asteroids/tree/part-2). You can use
+these files as reference material if you get stuck while following the tutorial.
+
 ## What's Next
 
+Part 3 can be accessed [here](godot-asteroids-03.html). Part 2 covered a lot of
+topics that may not have been fully explained, it is recommended that you read
+the articles in Useful Links in order to better understand them before moving
+to Part 3. 
+
 ## Useful Links
+
+1. a
+2. b
+3. c
