@@ -222,6 +222,7 @@ to Part 3.
 
 ## Useful Links
 
-1. a
-2. b
-3. c
+1. [Godot Scripting Continued](https://docs.godotengine.org/en/stable/getting_started/step_by_step/scripting_continued.html)
+2. [Godot Physics Introduction](https://docs.godotengine.org/en/stable/tutorials/physics/physics_introduction.html)
+3. [Godot Vector Maths](https://docs.godotengine.org/en/stable/tutorials/math/vector_math.html)
+4. [Godot Signals](https://docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html)
