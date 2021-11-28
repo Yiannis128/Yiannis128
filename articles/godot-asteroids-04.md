@@ -17,3 +17,20 @@ This article will cover:
 Before going through this article, it is recommended following the steps
 outlined in the previous parts of this tutorial series.
 
+## Basics of Godot's UI Nodes
+
+## Godot Global Nodes
+
+## Making the UI
+
+## Incrementing the Score Counter
+
+## Reseting the Score Counter
+
+## Project Files
+
+## What's Next
+
+## Useful Links
+
+1. [Godot UI Basics](https://docs.godotengine.org/en/stable/getting_started/step_by_step/ui_introduction_to_the_ui_system.html#)
