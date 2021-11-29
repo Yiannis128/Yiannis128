@@ -1,6 +1,6 @@
 # Godot - Asteroids Game For Complete Beginners: 2
 
-## Warning, this article is still in development! Do not use for learning yet!
+## Warning, this article is being proof-read! Proceed with caution.
 
 ## Introduction
 
