@@ -83,6 +83,8 @@ header img
     display: inline-block;
     width: auto;
     padding: 0.5rem;
+    width: 28px;
+    height: 28px;
 }
 
 header h1
