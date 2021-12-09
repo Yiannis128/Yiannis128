@@ -40,6 +40,21 @@ information between scenes.
 
 ## Making the UI
 
+Creating a UI scene is similar to a 2D scene, on the top-left menu bar of the
+editor window, click on `Scene -> New Scene`, however, instead of clicking on
+`2D Scene` in the Scene panel, click on `User Interface`, this will create a new
+scene, however, instead of the root node being a `Node2D` type of node, it is
+now a `Control` node, which is the base building _block_ of UI nodes. Rename the
+root node to `HUD` using the Scene panel. Save the scene as `HUD.tscn` in the
+`objects` folder.
+
+### Label Node
+
+Godot has a UI node called `Label` that allows you to display information, we
+can use it to display our score of destroyed asteroids.
+
+### Godot Signals
+
 ## Incrementing the Score Counter
 
 ## Reseting the Score Counter
