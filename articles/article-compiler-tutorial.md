@@ -1,0 +1,99 @@
+# Article Compiler Tutorial
+
+This tutorial will look at how to setup article compiler so that it compiles
+markdown articles inside a folder and outputs them as HTML in another folder,
+along with how the template system works. Article compiler can be obtained on
+[GitHub](https://github.com/Yiannis128/article-compiler).
+
+## Requirements
+
+Article Compiler uses the following programs:
+
+* Perl
+
+## Installation
+
+Article compiler is basically a script, so once you download/clone the git repo,
+just copy the `compile-articles.sh` script into a place where you will want to
+use it. In my case, the website repository contains `compile-articles.sh` at the
+root, the website contents, that is, HTML, CSS and files that belong to the
+website are inside a `Source` folder.
+
+## Workflow
+
+First Article Compiler compiles the articles and places them in a folder inside
+of Source, then [Static
+Builder](https://yiannis-charalambous.com/articles/static-builder-tutorial.html)
+takes the Source folder and builds the website, this forms a small pipeline.
+It can be automated with a shell script like this:
+
+    #!/usr/bin/env sh
+
+    echo "Compiling articles"
+    echo
+    ./compile-articles.sh
+
+    echo "Running packager"
+    ./package.py Source Public
+
+So running `build.sh` (that is what I call the script) will run both article
+compiler and static builder in one command.
+
+## Article Template
+
+The template folder will allow the HTML generated to be of the same format as
+the rest of the website, instead of the generated HTML being just a bunch of
+HTML tags that don't really resemble the webpage that an article could be found
+in. Here is the template for this website:
+
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Yiannis CS - {title}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <import src="Common.html" />
+
+    </head>
+
+    <body>
+        <import src="Header.html" />
+
+        <main>
+            <div class="ContentCard">
+                <div class="ContentCardSection">
+                    {article}
+                </div>
+            </div>
+        </main>
+
+        <import src="Footer.html" />
+    </body>
+
+    </html>
+
+_Note that the import elements are for Static Builder._
+
+The HTML is normal aside from the `{title}` `{article}` keywords. These keywords
+let Article Compiler insert the title of the article and the generated HTML at
+the correct place. The title of the article is the first line with the #
+removed.
+
+## Example Usage
+
+Create an empty folder, this will resemble the root of our website repo. Inside
+folder create these folders:
+
+* `articles`
+* `Source`
+* Inside the `Source` folder, create a `articles` folder.
+
+Inside the root of the website, create a template file, the default accepted
+file is `article_template.html` although it can be changed by supplying the
+script with arguments. Now create an article such as `test.md` and save it
+inside `articles`. Run the `./compile-articles.sh` script and it will take the
+articles inside the `articles` folder and create HTML webpages using the
+template and save them inside of `Source/articles`.
