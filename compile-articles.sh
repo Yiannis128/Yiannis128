@@ -5,11 +5,63 @@
 # Compiles articles from the article directory, turns them into
 # html and places them into Source/articles directory.
 
+function show_help() {
+    echo "compile-articles.sh script by Yiannis Charalambous 2021
+    This script is used to convert markdown files into static html files.
+    
+    Parameters:
+        -d|--article-dir    Set the path of the article directory.
+        
+        -o|--output-dir     Set the path of the output directory.
+        
+        -t|--template-path  Set the path to the template html file to use for
+                            when creating the articles.
+                            
+        -h|--help           Display help information."
+}
+
 ARTICLES_DIR="articles"
 OUTPUT_DIR="Source/articles"
 TEMPLATE_FILE="article_template.html"
 
-# TODO Add argument processing
+# Arg processing
+
+ERROR_PARAMS=()
+while [[ $# -gt 0 ]]; do
+    key="$1"
+
+    case $key in
+        -d|--article-dir)
+            ARTICLES_DIR=$2
+            shift # past argument
+            shift # past value
+            ;;
+        -o|--output-dir)
+            OUTPUT_DIR=$2
+            shift
+            shift
+            ;;
+        -t|--template-path)
+            TEMPLATE_FILE=$2
+            shift
+            shift
+            ;;
+        -h|--help)
+            show_help
+            exit
+            ;;
+        *)
+            ERROR_PARAMS+=("$1")
+            shift # past argument
+            ;;
+    esac
+done
+
+if [[ "${#ERROR_PARAMS[@]}" -gt "0" ]];
+then
+    echo "Error: Unknown parameters: ${ERROR_PARAMS[*]}"
+    show_help
+fi
 
 compile_article() {
     # Path to the file
