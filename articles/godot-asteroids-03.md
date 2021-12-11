@@ -2,6 +2,8 @@
 
 ## Warning, this article is being proof-read! Proceed with caution.
 
+### [Previous Article: Godot Asteroids Tutorial - Part 2](godot-asteroids-02.html)
+
 ## Introduction
 
 This is part 3 of the tutorial series for making an asteroids style game in
@@ -10,214 +12,220 @@ programming.
 
 This article will cover:
 
-1. How to make the asteroids slowly move towards the player ship.
-2. How to make the asteroids spawn around the player ship.
+1. Creating bullets for the player ship.
+2. How to make the player ship shoot bullets.
+3. Making the asteroids break when hit by the bullets.
 
 Before going through this article, it is recommended following the steps
-outlined in the previous parts of this tutorial series.
+outlined in [part 1](godot-asteroids-01.html) of this tutorial series.
 
-### Moving the Asteroids
+## The Bullet Scene
 
-This section will cover how to make the asteroids move towards the player ship.
-Begin, by opening the asteroid script (`code/Asteroid.gd`). The additional
-script variable will need to be declared:
+First start by creating a new scene `Scene->New Scene` at the top menu bar, this
+scene will be used to represent a single bullet. Once the new scene is created,
+in the _Scene_ panel, create a _2D Scene_. Rename the root node from _Node2D_ to
+_ShipBullet_ and save the scene into the objects folder in the project files.
+Change the root node's type to _Area2D_, this is because, while the bullet will
+move, we will only change the position of the bullet and check if it overlaps
+with any asteroids, and _Area2D_ is a good candidate for this. Proceed to add a
+new node as a child of type _CollisionShape2D_. In the _Inspector_ panel, click
+on the `[empty]` value of the shape property and assign a _New CircleShape2D_.
 
-    var move_dir : Vector2 = Vector2.ZERO
+From the _FileSystem_ panel, the _sprites_ folder, drag the 
+_meteorBrown\_tiny1.png_ into the scene to use as the sprite for the bullet.
+Like before, make sure to center it to the origin of the scene so it overlaps
+with the CollisionShape2D.
 
-The `move_dir` variable will tell the asteroid which direction to move. When the
-asteroid is spawned, it will be set to move towards the player ship. Along, with
-the variable comes this method:
+![](godot-asteroids/godot_18.png)
 
-    func _physics_process(delta: float) -> void:
-        position += move_dir * delta
+## The Bullet Code
 
-In the asteroid's physics process method, the position is updated by delta
-multiplied with the `move_dir` variable we set earlier. The `move_dir`
-variable's default value is `Vector2.ZERO`, this will make the default state of
-the asteroid stationary. So the asteroids placed manually will not move.
+It is time to create a script that will cause the bullet to move forward, along
+with assigning it to the scene. In the FileSystem panel, right click the _code_
+folder and click on _New Script_, name it `ShipBullet.gd`. Make sure it inherits
+`Area2D` Drag and drop the newly created script from the FileSystem panel to the
+_ShipBullet_ root node in the Scene panel.
 
-### Spawning Asteroids
+![](godot-asteroids/godot_20.png)
 
-In order to make the asteroids spawn around the player ship randomly, we can
-create and use a dedicated node that will be responsible for selecting a random
-position outside of the screen, spawing an asteroid node, and then setting it's
-`move_dir` to point to the ship. Create a new script in the `code` folder with
-the name `AsteroidManager.gd` that will inherit from `Node`. Additionally create
-a new 2D scene like with all the previous nodes. Name the root node as
-`AsteroidManager` and save it at `objects/AsteroidManager.tscn`. Additionally,
-attach the script to the root node, by dragging it from the FileSystem panel to
-the root node in the Scene panel. Open the `AsteroidManager.gd` script and edit
-it so that it contains the following code:
+In FileSystem, double-click the script to open it. The ship bullet code should
+look like this:
 
-    extends Node
+    extends Area2D
 
-    @export var spawn_rate : float = 2
-    var spawn_rate_left : float = 0
+    var speed : float = 500
 
-    @export_node_path(Node) var target_path : NodePath = ""
-    var target : Node = null
+    # Called every frame. 'delta' is the elapsed time since the previous frame.
+    func _process(delta: float) -> void:
+        position += Vector2(speed * delta, 0).rotated(rotation)
 
-    var asteroid_scene : PackedScene = preload("res://objects/Asteroid.tscn")
-    var asteroid_speed : float = 150
-    var spawn_distance_offset : float = 500
+This code will make the bullet to move forward, the `_process` function will
+be called repeatedly, the position of the ship will be updated from its previous
+value to 500 pixels forward every second. `position` is a built-in property of
+Area2D along with many other basic types. The `+=` adds to the position with the
+value on the right of it. The value on the right is a `Vector2D`, it is a
+value that represents a direction in this case, but it can also represent a
+position, in reality, it is just a group of 2 numbers, so it can be used to
+represent many things, in this case, it represents a change in position.
+The respective `X` and `Y` values of the change in position are entered inside
+the brackets and are separated by commas. In this case, the `X` change in speed
+is `speed * delta` (which in short, means that the bullet will progress by
+speed amount of pixels per second, which is 500 as set above), the `Y` change
+is 0. The vector is then rotated by calling the function `rotated` and passing
+the built in rotation variable as a parameter.
+
+This means that the final vector that is added to the position will be a vector
+that points forward from where the bullet is facing. So, when the bullet is
+going to be created, it can be assigned a position (which will be the ship's
+position), and it will be assigned a rotation (the ship's rotation), and then it
+will move away from the ship in the direction that it is fired from.
+
+## Shooting the Bullets
+
+This section will cover how to spawn the bullets from the ship, when the space
+button is pressed. First start by openning the `code/Player.gd` file in the
+FileSystem panel. This is the code that should be added to the player ship
+script to allow it to fire bullets:
+
+    @export var fire_cooldown : float = 0.75
+    var fire_cooldown_left : float = 0
+    const bulletPackedScene : PackedScene = preload("res://objects/ShipBullet.tscn")
+
+    func fire_bullet():
+        var bullet : Node = bulletPackedScene.instantiate()
+        add_sibling(bullet)
+        bullet.global_rotation = global_rotation - PI / 2
+        bullet.global_position = global_position
+
+    func _process(delta: float) -> void:
+        # If space is pressed and the timer has reached or is less than 0, then
+        # fire the bullet and reset the timer.
+        if Input.is_key_pressed(KEY_SPACE) and fire_cooldown_left <= 0:
+            fire_bullet()
+            fire_cooldown_left = fire_cooldown
+        
+        # If the timer is not less than 0, then decrement it by the delta.
+        if fire_cooldown_left > 0:
+            fire_cooldown_left -= delta
+
+The script first declares some variables which are accessible by every method in
+the script. This is because the variables `fire_cooldown`, `fire_cooldown_left`,
+and `bulletPackedScene` are declared outside of any method.
+
+The method `fire_bullet` when called will:
+
+- Spawn a bullet.
+- Add the bullet into the "level" where everything exists.
+- Set the rotation of the bullet so that it faces away from the ship.
+- Set the position of the bullet to be the same as the ship.
+
+_Each line in the `fire_bullet` method maps directly to one line in the
+explanation._
+
+The `_process` is responsible for calling `fire_bullet` when the space bar is
+pressed, the only issue is that there needs to be a cooldown, since if there is
+no cooldown, a bullet will be created everytime `_process` is called, which will
+create a very large amount of bullets. The `fire_cooldown` variable declared
+earlier stores the amount of time we want the ship to cooldown before firing
+another bullet. The time has been set to `0.75` seconds. `fire_cooldown_left`
+will store how much time is left before the timer hits `0`. So, in essense,
+`fire_cooldown_left` is the amount of time left on the timer, and
+`fire_cooldown` is the time it gets reset to when `fire_bullet` is called.
+
+The `_process` method only has two if statements:
+
+- The first checks if the timer for the fire cooldown is less than or equal to
+  `0`. If it is then it calls `fire_bullet` which spawns a bullet and fires it.
+  Then, it sets the `fire_cooldown_left` to `fire_cooldown`.
+- The second if statement checks if the `fire_cooldown_left` is greater than
+  `0`, if it is, then it decrements it by `delta`.
+
+This effectively makes `fire_cooldown_left` a timer that gets reset everytime
+space is pressed and a bullet is fired.
+
+### What is a delta?
+
+`delta` is an argument that appears for methods like `_process` and
+`_physics_process`, it represents the amount of time, in seconds, that the
+same method was called. This allows for useful calculations such as measuring
+the amount of time that has passed.
+
+## Breaking the Asteroids
+
+In order to make the asteroids breakable, we will create a scene that contains
+an `Area2D`, in order for it to be able to intersect and be detected by the
+bullet's `Area2D`. The scene will also have a `Sprite2D` that will be used to
+show the asteroid, and it will also have a script attached so that the asteroid
+can be made to move slowly towards the ship.
+
+The asteroids placed in the level already in the previous tutorial will all need
+to be selected and deleted since they are just `Sprite2D` nodes. In the Scene
+panel, select all the asteroids and right click and select `Delete Node(s)`.
+It is worth noting, that multiple nodes can be selected at the same time by
+holding down shift. With just the ship left in the level alone, click on the
+`Scene` button at the top left of the window, then click on `New Scene`. An
+empty scene will be created, in the Scene panel select the `2D Scene` option.
+
+Rename the Node2D just created to Asteroid. Change the type of the node from
+`Node2D` to `Area2D`. Save the scene at `objects/Asteroid.tscn` Like before when
+creating an `Area2D`, right click on the node in the Scene panel and add a
+`CollisionShape2D` node as a child. Select the newly created collision shape 2D
+and in the Inspector panel, the _Shape_ property will have a value of `[empty]`,
+clicking the value will allow you to select the `New CircleShape2D` option which
+will create a circle shape resource for the `CollisionShape2D` node that we just
+created. Additionally, drag a sprite of your choosing into the center of the
+Asteroid scene from the `res://sprites/meteorBrown_big1.png` folder in order to
+make the asteroid visible. Adjust the `CollisionShape2D` size to approximatley
+cover the asteroid sprite. 
+
+Create the asteroid script in the FileSystem panel by right clicking on the
+_code_ folder and selecting the _New Script_ option. The script will inherit
+Area2D, and be saved in the `code/Asteroid.gd` folder. Don't forget to drag and
+drop the `Asteroid.gd` script from the FileSystem panel to the Scene panel and
+onto the _Asteroid_ node. The code that `Asteroid.gd` contains is shown below:
+
+    extends Area2D
 
     func _ready() -> void:
-        randomize()
-        spawn_rate_left = spawn_rate
-        target = get_node_or_null(target_path)
+        connect("area_entered", area_entered)
 
-    func _process(delta : float) -> void:
-        if target == null:
-            return
+    func area_entered(area : Area2D) -> void:
+        queue_free()
 
-        # If spawn_rate_left hits 0, then spawn an asteroid, and reset the timer.
-        if spawn_rate_left <= 0:
-            spawn_asteroid()
-            spawn_rate_left = spawn_rate
-        
-        # If the spawn_rate_left is higher than 0, then decrement it.
-        if spawn_rate_left > 0:
-            spawn_rate_left -= delta
+This is a very simple script. In the `_ready` method, the script initializes a
+_signal_. Signals allow for event driven programming, when the Area2D overlaps
+with another Area2D, it will cause the `area_entered` signal to emit. The
+`connect` function connects the `area_entered` signal, to the `area_entered`
+method we have created below.
 
-    func get_new_asteroid_position() -> Vector2:
-        # Get the size of the screen.
-        var size : Vector2 = get_viewport().size
-        
-        var rand_ang : float = randf_range(0, 2 * PI)
-        var center : Vector2 = size / 2
-        
-        var spawn_offset : Vector2 = Vector2.RIGHT.rotated(rand_ang) * spawn_distance_offset
-        var spawn_location : Vector2 = center + spawn_offset
-        
-        return spawn_location
+The `area_entered` method's purpose is to delete the asteroid node when it
+overlaps with another `Area2D`. This method will be called by the `Area2D` node
+automatically. The method takes an `Area2D` parameter called `area`, while this
+is not used, it is necessary since in order to connect the signal, the method
+needs to have that parameter. All it does is it calls the `queue_free` method
+that deletes the asteroid node from the scene.
 
-    func spawn_asteroid() -> void:
-        if target == null:
-            return
-
-        # Spawn the asteroid.
-        var asteroid : Node = asteroid_scene.instantiate()
-        
-        # Find a random position to spawn the asteroid to.
-        asteroid.position = get_new_asteroid_position()
-        
-        # Set the asteroid move_dir towards target.
-        var offset : Vector2 = target.position - asteroid.position
-        asteroid.move_dir = offset.normalized() * asteroid_speed
-        
-        # Add the asteroid to the scene.
-        add_sibling(asteroid) 
-
-Perhaps this is the longest script in the entire project, however, when broken
-down, it is simple to understand. The following script variables are declared:
-
-* `@export var spawn_rate : float = 2`: This is the value that `spawn_rate_left`
-  will be set to when a new asteroid is created.
-* `var spawn_rate_left : float = 0`: This variable represents a timer, when it
-  reaches `0`, the _AsteroidManager_ will spawn an asteroid, then this value
-  will be set back to `spawn_rate` and the process will begin again.
-* `@export_node_path(Node) var target_path : NodePath = ""`: The target path
-  holds a value which allows us to get the target. This value can be set from
-  the Inspector panel when the _AsteroidManager_ node is selected.
-* `var target : Node = null`: This represents the target that this
-  _AsteroidManager_ will direct the asteroids to, in this case it is the player
-  ship, this will be initialized using the `target_path` variable that will be
-  set from the Inspector panel.
-* `var asteroid_scene : PackedScene = preload("res://objects/Asteroid.tscn")`: 
-* `var asteroid_speed : float = 150`: How fast the asteroids will move when
-  spawned.
-* `var spawn_distance_offset : float = 500`: This controls how far from the
-  center of the screen the asteroids will spawn.
-
-The `_ready` method is the smallest and simplest method in the entire script, it
-first calls `randomize` which is a built-in method that causes all calls to
-functions that return random numbers back to be truly random. It then sets
-`spawn_rate_left` to the value of `spawn_rate` so that a asteroid doesn't
-immediatley spawn (allowing the player to prepare). Finally, it calls the
-built-in function `get_node_or_null` passing the `target_path` variable as a
-parameter, this function returns a reference to the object that `target_path`
-points to, which in practise, will be the player ship. So an easy way to
-understand this is (although it is a little bit more complicated than this),
-`target_path` points to the player ship and `target` is the player ship.
-
-The `_process` method starts by first checking if `target` has not been set in
-the `_ready` method, then exits the method, this is because the game will crash
-if we attempt to use `target` for anything if it is set to `null`, which it will
-be unless changed in the `_ready` method. If it is `null`, then it is because
-`target_path` is not pointing to the ship. The rest of the method is very
-similar to the `_process` method of the player ship script, as it is another
-timer. This time the purpose of the timer is to countdown and when it reaches
-`0`, it will spawn an asteroid by calling the `spawn_asteroid` method.
-
-The `_spawn_asteroid` method checks like the `_process` method if `target` is
-`null` and exits the method if it is because it uses the `target` variable to
-tell the asteroids to target it. It first calls the `instantiate` method on the
-`asteroid_scene` variable, as the variable is a _PackedScene_ which means that
-it holds all the information on how to create a new asteroid. The newly created
-asteroid is assigned to the `asteroid` variable. The asteroid's position is then
-set to the `Vector2` that the function `get_new_asteroid_position` returns. This
-method will be covered later. The variable `offset` is then assigned the value
-representing the difference in positon between the target and the asteroid. This
-value is then [normalized](http://www.fundza.com/vectors/normalize/) and
-assigned to the `move_dir` of the asteroid (the script variable that we created
-earlier when making the asteroid). The asteroid is added to the scene by calling
-the `add_sibling` method.
-
-The `get_new_asteroid_position` method is perhaps the most difficult to
-understand due to its heavy use of vector maths. It begins by assigning size the
-value obtained by calling `get_viewport().size`, `size` is a variable that
-belongs to a `Viewport` object obtained by calling `get_viewport()`. This
-represents the width and height of the window. The idea is to select a position
-outside of the viewport. The value returned by the function `randf_range` is
-assigned to `rand_ang`, this function will return a random value in the range of
-`0` and `2π` (`π` is being represented by PI in GDScript). This will represent a
-random direction to spawn the asteroid in. The center of the viewport, that is,
-the center of the screen is assigned to center. 
-
-Then the spawn location is obtained through two steps. Firstly, the
-`spawn_offset` is calculated which is the direction from the center of the
-screen that the asteroid will spawn from. This is done by calling the `rotated`
-method on the constant _Vector2_ value called `Vector2.RIGHT` which is
-equivalent to typing `Vector2(1, 0)`. The `rotated` method is passed the random
-angle number that was calculated previously. The result is then multiplied by
-the variable `spawn_distance_offset`. This effectively gets a random direction
-away from the coordinates `(0,0)`, the next step translates those coordinates to
-the center of the screen. `spawn_offset` is added to `center`. The result is
-then returned by the function. _This method may be a bit hard to understand,
-it is not necessary to understand it on the first read, perhaps it is worth
-revisiting this article in a few days_.
-
-Before starting the game, it is important to remember to place the
-_AsteroidManager_ objects in the level first, drag and drop it from the
-FileSystem panel, it doesn't matter where as it is invisible, doesn't interact
-with any objects, and does not use it's position for anything. It is also
-critical that the `target_path` variable is set, this can be done by selecting
-the _AsteroidManager_ node placed in the scene (either through the Scene panel
-or through the viewport), once selected, the Inspector will reveal all the
-Node's properties. As observed, the `target_path` variable created in the script
-is now exposed in the inspector allowing us to set it. When clicked, we can then
-select the player ship as the target.
-
-![](godot-asteroids/godot_21.png)
-
-After all this, running the game will show that the asteroids are being spawned
-now and are targeting the player.
-
-![](godot-asteroids/godot_22.png)
+Now, it is time to place asteroids in the level by dragging them from the
+FileSystem panel into the viewport. When the game is executed (with `F5`), the
+ship can now shoot and destroy the asteroids placed in the level.
 
 ## Project Files
 
 The project files for this tutorial can be accessed on
-[GitHub](https://github.com/Yiannis128/godot-asteroids/tree/part-3). You can use
+[GitHub](https://github.com/Yiannis128/godot-asteroids/tree/part-2). You can use
 these files as reference material if you get stuck while following the tutorial.
-
-## What's Next
-
-Part 4 can be accessed [here](godot-asteroids-04.html). Part 3 covered a lot of
-topics that may not have been fully explained, it is recommended that you read
-the articles in Useful Links in order to better understand them before moving
-to Part 4.
 
 ## Useful Links
 
-1. [GDScript Exports](https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_exports.html)
+1. [Godot Scripting Continued](https://docs.godotengine.org/en/stable/getting_started/step_by_step/scripting_continued.html)
+2. [Godot Physics Introduction](https://docs.godotengine.org/en/stable/tutorials/physics/physics_introduction.html)
+3. [Godot Vector Maths](https://docs.godotengine.org/en/stable/tutorials/math/vector_math.html)
+4. [Godot Signals](https://docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html)
+
+## What's Next
+Part 3 covered a lot of
+topics that may not have been fully explained, it is recommended that you read
+the articles in Useful Links in order to better understand them before moving
+to Part 3. 
+
+### [Next Article: Godot Asteroids Tutorial - Part 4](godot-asteroids-04.html)

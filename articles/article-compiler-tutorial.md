@@ -75,7 +75,7 @@ in. Here is the template for this website:
 
     </html>
 
-_Note that the import elements are for Static Builder._
+_Note that the import elements are for [Static Builder](static-builder-tutorial.html)._
 
 The HTML is normal aside from the `{title}` `{article}` keywords. These keywords
 let Article Compiler insert the title of the article and the generated HTML at

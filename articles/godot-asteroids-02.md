@@ -2,6 +2,8 @@
 
 ## Warning, this article is being proof-read! Proceed with caution.
 
+### [Previous Article: Godot Asteroids Tutorial - Part 1](godot-asteroids-01.html)
+
 ## Introduction
 
 This is part 2 of the tutorial series for making an asteroids style game in
@@ -10,219 +12,220 @@ programming.
 
 This article will cover:
 
-1. Creating bullets for the player ship.
-2. How to make the player ship shoot bullets.
-3. Making the asteroids break when hit by the bullets.
+1. Basics of programming.
+2. Programming in Godot.
+3. How to write a simple gameplay.
 
-Before going through this article, it is recommended following the steps
-outlined in [part 1](godot-asteroids-01.html) of this tutorial series.
+## Programming Basics
 
-## The Bullet Scene
+The base version of Godot has 3 ways of adding behavior to objects:
 
-First start by creating a new scene `Scene->New Scene` at the top menu bar, this
-scene will be used to represent a single bullet. Once the new scene is created,
-in the _Scene_ panel, create a _2D Scene_. Rename the root node from _Node2D_ to
-_ShipBullet_ and save the scene into the objects folder in the project files.
-Change the root node's type to _Area2D_, this is because, while the bullet will
-move, we will only change the position of the bullet and check if it overlaps
-with any asteroids, and _Area2D_ is a good candidate for this. Proceed to add a
-new node as a child of type _CollisionShape2D_. In the _Inspector_ panel, click
-on the `[empty]` value of the shape property and assign a _New CircleShape2D_.
+* GDScript: Writing code in Godot's own scripting language.
+* VisualScript: Visual scripting, drag and drop blocks.
+* NativeScript: Writing code in C++ - advanced and out of scope.
 
-From the _FileSystem_ panel, the _sprites_ folder, drag the 
-_meteorBrown\_tiny1.png_ into the scene to use as the sprite for the bullet.
-Like before, make sure to center it to the origin of the scene so it overlaps
-with the CollisionShape2D.
+In this tutorial we will be using GDScript. The scripts we create are
+going to be stored in the file system, create a new folder in the _res://_
+folder called _code_. Right click in the newly created _code_ folder and
+select _New Script_. The new script dialog will appear, there are a couple
+of options that need to be changed:
 
-![](godot-asteroids/godot_18.png)
+* Set the language to _GDScript_.
+* Set the _Inherits_ text box to `CharacterBody2D`.
+* Change the path of the script to `res://code/Player.gd`.
+* Click on _Create_ to create the script.
 
-## The Bullet Code
+Double click on the newly created file in the file system to switch to the
+scripting mode in editor. The viewport will now be replaced with the script
+editor. In the center there is a text field you type your GDScript code.
+On the top left of the viewport, you have a list of currently open scripts.
+On the bottom left you have a summary of your currently opened file's code,
+it will currently be empty with just `_ready` being visible. On the right of
+the code editor, there is an overview map of the text in the code.
 
-It is time to create a script that will cause the bullet to move forward, along
-with assigning it to the scene. In the FileSystem panel, right click the _code_
-folder and click on _New Script_, name it `ShipBullet.gd`. Make sure it inherits
-`Area2D` Drag and drop the newly created script from the FileSystem panel to the
-_ShipBullet_ root node in the Scene panel.
+![](godot-asteroids/godot_11.png)
 
-![](godot-asteroids/godot_20.png)
+The grayed out text are comments, comments are created by using the `#`, 
+anything to the right side of `#` will be a comment. It will not be processed
+by Godot, you can use this to write comments about your code for documentation
+and readability purposes.
 
-In FileSystem, double-click the script to open it. The ship bullet code should
-look like this:
+Each node in Godot has a set of pre-made methods that can be extended in
+scripts. A method in programming a series of instructions that the computer will
+follow when told so. Methods and functions will be used interchangeably in this
+tutorial, there is a small difference between them in reality, however, this
+difference does not apply in Godot. Methods can take a series of pre-defined
+inputs, and can also output a value back to the statement that had invoked the
+method. These pre-made methods are invoked at specific times, for example the
+`_physics_process` method is called at a constant rate every second. So it is
+good for writing behavior that is continuous. We will be extending this method
+in order to make the player ship rotate.
 
-    extends Area2D
+The code for the player ship script (it is responsible for rotating the ship):
 
-    var speed : float = 500
+    extends CharacterBody2D
 
-    # Called every frame. 'delta' is the elapsed time since the previous frame.
-    func _process(delta: float) -> void:
-        position += Vector2(speed * delta, 0).rotated(rotation)
+    @export var turn_speed : float = 3 
 
-This code will make the bullet to move forward, the `_process` function will
-be called repeatedly, the position of the ship will be updated from its previous
-value to 500 pixels forward every second. `position` is a built-in property of
-Area2D along with many other basic types. The `+=` adds to the position with the
-value on the right of it. The value on the right is a `Vector2D`, it is a
-value that represents a direction in this case, but it can also represent a
-position, in reality, it is just a group of 2 numbers, so it can be used to
-represent many things, in this case, it represents a change in position.
-The respective `X` and `Y` values of the change in position are entered inside
-the brackets and are separated by commas. In this case, the `X` change in speed
-is `speed * delta` (which in short, means that the bullet will progress by
-speed amount of pixels per second, which is 500 as set above), the `Y` change
-is 0. The vector is then rotated by calling the function `rotated` and passing
-the built in rotation variable as a parameter.
-
-This means that the final vector that is added to the position will be a vector
-that points forward from where the bullet is facing. So, when the bullet is
-going to be created, it can be assigned a position (which will be the ship's
-position), and it will be assigned a rotation (the ship's rotation), and then it
-will move away from the ship in the direction that it is fired from.
-
-## Shooting the Bullets
-
-This section will cover how to spawn the bullets from the ship, when the space
-button is pressed. First start by openning the `code/Player.gd` file in the
-FileSystem panel. This is the code that should be added to the player ship
-script to allow it to fire bullets:
-
-    @export var fire_cooldown : float = 0.75
-    var fire_cooldown_left : float = 0
-    const bulletPackedScene : PackedScene = preload("res://objects/ShipBullet.tscn")
-
-    func fire_bullet():
-        var bullet : Node = bulletPackedScene.instantiate()
-        add_sibling(bullet)
-        bullet.global_rotation = global_rotation - PI / 2
-        bullet.global_position = global_position
-
-    func _process(delta: float) -> void:
-        # If space is pressed and the timer has reached or is less than 0, then
-        # fire the bullet and reset the timer.
-        if Input.is_key_pressed(KEY_SPACE) and fire_cooldown_left <= 0:
-            fire_bullet()
-            fire_cooldown_left = fire_cooldown
+    func _physics_process(delta: float) -> void:
+        var move_dir : int = 0
         
-        # If the timer is not less than 0, then decrement it by the delta.
-        if fire_cooldown_left > 0:
-            fire_cooldown_left -= delta
+        # If left is pressed, then move direction will be set to -1
+        if Input.is_key_pressed(KEY_LEFT):
+            move_dir = -turn_speed
+        
+        # If right is pressed, then move direction will be set to 1.
+        if Input.is_key_pressed(KEY_RIGHT):
+            move_dir = turn_speed
+            
+        # We now rotate the ship left or right depending on if move_dir is a
+        # positive or negative number.
+        rotate(move_dir * delta)
+    
+    
 
-The script first declares some variables which are accessible by every method in
-the script. This is because the variables `fire_cooldown`, `fire_cooldown_left`,
-and `bulletPackedScene` are declared outside of any method.
+The `func _physics_process(delta: float) -> void:` is a method declaration, also
+known as a function declaration. The node that this script extends,
+`CharacterBody2D` has this `_physics_process` method already defined, this
+allows us to implicitly override that method and so, when the method in the base
+class is invoked, it will call the method in the Player script instead. As can
+be seen, the `_physics_process` method takes a `float` as an input, a float is
+basically a number that can have decimal points. The inputs to the function are
+called _parameters_ and they are defined all inside the brackets at the top of
+the function declaration (called the function header). The `-> void` denotes
+that this function is _void of output_. This means that it will not return any
+type of value back to the caller.
 
-The method `fire_bullet` when called will:
+So any code we write in the `_physics_process` method will be called at a
+constant rate every second. This means that we can write code to rotate the ship
+by a tiny amount every time and it will appear as if the ship was rotating
+smoothly over time. We declare a variable called `move_dir` first, it will hold
+a number as can be seen by the `int` keyword, and we assign the value `0`
+initially to it. We then have two `if` statements, an `if` statement allows for
+a question to be asked in code, in this case, Godot has a function we can call,
+that returns a value of type `bool`, `bool` values either be `true` or `false`.
+The `if` statement, looks at the `bool` value, and if it is `true` it will
+execute the code that is indented underneath the `if` statement in question.
 
-- Spawn a bullet.
-- Add the bullet into the "level" where everything exists.
-- Set the rotation of the bullet so that it faces away from the ship.
-- Set the position of the bullet to be the same as the ship.
+The two functions used in each if statement, `Input.is_key_pressed` are only
+true if the value passed to them, `KEY_LEFT` or `KEY_RIGHT` are pressed. So,
+if the left key is pressed, then the variable `move_dir` will be set to `-1`. If
+the right key is pressed, then 1 will be added to `move_dir`. The final
+statement `rotate` rotates the player ship by whatever radians you supply to it.
+So if `move_dir` is `-1` it will rotate counter-clockwise, if `move_dir` is `1`,
+then it will rotate clockwise. Before we pass it `move_dir`, we multiply it
+with `delta` because that allows it to move at constant speed, regardless of
+how many FPS the game is running with.
 
-_Each line in the `fire_bullet` method maps directly to one line in the
-explanation._
+We have now completed the script that when attached to the _Player_ node will
+cause it to rotate. However, the Player node cannot accept the script in its
+current form, recall the first line in the Player script; `extends
+CharacterBody2D`, this line allows the Player script to use functions that will
+rotate the player ship, however, the player ship is not a CharacterBody2D node,
+it is a Node2D. The root node of the Player scene needs to be converted into
+a CharacterBody2D node first before it can be attached without any errors
+appearing. Doing so is very simple, open the _Player.tscn_ scene, and right
+click the root node that we have previously named _Player_ and select
+_Change Type_, from the dialog that appears, select _CharacterBody2D_, the
+type of the root node of _Player.tscn_ is now a _CharacterBody2D_.
 
-The `_process` is responsible for calling `fire_bullet` when the space bar is
-pressed, the only issue is that there needs to be a cooldown, since if there is
-no cooldown, a bullet will be created everytime `_process` is called, which will
-create a very large amount of bullets. The `fire_cooldown` variable declared
-earlier stores the amount of time we want the ship to cooldown before firing
-another bullet. The time has been set to `0.75` seconds. `fire_cooldown_left`
-will store how much time is left before the timer hits `0`. So, in essense,
-`fire_cooldown_left` is the amount of time left on the timer, and
-`fire_cooldown` is the time it gets reset to when `fire_bullet` is called.
+You will notice that a yellow warning signal has appeared next to the name root
+node's name, hovering over it will reveal why the warning is there.
 
-The `_process` method only has two if statements:
+![](godot-asteroids/godot_13.png)
 
-- The first checks if the timer for the fire cooldown is less than or equal to
-  `0`. If it is then it calls `fire_bullet` which spawns a bullet and fires it.
-  Then, it sets the `fire_cooldown_left` to `fire_cooldown`.
-- The second if statement checks if the `fire_cooldown_left` is greater than
-  `0`, if it is, then it decrements it by `delta`.
+> Node configuration warning:
+>
+> * This node has no shape, so it can't collide or interact with other objects.
+>
+> Consider adding a CollisionShape2D or CollisionPolygon2D as a child to define
+> its shape.
 
-This effectively makes `fire_cooldown_left` a timer that gets reset everytime
-space is pressed and a bullet is fired.
+This warning is self evident, we need to add either a CollisionShape2D or a
+CollisionPolygon2D node as a child of the root node in order to define
+which region of the player is solid. Right click on the _Player_ node and
+select _Add Child Node_, in the dialog that shows up, select _CollisionShape2D_
+as the type of the new node to add. Once it is added, a new warning should
+appear, this time next to the newly added node's name.
 
-### What is a delta?
+![](godot-asteroids/godot_14.png)
 
-`delta` is an argument that appears for methods like `_process` and
-`_physics_process`, it represents the amount of time, in seconds, that the
-same method was called. This allows for useful calculations such as measuring
-the amount of time that has passed.
+> Node configuration warning:
+>
+> * A shape must be provided for CollisionShape2D to function. Please create a
+> shape resource for it.
 
-## Breaking the Asteroids
+While nodes in Godot serve a functional purpose, resources function as data
+containers. They don't have a functional purpose themselves, instead they are
+used by nodes as data. So CollisionShape2D wants a resources that describes
+what shape it shall have. Resources are added from the _Inspector_ panel. While
+having the _CollisionShape2D_ node selected, the inspector panel will look like
+this:
 
-In order to make the asteroids breakable, we will create a scene that contains
-an `Area2D`, in order for it to be able to intersect and be detected by the
-bullet's `Area2D`. The scene will also have a `Sprite2D` that will be used to
-show the asteroid, and it will also have a script attached so that the asteroid
-can be made to move slowly towards the ship.
+![](godot-asteroids/godot_15.png)
 
-The asteroids placed in the level already in the previous tutorial will all need
-to be selected and deleted since they are just `Sprite2D` nodes. In the Scene
-panel, select all the asteroids and right click and select `Delete Node(s)`.
-It is worth noting, that multiple nodes can be selected at the same time by
-holding down shift. With just the ship left in the level alone, click on the
-`Scene` button at the top left of the window, then click on `New Scene`. An
-empty scene will be created, in the Scene panel select the `2D Scene` option.
+Notice that the _Shape_ property is marked as `[empty]`, this is the property
+that the warning was describing, it needs a shape assigned to it, click on the
+`[empty]` text, a menu will appear allowing you to select from a wide variety
+of shapes. Select _CircleShape2D_ as the shape. A small circle will appear at
+coordinates (0, 0) in the _Player.tscn_ scene. Depending on the player ship
+sprite was placed, it is most likely that the shape will not overlap the ship.
+It is vital we center the ship to (0,0) as this will solve a lot of issues that
+would have appeared in the future. You can either drag the ship sprite to the
+origin coordinate (0,0) or set the coordinates to 0 through the inspector in
+`Transform->Position`.
 
-Rename the Node2D just created to Asteroid. Change the type of the node from
-`Node2D` to `Area2D`. Save the scene at `objects/Asteroid.tscn` Like before when
-creating an `Area2D`, right click on the node in the Scene panel and add a
-`CollisionShape2D` node as a child. Select the newly created collision shape 2D
-and in the Inspector panel, the _Shape_ property will have a value of `[empty]`,
-clicking the value will allow you to select the `New CircleShape2D` option which
-will create a circle shape resource for the `CollisionShape2D` node that we just
-created. Additionally, drag a sprite of your choosing into the center of the
-Asteroid scene from the `res://sprites/meteorBrown_big1.png` folder in order to
-make the asteroid visible. Adjust the `CollisionShape2D` size to approximatley
-cover the asteroid sprite. 
+Select the collision shape again and click on the `CircleShape2D` resource in
+the inspector that has replaced the `[empty]` value. The property should now
+expand, revealing all the parameters that can be edited to customize the
+circle shape. Increasing the _Radius_ property to 40 covers most of the ship,
+this is how the editor should look like after the change:
 
-Create the asteroid script in the FileSystem panel by right clicking on the
-_code_ folder and selecting the _New Script_ option. The script will inherit
-Area2D, and be saved in the `code/Asteroid.gd` folder. Don't forget to drag and
-drop the `Asteroid.gd` script from the FileSystem panel to the Scene panel and
-onto the _Asteroid_ node. The code that `Asteroid.gd` contains is shown below:
+![](godot-asteroids/godot_16.png)
 
-    extends Area2D
+It is time to assign the script we have created previously to the _Player_ node,
+drag the script from the _FileSystem_ to the _Player_ node. Once done, a little
+scroll icon will appear next to the name, when clicked, it will open the script
+in the script editor mode.
 
-    func _ready() -> void:
-        connect("area_entered", area_entered)
+![](godot-asteroids/godot_17.png)
 
-    func area_entered(area : Area2D) -> void:
-        queue_free()
+## Running The Game
 
-This is a very simple script. In the `_ready` method, the script initializes a
-_signal_. Signals allow for event driven programming, when the Area2D overlaps
-with another Area2D, it will cause the `area_entered` signal to emit. The
-`connect` function connects the `area_entered` signal, to the `area_entered`
-method we have created below.
+Pressing the `F5` key or clicking on the _Play_ button at the top right of the
+editor window will run the game. If all went correctly, you should see the
+meteors we placed down previously, along with the player ship. Pressing the
+left or right keys will cause it to rotate clockwise and counter-clockwise.
 
-The `area_entered` method's purpose is to delete the asteroid node when it
-overlaps with another `Area2D`. This method will be called by the `Area2D` node
-automatically. The method takes an `Area2D` parameter called `area`, while this
-is not used, it is necessary since in order to connect the signal, the method
-needs to have that parameter. All it does is it calls the `queue_free` method
-that deletes the asteroid node from the scene.
+![](godot-asteroids/godot_19.png)
 
-Now, it is time to place asteroids in the level by dragging them from the
-FileSystem panel into the viewport. When the game is executed (with `F5`), the
-ship can now shoot and destroy the asteroids placed in the level.
+### Getting Help
+
+Godot's scripting editor has a useful feature that allows you to search for help
+regarding all of Godot's types. Notice in the top right corner of the script
+editor, there is a button labeled _Search Help_, when clicked, a dialog will be
+revealed allowing you to search and view information on the type you are
+interested in, here is help regarding the float type that the `_physics_process`
+method took:
+
+![](godot-asteroids/godot_12.png)
 
 ## Project Files
 
 The project files for this tutorial can be accessed on
-[GitHub](https://github.com/Yiannis128/godot-asteroids/tree/part-2). You can use
+[GitHub](https://github.com/Yiannis128/godot-asteroids/tree/part-1). You can use
 these files as reference material if you get stuck while following the tutorial.
-
-## What's Next
-
-Part 3 can be accessed [here](godot-asteroids-03.html). Part 2 covered a lot of
-topics that may not have been fully explained, it is recommended that you read
-the articles in Useful Links in order to better understand them before moving
-to Part 3. 
 
 ## Useful Links
 
-1. [Godot Scripting Continued](https://docs.godotengine.org/en/stable/getting_started/step_by_step/scripting_continued.html)
-2. [Godot Physics Introduction](https://docs.godotengine.org/en/stable/tutorials/physics/physics_introduction.html)
-3. [Godot Vector Maths](https://docs.godotengine.org/en/stable/tutorials/math/vector_math.html)
-4. [Godot Signals](https://docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html)
+1. [Scripting](https://docs.godotengine.org/en/stable/getting_started/step_by_step/scripting.html)
+2. [Object-Oriented Programming](https://en.wikipedia.org/wiki/Object-oriented_programming)
+3. [Your first game](https://docs.godotengine.org/en/stable/getting_started/step_by_step/your_first_game.html)
+
+## What's Next
+
+It is recommended that at some point you check the useful links section in order
+to get a better understanding of some of the concepts that appeard in this
+article. Also, check out part 3 of the tutorial series.
+
+### [Next Article: Godot Asteroids Tutorial - Part 3](godot-asteroids-03.html)
