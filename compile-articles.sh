@@ -199,8 +199,3 @@ for file in $ARTICLES_DIR/*; do
         fi
     fi
 done
-
-
-# TODO
-# If param block does not contain title, it is still set.
-# Variables that are blank are set to arbitrary values.
