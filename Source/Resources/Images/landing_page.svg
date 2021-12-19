@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20, custom)"
+   sodipodi:docname="landing_page.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="560.71429"
+     inkscape:cy="381.42857"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="true"
+     width="512mm"
+     units="px"
+     inkscape:pagecheckerboard="1"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid10" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="fill:#000000;stroke:#000000;stroke-width:0.291131;stroke-dasharray:0, 3.20245"
+       id="path30"
+       cx="253.83929"
+       cy="261.51782"
+       r="20.347223" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.90675;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 262.55953,278.95833 C 277.09326,296.39881 280,340 280,340 v 0"
+       id="path88"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.90675;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 262.55953,278.95833 -26.16071,26.16072 v 0 c 8.72023,17.44048 8.72023,17.44048 8.72023,17.44048"
+       id="path1108" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.90675;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 262.55953,278.95833 c 40.69444,0 40.69444,0 40.69444,0 2.90674,20.34723 2.90674,20.34723 2.90674,20.34723"
+       id="path1391" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2.90675;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 253.83929,418.48215 v 0 c 0,0 -2.90675,-55.22818 26.16071,-78.48215 34.88095,23.25397 43.6012,63.94841 43.6012,63.94841 v 0"
+       id="path1754" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5.81349;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:34.8809, 5.81349;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 233.49207,229.54366 C 186.98413,119.08731 70.71429,14.44445 70.71429,14.44445"
+       id="path2036" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:5.81349;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 105.59524,502.77778 c 337.18254,0 337.18254,0 337.18254,0"
+       id="path2038" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"
+       x="215.82336"
+       y="96.058655"
+       id="text8292"><tspan
+         sodipodi:role="line"
+         id="tspan8290"
+         x="215.82336"
+         y="96.058655">Landing Page</tspan></text>
+  </g>
+</svg>

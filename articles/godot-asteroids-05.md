@@ -1,4 +1,6 @@
-# Godot - Asteroids Game For Complete Beginners: 5
+params
+title: Godot - Asteroids Game For Complete Beginners: 5
+endparams
 
 ## Warning, this article is still in development! Do not use for learning yet!
 
@@ -53,11 +55,43 @@ root node to `HUD` using the Scene panel. Save the scene as `HUD.tscn` in the
 ### Label Node
 
 Godot has a UI node called `Label` that allows you to display information, we
-can use it to display our score of destroyed asteroids.
+can use it to display our score of destroyed asteroids. Since we want to display
+the score we have, and also the text "Score:" to show that the number shown
+represents the score, two `Label` nodes will be required. They can both be
+created in the Scene panel, name the one that contains the text "Score:"
+`ScoreText`, and name the label that will contain the number `Score`. The nodes
+can then be assigned a default text value by using the Inspector panel (in the
+`Text` property). `ScoreText` will have the value `Score:` assigned. `Score`
+will have the default value `0` assigned as that is going to be the default
+value of the score when the game starts.
 
-### Godot Signals
+![](godot-asteroids/godot_25.png)
+
+At this point, you may notice that the two labels are on top of each other,
+that's because they are both currently situated at coordinates (0,0) on the
+Control node they are a child of. Drag the number score to the right of the
+text score node as shown below.
+
+![](godot-asteroids/godot_24.png)
+
+It is time to create and attach a script so that we can link the score to it. In
+the Scene panel, right click on the `code` folder and select `New Script`. For
+the script name, choose `HUD.gd` and make sure it inherits `Control` node, this
+is because the root node is also a control node. Make sure to drag the script
+from the FileSystem panel to the root node that is called `HUD` in the Scene
+panel in order to attach the script.
 
 ## Incrementing the Score Counter
+
+This section will cover how to display the amount of destroyed asteroids on the
+HUD. In order to achieve this, the bullet script will need to be modified to
+increment the value of the variable that is keeping track of the score, and also
+to write the HUD code in order to display and update it. Start by opening
+`code/HUD.hd`
+
+## Singletons in Godot
+
+## Signals in Godot
 
 ## Reseting the Score Counter
 
@@ -67,7 +101,8 @@ can use it to display our score of destroyed asteroids.
 
 1. [Godot UI Basics](https://docs.godotengine.org/en/stable/getting_started/step_by_step/ui_introduction_to_the_ui_system.html#)
 2. [Singleton Nodes](https://docs.godotengine.org/en/stable/getting_started/step_by_step/singletons_autoload.html)
+3. [Signals](https://docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html)
 
 ## What's Next
 
-_You are at the end of this journey, but a bigger one has just begun!_
+[_You are at the end of this journey, but a bigger one has just begun!_](https://docs.godotengine.org/en/stable/)

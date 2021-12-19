@@ -1,4 +1,6 @@
-# Article Compiler Tutorial
+params
+title: Article Compiler Tutorial
+endparams
 
 This tutorial will look at how to setup article compiler so that it compiles
 markdown articles inside a folder and outputs them as HTML in another folder,
@@ -9,7 +11,7 @@ along with how the template system works. Article compiler can be obtained on
 
 Article Compiler uses the following programs:
 
-* Perl
+- Perl
 
 ## Installation
 
@@ -82,14 +84,25 @@ let Article Compiler insert the title of the article and the generated HTML at
 the correct place. The title of the article is the first line with the #
 removed.
 
+## Supported Tags
+
+| Markdown Tag | HTML Template Tag | Explanation                                         |
+| ------------ | ----------------- | --------------------------------------------------- |
+| N/A          | article           | The article will be placed where the tag is.        |
+| title        | title             | The title of the article.                           |
+| N/A          | time              | Time to read the article, automatically calculated. |
+
+_More are planned on being added depending on how neccessary they are as a
+design decision of this script is to keep it minimalistic._
+
 ## Example Usage
 
 Create an empty folder, this will resemble the root of our website repo. Inside
 folder create these folders:
 
-* `articles`
-* `Source`
-* Inside the `Source` folder, create a `articles` folder.
+- `articles`
+- `Source`
+- Inside the `Source` folder, create a `articles` folder.
 
 Inside the root of the website, create a template file, the default accepted
 file is `article_template.html` although it can be changed by supplying the

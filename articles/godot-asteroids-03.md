@@ -1,4 +1,6 @@
-# Godot - Asteroids Game For Complete Beginners: 3
+params
+title: Godot - Asteroids Game For Complete Beginners: 3
+endparams
 
 ## Warning, this article is being proof-read! Proceed with caution.
 

@@ -1,4 +1,8 @@
-# Static Builder Tutorial
+params
+title: Static Builder Tutorial
+publish_date: 8th January 2021
+endparams
+
 This tutorial will look at how Static Builder works and will also act as a guide on how to
 set it up and use it. Static builder is a tool written in Python3 that allows for the reuse
 of common elements in static websites. For example, without it, changing the header bar in one
