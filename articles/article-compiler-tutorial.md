@@ -43,7 +43,7 @@ compiler and static builder in one command.
 
 ## Article Template
 
-The template folder will allow the HTML generated to be of the same format as
+The template file will allow the HTML generated to be of the same format as
 the rest of the website, instead of the generated HTML being just a bunch of
 HTML tags that don't really resemble the webpage that an article could be found
 in. Here is the template for this website:
@@ -67,6 +67,8 @@ in. Here is the template for this website:
         <main>
             <div class="ContentCard">
                 <div class="ContentCardSection">
+                    <h1>{title}</h1>
+                    <h4>Reading Time: {time}</h4>
                     {article}
                 </div>
             </div>
@@ -79,12 +81,37 @@ in. Here is the template for this website:
 
 _Note that the import elements are for [Static Builder](static-builder-tutorial.html)._
 
-The HTML is normal aside from the `{title}` `{article}` keywords. These keywords
-let Article Compiler insert the title of the article and the generated HTML at
-the correct place. The title of the article is the first line with the #
-removed.
+The HTML is normal aside from the `{title} {article} {time}` keywords. These
+keywords let Article Compiler insert the title of the article and the generated
+HTML at the correct place. The `{article}` tag is replaced by the content of the
+markdown file (aside from the param block that will be explained later). The
+`{time}` tag is automatically calculated by the word count of the markdown file.
+The `{title}` tag is obtained from the inclusion of a _title_ field inside of
+the param block at the top of the file.
+
+## The Param Block
+
+The param block is a block of meta data that is included at the top of the
+markdown file, it is removed when the article is compiled so the HTML will not
+include it. Inside the param block, meta data such as the title of the article
+can be included. The param block needs to start at the first line of the file,
+that means that the `params` keyword is at line 0 of the markdown file, if this
+is not the case, then article compiler will treat the param block as being part
+of the file and include it in the generated HTML. An example param block is
+shown below:
+
+    params
+    title: Article Compiler Tutorial
+    endparams
+
+The param block starts with the `params` keyword and ends with the `endparams`
+keyword. Between those two keywords, meta data such as what the title of the
+article is can be declared in the form of `key: value`. Each meta data entry,
+along with the `params endparams` keywords need to be line separated.
 
 ## Supported Tags
+
+Below is a list of currently supported tags that are supported.
 
 | Markdown Tag | HTML Template Tag | Explanation                                         |
 | ------------ | ----------------- | --------------------------------------------------- |

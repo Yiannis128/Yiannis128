@@ -81,28 +81,124 @@ is because the root node is also a control node. Make sure to drag the script
 from the FileSystem panel to the root node that is called `HUD` in the Scene
 panel in order to attach the script.
 
+Additionally, make sure to drag the HUD node to the main scene with the player
+ship in order for it to be used when playing the game.
+
 ## Incrementing the Score Counter
 
 This section will cover how to display the amount of destroyed asteroids on the
-HUD. In order to achieve this, the bullet script will need to be modified to
-increment the value of the variable that is keeping track of the score, and also
-to write the HUD code in order to display and update it. Start by opening
-`code/HUD.hd`
+HUD. In order to achieve this, a variable will be created that will track the
+number of ships destroyed by the ship. Furthermore, the bullet script will need
+to be modified to increment the value of the variable that will be keeping track
+of the score, and also to write the HUD code in order to display and update it.
 
 ## Singletons in Godot
 
-## Signals in Godot
+Firstly, we will create a variable to hold the score of the player ship. We will
+use a singleton node to store the variable. Wikipedia describes the singleton
+pattern like so:
+
+>In software engineering, the singleton pattern is a software design pattern
+>that restricts the instantiation of a class to one "single" instance. This is
+>useful when exactly one object is needed to coordinate actions across the
+>system.
+
+In short, we only need one variable to score the player score, creating a 
+singleton node and storing the variable inside it will allow us to access and
+manage it much more easily. In order to create a singleton node, firstly start
+by creating a script like normal. Save the script at `code/PlayerStats.gd`. Make
+sure the script inherits _Node_. In order to create a singleton node that will
+use this script, select `Project -> Project Settings...` in the top left menu
+bar.
+
+The project settings window will appear, this window contains various options
+that can be used to customize the way the game works and runs. The top part of
+the window should have a list of tabs that contain all the options that the
+project settings window has to offer in a categorized manner.
+
+![](godot-asteroids/godot_26.png)
+
+Select `AutoLoad`, the window's contents should now change, the window should
+now be blank, this is where all the singleton nodes can be declared.
+
+![](godot-asteroids/godot_27.png)
+
+In order to make the `PlayerStats.gd` script be used by a singleton node, click
+on `Path` and select the `PlayerStats.gd` script. Then, the _Name_ field should
+automatically be populated with the text `PlayerStats`, the value of this field
+indicates how this singleton will be referred to inside code. Click on `Add` and
+a new singleton will be created that will use the `PlayerStats.gd` script. Make
+sure that the checkbox `Enabled` is ticked so that the singleton node is
+enabled.
+
+![](godot-asteroids/godot_28.png)
+
+It is now time to declare the variable that will keep track of the score, open
+`code/PlayerStats.gd` and declare the following variable so that the script
+looks like this:
+
+    extends Node
+
+    var player_score : int = 0
+
+This script will need to simply keep track of the `player_score` variable. Next,
+the asteroid script will be modified to increment the score. Open
+`code/Asteroid.gd` and add the following `PlayerStats.player_score += 1` line
+in the `area_entered` function. The script should now look like this:
+
+    extends Area2D
+
+    var move_dir : Vector2 = Vector2.ZERO
+
+    func _ready() -> void:
+        connect("area_entered", area_entered)
+
+    func area_entered(area : Area2D) -> void:
+        PlayerStats.player_score += 1
+        queue_free()
+
+    func _physics_process(delta: float) -> void:
+        position += move_dir * delta
+
+The extra line increments the `player_score` variable in the `PlayerStats`
+singleton that was just added in the previous section. This line executes when
+the asteroid is to be destroyed. Now, in order to make the HUD update when the
+score changes, open `code/HUD.gd` and make the script contain the following:
+
+    extends Control
+
+    func _process(delta: float) -> void:
+        $Score.text = str(PlayerStats.player_score)
+
+This simply sets the `text` property of the `Score` label node in `HUD.tscn` to
+constantly update to the current score. So when an asteroid comes in contact
+with an object, it self deletes itself and increments the player score variable,
+then the HUD picks the new value and updates the Score node. You may notice that
+the `Score` variable is prefixed with `$` as `$Score`, in Godot, this indicates
+an access to a child node, so from the `HUD.tscn`, `$Score` will access the
+child `Score` node. It is worth noting that scripts using the `$` prefix only
+work with nodes that have those children as nodes.
 
 ## Reseting the Score Counter
 
+TODO
+
 ## Project Files
+
+The final project files of this tutorial series can be found on
+[GitHub](https://github.com/Yiannis128/godot-asteroids/tree/part-5).
 
 ## Useful Links
 
 1. [Godot UI Basics](https://docs.godotengine.org/en/stable/getting_started/step_by_step/ui_introduction_to_the_ui_system.html#)
 2. [Singleton Nodes](https://docs.godotengine.org/en/stable/getting_started/step_by_step/singletons_autoload.html)
-3. [Signals](https://docs.godotengine.org/en/stable/getting_started/step_by_step/signals.html)
 
 ## What's Next
+
+Part 5 took a brief look into the user interface system, a lot of topics that
+may not have been fully explained, it is recommended that you read the articles
+in Useful Links in order to better understand them.
+
+---
 
 [_You are at the end of this journey, but a bigger one has just begun!_](https://docs.godotengine.org/en/stable/)
