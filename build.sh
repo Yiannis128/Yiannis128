@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+echo "Compiling article index"
+./compile-article-index.sh
+
 echo "Compiling articles"
 echo
 ./compile-articles.sh
