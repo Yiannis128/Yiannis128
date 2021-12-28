@@ -1,6 +1,6 @@
 params
 title: Static Builder Tutorial
-publish_date: 8th January 2021
+category: Project Tutorials
 endparams
 
 This tutorial will look at how Static Builder works and will also act as a guide on how to

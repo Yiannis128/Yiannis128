@@ -1,5 +1,6 @@
 params
 title: Article Compiler Tutorial
+category: Project Tutorials
 endparams
 
 This tutorial will look at how to setup article compiler so that it compiles
