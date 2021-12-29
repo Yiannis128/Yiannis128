@@ -203,17 +203,17 @@ that is how it is able to be shown as a node.
 
 We will now create our a character that can shoot bullets and break those
 meteors that we have placed. Create a new folder in the _FileSystem_ called
-_objects_. Our player will indeed be a node, the player node will have some
-behavior attached to it that will allow it to be controlled by us. We will
-save the player and behavior as a separate scene inside of the objects folder.
-It is worth noting that scenes are nodes that are saved into the file system.
+"objects". Our player will be a node, the player node will have some behavior
+attached to it that will allow it to be controlled by us. We will save the
+player and behavior as a separate scene inside of the objects folder. It is
+worth noting that scenes are nodes that are saved into the file system.
 
 At the top left menu of the editor window, click `Scenes->New Scene`. A new
 tab in our viewport will have appeared now. This tab shows an empty scene
 similar to how the viewport was before we created the _Main_ scene and saved it.
 
 Click on the _2D Scene_ button in the _Scene_ panel to create another _Node2D_
-which are the basic building blocks of a 2D game. Rename the node to _Player_.
+which are the basic building blocks of a 2D game. Rename the node to "Player".
 We will now add the _playerShip1_blue.png_ sprite that we have imported
 previously as a child _Sprite2D_ node to the root _Node2D_ node. This can be
 done by dragging the sprite from the _FileSystem_ to the viewport like before.
