@@ -1,13 +1,14 @@
 #!/usr/bin/env sh
 
-echo "Compiling article index"
+echo "article index compiler: compiling article index"
 ./compile-article-index.sh
 
-echo "Compiling articles"
 echo
-./compile-articles.sh
+echo "article compiler: compiling articles"
+./compile-articles.sh -q
 
-echo "Running packager"
+echo
+echo "static builder: running packager"
 ./package.py Source Public
 
 

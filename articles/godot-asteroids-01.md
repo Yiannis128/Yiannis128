@@ -3,8 +3,6 @@ title: Godot - Asteroids Game For Complete Beginners: 1
 category: Godot - For Complete Beginners
 endparams
 
-## Warning, this article is being proof-read! Proceed with caution.
-
 ## Introduction
 
 This tutorial is designed for people with little to no experience with 
@@ -20,12 +18,6 @@ that, you need to know the basics. The game will be 2D as that is the easiest
 type of game for beginners to understand. At this level, the third dimension
 adds an extra layer of complexity that is unnecessary.
 
-**This tutorial was developed using Linux, this shouldn't be a problem most of
-the time as Godot is mostly platform independent, if there's different ways
-of doing the same thing depending on the OS currently running, then there will
-be instructions for Windows and MacOS also included, but they may be inaccurate.
-If you find any mistakes then email me for a correction.**
-
 ![](godot-asteroids/godot_logo_vertical_light.png)
 
 ## Setup
@@ -36,17 +28,17 @@ Downloading Godot is very easy, it is a standalone executable so all that is
 required is heading over to the [Godot](https://godotengine.org/download)
 website's downloads page and downloading it.
 
-While you're there, notice that there's a 
+While you're there, notice that there's a
 [learn](https://docs.godotengine.org/en/stable/) tab that takes you to the
-documentation of the engine written by the engine developers. You currently
-might not be able to fully understand some or all of the things there, if you
-do not, then this tutorial will help you do so.
+documentation of the engine written by the engine developers and contributors.
+You currently might not be able to fully understand some or all of the things
+there, if you do not, then this tutorial will help you do so.
 
-_The tutorial is currently designed for Godot version 4.0 as that is the
-latest version of Godot. Versions earlier than 4.0 are not compatible with
-this tutorial as there have been a lot of changes since the 3.XX versions.
-Versions succeeding 4.0 may still be compatible with this tutorial as 4.XX
-likely won't break any compatibility._
+_The tutorial is currently designed for Godot version 4.0 as that is the latest
+version of Godot. Versions earlier than 4.0 may not be compatible with this
+tutorial. Versions succeeding 4.0 may still be compatible with this tutorial. It
+is always recommended you start new projects with the latest stable version of
+Godot available._
 
 ### Creating a New Project
 
@@ -68,14 +60,14 @@ There are more options in this dialog box, but for now, they are not necessary.
 When you are finished, click on the "Create & Edit" button to create your
 new project.
 
-![Godot New Project Dialog](godot-asteroids/godot_01.png)
+![Godot's New Project Dialog](godot-asteroids/godot_01.png)
 
 ## Editor Basics
 
 The editor should appear upon creating your new project. The image below shows
 the editor once it has launched with a newly created project.
 
-![](godot-asteroids/godot_02.png)
+![Picture of editor after just creating a blank new project.](godot-asteroids/godot_02.png)
 
 In the center of the scene you can see your viewport, it is the large window
 that is displaying the 3D grid. In this tutorial, we will be making a 2D game,
@@ -84,7 +76,7 @@ viewport. Alongside it are other buttons, 2D, 3D, Script and AssetLib. For now
 we will be in 2D mode, however, we will go over what all the other buttons do
 aside from the 3D mode button.
 
-![](godot-asteroids/godot_05.png)
+![A picture of the top buttons with 2D selected.](godot-asteroids/godot_05.png)
 
 You will notice that the viewport has now changed, instead of a 3D grid,
 there's now a 2D gray surface instead, this is the 2D viewport. Also notice 
@@ -99,18 +91,18 @@ lists all of the nodes that are added into the scene. For now, think of
 nodes as objects that exist in the scene. As you can see, there is one
 node called Node2D added.
 
-Let's save this empty scene we have created, we will slowly create our game
-in this scene. Press `ctrl+s` to bring up the save dialog or go to
-`Scene->Save Scene` at the top menu bar. Select a location to save the scene
-to in your project tree. It is important to be organized when developing
-games as it increases productivity, makes your project more readable and
-understandable especially when you or someone else looks at it later on.
+Let's save this empty scene  that we have just created, we will slowly create
+our game in this scene. Press `ctrl+s` to bring up the save dialog or go to
+`Scene->Save Scene` at the top menu bar. Select a location to save the scene to
+in your project tree. It is important to be organized when developing games as
+it increases productivity, makes your project more readable and understandable,
+especially when you or someone else looks at it later on.
 
 Create an empty folder using the _Create Folder_ button at the top right.
-Name it _scenes_, then save the current scene as _Main.tscn_. If you look
-at the bottom left of the editor window now, in the panel called _FileSystem_,
-you now see the newly created _scene_ folder, clicking the arrow next to it
-will expand it revealing the _Main.tscn_ scene that we have just saved.
+Name it "scenes", then save the current scene as "Main.tscn". If you look
+at the bottom left of the editor window now, in the panel called "FileSystem",
+you now see the newly created "scene" folder, clicking the arrow next to it
+will expand it revealing the "Main.tscn" scene that we have just saved.
 
 ![View of the FileSystem panel.](godot-asteroids/godot_03.png)
 
@@ -124,8 +116,8 @@ buttons, _Play_, _Pause_, _Stop_, _Play Scene_, _Play Custom Scene_.
 All these buttons allow us to run the game, pause it, and stop it from running.
 Press the _Play_ button, which is the left-most button in the list.
 A dialog should popup, Godot doesn't know what scene it should launch the game
-with, click on _Select Current_ to set the currently open scene as the starting
-scene, alternatively, selecting _Select_ will bring up the file select dialog
+with, click on "Select Current" to set the currently open scene as the starting
+scene, alternatively, "Select" will bring up the file select dialog
 to select a scene manually. Either way, select the _Main.tscn_ scene we have
 just saved. A blank window should pop up now. That is the game running!
 Currently it's not doing much, but that is because we haven't told it to do
@@ -136,16 +128,16 @@ a simple game.
 
 Importing assets allows us to use said assets in our project. Assets can
 be anything, in this instance, we will import some game sprites so we can
-have a character in our game, some enemies, and some items.
+have a character in our game, an enemy, and a bullet.
 
 There are three ways to import assets:
 
 1. Drag the file into the folder you want to import it in in the _FileSystem_
 panel.
-2. The second is to copy the files into your project directory through your
+2. Copy the files into your project directory through your
 operating system's file manager, Godot will automatically recognize and import
 the assets.
-3. The third is by using the _AssetLib_ mode on the editor window. Recall the
+3. Using the _AssetLib_ mode on the editor window. Recall the
 _2D_, _3D_, _Script_, and _AssetLib_ buttons at the top area of the editor.
 We were in _2D_ mode, click on _AssetLib_ to switch to _AssetLib_ mode.
 
@@ -154,13 +146,13 @@ a list of assets that we can import for free into our project! All these
 assets can also be found on the Godot website's 
 [Asset](https://godotengine.org/asset-library/asset) page.
 
-![](godot-asteroids/godot_06.png)
+![View of the AssetLib page.](godot-asteroids/godot_06.png)
 
 The 2D sprite pack we want however can be found
 [here](https://opengameart.org/content/space-shooter-redux). We will manually
 import this art into the engine and use it, as we are making a 2D space shooter
-game. Right click on the _res://_ folder on the _FileSystem_ panel on the bottom
-left, then select _New Folder_, name the new folder _sprites_. Extract the
+game. Right click on the "res://" folder on the _FileSystem_ panel on the bottom
+left, then select "New Folder", name the new folder "sprites". Extract the
 zipped content pack and drag the following sprites from the downloaded asset
 pack into the sprites folder:
 
@@ -192,20 +184,20 @@ Nodes are fundamental to Godot, they are used for creating creating each element
 of a game. The Node2D created in our _Main.tscn_ is in fact a node. What makes
 nodes so special is the fact that they can be a child or a parent of another
 node. Right click on _Node2D_ in the _Scene_ panel and click on _Rename_.
-Rename it to _Main_ so it matches the name we chose when we saved the scene
+Rename it to "Main" so it matches the name we chose when we saved the scene
 node in our _FileSystem_.
 
 We can drag the sprites we imported into our viewport, they will be added
 into our scene as children of _Main_. The sprites added into our scene will
-actually be added as _Sprite2D_ nodes. Clicking on one of the sprites in the
-_Scene_ panel changes the panel on the right side of the editor window
-named _Inspector_. The _Inspector_ panel shows all the properties of the
-currently selected node.
+actually be added as _Sprite2D_ nodes.
 
-We can see the _Sprite2D_ node has a property called _Texture_ that references
-the sprite in our project, that is how it is able to be shown as a node.
+![View of the Scene tab after dragging some sprites to the scene.](godot-asteroids/godot_08.png)
 
-![](godot-asteroids/godot_08.png)
+Clicking on one of the sprites in the _Scene_ panel changes the panel on the
+right side of the editor window named _Inspector_. The _Inspector_ panel shows
+all the properties of the currently selected node. We can see the _Sprite2D_
+node has a property called _Texture_ that references the sprite in our project,
+that is how it is able to be shown as a node.
 
 ## Creating the Player Ship
 

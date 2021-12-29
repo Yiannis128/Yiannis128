@@ -182,7 +182,113 @@ work with nodes that have those children as nodes.
 
 ## Reseting the Score Counter
 
-TODO
+In order to reset the score counter as soon as a collision occurs, the player
+ship's scene will need to be modified by adding an `Area2D` child node, you will
+notice that once added, it will display a warning asking for a collision shape
+node to be added as a child, the player ship already has a _CollisionShape2D_
+node as a child, right clicking on it and selecting _Duplicate_ will create
+another node with the same shape. Drag that second node over the _Area2D_ to
+parent it to that node. Afterwards, the player scene outline should look like
+so:
+
+![](godot-asteroids/godot_29.png)
+
+A few scripts will need to be tweaked in order to account for the player score
+being reset.
+
+_Notice that every script shown (aside from `code/PlayerStats.gd` now has a new
+line at the very top starting with the keyword `class_name`, what this does is
+it labels any node that is using that script with the script name shown. This
+feature of GDScript is used in `code/Asteroid.gd` and `code/Player.gd`_
+
+### `code/Asteroid.gd`
+
+    class_name Asteroid
+    extends Area2D
+
+    var move_dir : Vector2 = Vector2.ZERO
+
+    func _ready() -> void:
+        connect("area_entered", area_entered)
+
+    func area_entered(area : Area2D) -> void:
+        if area.get_parent() is PlayerShip:
+            return
+        
+        if !(area is Asteroid):
+            PlayerStats.player_score += 1
+        
+        queue_free()
+
+    func _physics_process(delta: float) -> void:
+        position += move_dir * delta
+
+The asteroid script's collision checking function (`area_entered`) has been
+modified. Upon collision, it now first checks if the node that it has
+intersected is the player ship. If it is, then it returns from the method (stops
+execution). It then checks if the area is not another asteroid and if it is not,
+then it increases the score by one. This also fixes a bug where if an asteroid
+were to collide with another asteroid, both asteroids would count as a point and
+hence, increment the score by 2. The final action is to destroy the asteroid.
+
+### `code/Player.gd`
+
+    class_name PlayerShip
+    extends CharacterBody2D
+
+    @export var turn_speed : float = 3
+
+    @export var fire_cooldown : float = 0.75
+    var fire_cooldown_left : float = 0
+    const bulletPackedScene : PackedScene = preload("res://objects/ShipBullet.tscn")
+
+    func _ready() -> void:
+        $Area2D.connect("area_entered", area_entered)
+
+    func area_entered(node : Area2D) -> void:
+        if !(node is ShipBullet):
+            PlayerStats.player_dead()
+    
+    ...
+
+The player ship script now adds the extra method `area_entered`, what this
+method does is if a `Area2D` node intersects with the player ship's `Area2D`
+node then it first checks if the node is not a ship bullet and then calls the
+`player_dead` method from the `PlayerStats`. If it is a ship bullet, then it is
+ignored because the ship bullets initially intersect with the player ship's area
+2D, so that is a check to stop the player ship from dying by firing a bullet.
+
+### `code/PlayerStats.gd`
+
+    extends Node
+
+    var player_score : int = 0
+
+    func player_dead() -> void:
+        PlayerStats.player_score = 0
+        get_tree().reload_current_scene()
+
+The new 
+
+### `code/ShipBullet.gd`
+
+    class_name ShipBullet
+    extends Area2D
+
+    var speed : float = 500
+
+    # Called every frame. 'delta' is the elapsed time since the previous frame.
+    func _process(delta: float) -> void:
+        position += Vector2(speed * delta, 0).rotated(rotation)
+
+The player ship bullet script just adds a class name for this script. There are
+other scripts that have a class name assigned.
+
+## Running the Game
+
+The game should now be a fully featured asteroids clone where asteroids come
+from outside the screen and the player has to shoot them. If the player gets hit
+with an asteroid, then the scene reloads and the game resets.
 
 ## Project Files
 

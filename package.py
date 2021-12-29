@@ -9,6 +9,12 @@ from shutil import copyfile
 from pathlib import Path
 from bs4 import BeautifulSoup, Tag
 
+verbose : bool = False
+
+def print_debug(*args):
+    if verbose:
+        print(*args)
+
 def create_directory(dir : str):
     p : Path = Path(dir)
     p.mkdir(parents=True, exist_ok=True)
@@ -21,9 +27,9 @@ def copy_file(dir : str, file : str) -> None:
     build_file_path = get_build_path(file_path)
     build_path = get_build_path(dir)
 
-    print("    Copying File: " + file_path)
-    print("Target Directory: " + build_file_path)
-    print()
+    print_debug("    Copying File: " + file_path)
+    print_debug("Target Directory: " + build_file_path)
+    print_debug()
 
     # Make the path if it doesn't exist
     create_directory(build_path)
@@ -54,7 +60,7 @@ def parse_file(templates_path : str, content : str) -> str:
     return result
 
 def scan_file(dir : str, path : str) -> None:
-    print("   Scanning File: " + path)
+    print_debug("   Scanning File: " + path)
 
     # Calculate build path.
     build_path : str = get_build_path(dir)
@@ -71,8 +77,8 @@ def scan_file(dir : str, path : str) -> None:
     build_file : TextIOWrapper = open(build_file_path,'w')
     build_file.write(build_content)
 
-    print("   Building File: " + build_file_path)
-    print()
+    print_debug("   Building File: " + build_file_path)
+    print_debug()
 
 def scan_directory(path : str) -> None:
     # Walk through the files...
@@ -109,10 +115,10 @@ if __name__ == "__main__":
     source_folder = argv[1]
     build_folder = argv[2]
 
-    print("Base Directory: " + base_directory)
-    print("Source Folder: " + source_folder)
-    print("Build Folder: " + build_folder)
-    print()
+    print_debug("Base Directory: " + base_directory)
+    print_debug("Source Folder: " + source_folder)
+    print_debug("Build Folder: " + build_folder)
+    print_debug()
 
     scan_directory(source_folder)
 
