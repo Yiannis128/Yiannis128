@@ -206,7 +206,9 @@ pre
 
 code
 {
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
+  font-family: monospace;
+  font-size: 0.9rem;
 }
 
 ul > li
