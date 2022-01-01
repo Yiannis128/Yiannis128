@@ -268,7 +268,8 @@ ignored because the ship bullets initially intersect with the player ship's area
         PlayerStats.player_score = 0
         get_tree().reload_current_scene()
 
-The new 
+A new method has been added called `player_dead` that when invoked will cause
+the level to reset, along with the player score variable. 
 
 ### `code/ShipBullet.gd`
 

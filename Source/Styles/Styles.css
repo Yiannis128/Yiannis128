@@ -202,6 +202,9 @@ a
 pre
 {
   white-space: pre-wrap;
+  background-image: linear-gradient(to bottom right, #e2e2e2, #c9c9c9);
+  padding: 1rem;
+  border-radius: 0.6rem;
 }
 
 code
