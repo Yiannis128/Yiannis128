@@ -1,9 +1,7 @@
 params
 title: Godot - Asteroids Game For Complete Beginners: 4
-category: Godot - For Complete Beginners
+category: Godot - Asteroid Game For Complete Beginners
 endparams
-
-## Warning, this article is being proof-read! Proceed with caution.
 
 ### [Previous Article: Godot Asteroids Tutorial - Part 3](godot-asteroids-03.html)
 
@@ -36,7 +34,7 @@ the variable comes this method:
     func _physics_process(delta: float) -> void:
         position += move_dir * delta
 
-In the asteroid's physics process method, the position is updated by delta
+In the asteroid's physics process method, the position is updated by `delta`
 multiplied with the `move_dir` variable we set earlier. The `move_dir`
 variable's default value is `Vector2.ZERO`, this will make the default state of
 the asteroid stationary. So the asteroids placed manually will not move.
@@ -128,7 +126,8 @@ down, it is simple to understand. The following script variables are declared:
   _AsteroidManager_ will direct the asteroids to, in this case it is the player
   ship, this will be initialized using the `target_path` variable that will be
   set from the Inspector panel.
-* `var asteroid_scene : PackedScene = preload("res://objects/Asteroid.tscn")`: 
+* `var asteroid_scene : PackedScene = preload("res://objects/Asteroid.tscn")`:
+  Holds all the information required to create an asteroid object.
 * `var asteroid_speed : float = 150`: How fast the asteroids will move when
   spawned.
 * `var spawn_distance_offset : float = 500`: This controls how far from the
@@ -137,7 +136,7 @@ down, it is simple to understand. The following script variables are declared:
 The `_ready` method is the smallest and simplest method in the entire script, it
 first calls `randomize` which is a built-in method that causes all calls to
 functions that return random numbers back to be truly random. It then sets
-`spawn_rate_left` to the value of `spawn_rate` so that a asteroid doesn't
+`spawn_rate_left` to the value of `spawn_rate` so that an asteroid doesn't
 immediatley spawn (allowing the player to prepare). Finally, it calls the
 built-in function `get_node_or_null` passing the `target_path` variable as a
 parameter, this function returns a reference to the object that `target_path`
@@ -154,13 +153,15 @@ similar to the `_process` method of the player ship script, as it is another
 timer. This time the purpose of the timer is to countdown and when it reaches
 `0`, it will spawn an asteroid by calling the `spawn_asteroid` method.
 
-The `_spawn_asteroid` method checks like the `_process` method if `target` is
-`null` and exits the method if it is because it uses the `target` variable to
-tell the asteroids to target it. It first calls the `instantiate` method on the
-`asteroid_scene` variable, as the variable is a _PackedScene_ which means that
-it holds all the information on how to create a new asteroid. The newly created
-asteroid is assigned to the `asteroid` variable. The asteroid's position is then
-set to the `Vector2` that the function `get_new_asteroid_position` returns. This
+The `_spawn_asteroid` method checks the `_process` method, if `target` is `null`
+it exits the method, if it is not it uses the `target` variable to tell the
+asteroids to target it.
+
+It does so by first calling the `instantiate` method on the `asteroid_scene`
+variable, as the variable is a _PackedScene_ which means that it holds all the
+information on how to create a new asteroid. The newly created asteroid is
+assigned to the `asteroid` variable. The asteroid's position is then set to the
+`Vector2` variable that the function `get_new_asteroid_position` returns. This
 method will be covered later. The variable `offset` is then assigned the value
 representing the difference in positon between the target and the asteroid. This
 value is then [normalized](http://www.fundza.com/vectors/normalize/) and
@@ -169,15 +170,15 @@ earlier when making the asteroid). The asteroid is added to the scene by calling
 the `add_sibling` method.
 
 The `get_new_asteroid_position` method is perhaps the most difficult to
-understand due to its heavy use of vector maths. It begins by assigning size the
-value obtained by calling `get_viewport().size`, `size` is a variable that
+understand due to its heavy use of vector maths. It begins by assigning `size`,
+the value obtained by calling `get_viewport().size`, `size` is a variable that
 belongs to a `Viewport` object obtained by calling `get_viewport()`. This
 represents the width and height of the window. The idea is to select a position
 outside of the viewport. The value returned by the function `randf_range` is
 assigned to `rand_ang`, this function will return a random value in the range of
 `0` and `2π` (`π` is being represented by PI in GDScript). This will represent a
 random direction to spawn the asteroid in. The center of the viewport, that is,
-the center of the screen is assigned to center. 
+the center of the screen is assigned to `center`. 
 
 Then the spawn location is obtained through two steps. Firstly, the
 `spawn_offset` is calculated which is the direction from the center of the
@@ -188,12 +189,12 @@ angle number that was calculated previously. The result is then multiplied by
 the variable `spawn_distance_offset`. This effectively gets a random direction
 away from the coordinates `(0,0)`, the next step translates those coordinates to
 the center of the screen. `spawn_offset` is added to `center`. The result is
-then returned by the function. _This method may be a bit hard to understand,
-it is not necessary to understand it on the first read, perhaps it is worth
+then returned by the function. _This method may be a bit hard to understand, it
+is not necessary to understand it on the first read, perhaps it is worth
 revisiting this article in a few days_.
 
 Before starting the game, it is important to remember to place the
-_AsteroidManager_ objects in the level first, drag and drop it from the
+_AsteroidManager_ object in the level first, drag and drop it from the
 FileSystem panel, it doesn't matter where as it is invisible, doesn't interact
 with any objects, and does not use it's position for anything. It is also
 critical that the `target_path` variable is set, this can be done by selecting

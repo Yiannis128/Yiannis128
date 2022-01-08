@@ -1,6 +1,6 @@
 params
 title: Godot - Asteroids Game For Complete Beginners: 2
-category: Godot - For Complete Beginners
+category: Godot - Asteroid Game For Complete Beginners
 endparams
 
 ### [Previous Article: Godot Asteroids Tutorial - Part 1](godot-asteroids-01.html)
