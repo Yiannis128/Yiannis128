@@ -35,7 +35,7 @@ main
   }
 }
 
-h1, h2, h3
+h1, h2, h3, h4, h5, h6
 {
   margin: 0;
 }
@@ -50,7 +50,6 @@ h1, h2, h3
 
 .ContentCardSection
 {
-  margin: 0 1rem;
   margin-bottom: 1rem;
   padding: 1rem;
 
@@ -172,12 +171,16 @@ video
   }
 }
 
-.HSep h2
+.HSep h1, .HSep h2, .HSep h3, .HSep h4, .HSep h5, .HSep h6
 {
-  font-size: 1.5em;
   text-align: center;
   color: rgb(107, 114, 128);
   line-height: 1em;
+}
+
+.HSep h2
+{
+  font-size: 1.5em;
 }
 
 a
@@ -217,4 +220,11 @@ code
 ul > li
 {
   overflow-wrap: anywhere;
+}
+
+
+.HotizontalMargin2Rem
+{
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
