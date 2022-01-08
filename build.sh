@@ -5,10 +5,9 @@ echo "article index compiler: compiling article index"
 
 echo
 echo "article compiler: compiling articles"
-./compile-articles.sh -q
+./compile-articles.sh
 
 echo
 echo "static builder: running packager"
-./package.py Source Public
-
+./package.py -s Source -o Public -t "Templates"
 

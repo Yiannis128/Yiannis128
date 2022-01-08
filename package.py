@@ -8,8 +8,21 @@ from sys import argv
 from shutil import copyfile
 from pathlib import Path
 from bs4 import BeautifulSoup, Tag
+import argparse
 
-verbose : bool = False
+# Parse arguments
+
+parser = argparse.ArgumentParser(description="sample argument parser")
+parser.add_argument("-s", "--source_dir", default="Source")
+parser.add_argument("-o", "--output_dir", default="Public")
+parser.add_argument("-t", "--template_dir", default="Templates")
+parser.add_argument("-v", "--verbose", action="store_true", default=False)
+args = parser.parse_args()
+
+source_folder : str = args.source_dir
+build_folder : str = args.output_dir
+templates_folder : str = args.template_dir
+verbose : bool = args.verbose
 
 def print_debug(*args):
     if verbose:
@@ -97,24 +110,12 @@ def scan_directory(path : str) -> None:
                 copy_file(subdir, file)
 
 base_directory : str = os.getcwd()
-source_folder : str = "Source"
-build_folder : str = "Public"
-templates_folder : str = "Templates"
 
 import_tag_name : str = "import"
 
 allowed_file_formats = [".html"]
 
 if __name__ == "__main__":
-    # Parse commandline arguments.
-    if len(argv) != 3:
-        print("Wrong number of arguments.")
-        print("Usage: [Source] [Target]")
-        exit(1)
-
-    source_folder = argv[1]
-    build_folder = argv[2]
-
     print_debug("Base Directory: " + base_directory)
     print_debug("Source Folder: " + source_folder)
     print_debug("Build Folder: " + build_folder)
