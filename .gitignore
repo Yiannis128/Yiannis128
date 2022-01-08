@@ -1,7 +1,5 @@
-Build
 .vscode
-ps.sh
 Public
-node_modules/*
 Source/articles/**
 !Source/articles/Templates/*
+Source/articles.html
