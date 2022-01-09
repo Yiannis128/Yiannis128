@@ -1,9 +1,7 @@
 params
 title: Godot - Asteroids Game For Complete Beginners: 5
-category: Godot - For Complete Beginners
+category: Godot - Asteroid Game For Complete Beginners
 endparams
-
-## Warning, this article is still in development! Do not use for learning yet!
 
 ### [Previous Article: Godot Asteroids Tutorial - Part 4](godot-asteroids-04.html)
 
@@ -58,13 +56,12 @@ root node to `HUD` using the Scene panel. Save the scene as `HUD.tscn` in the
 Godot has a UI node called `Label` that allows you to display information, we
 can use it to display our score of destroyed asteroids. Since we want to display
 the score we have, and also the text "Score:" to show that the number shown
-represents the score, two `Label` nodes will be required. They can both be
-created in the Scene panel, name the one that contains the text "Score:"
-`ScoreText`, and name the label that will contain the number `Score`. The nodes
-can then be assigned a default text value by using the Inspector panel (in the
-`Text` property). `ScoreText` will have the value `Score:` assigned. `Score`
-will have the default value `0` assigned as that is going to be the default
-value of the score when the game starts.
+represents the score, two `Label` nodes will be used for convenience. They can
+both be created in the Scene panel, name one `ScoreText`, and name the other one
+`Score`. The nodes can then be assigned a default text value by using the
+Inspector panel (in the `Text` property). `ScoreText` will have the value
+`Score:` assigned. `Score` will have the default value `0` assigned as that is
+going to be the default value of the score when the game starts.
 
 ![](godot-asteroids/godot_25.png)
 
@@ -83,7 +80,7 @@ from the FileSystem panel to the root node that is called `HUD` in the Scene
 panel in order to attach the script.
 
 Additionally, make sure to drag the HUD node to the main scene with the player
-ship in order for it to be used when playing the game.
+ship in order for it to be included in the level.
 
 ## Incrementing the Score Counter
 
@@ -135,8 +132,7 @@ enabled.
 ![](godot-asteroids/godot_28.png)
 
 It is now time to declare the variable that will keep track of the score, open
-`code/PlayerStats.gd` and declare the following variable so that the script
-looks like this:
+`code/PlayerStats.gd` and write code such that the script looks like this:
 
     extends Node
 
@@ -144,8 +140,8 @@ looks like this:
 
 This script will need to simply keep track of the `player_score` variable. Next,
 the asteroid script will be modified to increment the score. Open
-`code/Asteroid.gd` and add the following `PlayerStats.player_score += 1` line
-in the `area_entered` function. The script should now look like this:
+`code/Asteroid.gd` and add the following `PlayerStats.player_score += 1` line in
+the `area_entered` function. The script should now look like this:
 
     extends Area2D
 
@@ -173,12 +169,13 @@ score changes, open `code/HUD.gd` and make the script contain the following:
 
 This simply sets the `text` property of the `Score` label node in `HUD.tscn` to
 constantly update to the current score. So when an asteroid comes in contact
-with an object, it self deletes itself and increments the player score variable,
-then the HUD picks the new value and updates the Score node. You may notice that
-the `Score` variable is prefixed with `$` as `$Score`, in Godot, this indicates
-an access to a child node, so from the `HUD.tscn`, `$Score` will access the
-child `Score` node. It is worth noting that scripts using the `$` prefix only
-work with nodes that have those children as nodes.
+with an object, it deletes itself and increments the player score variable, then
+the HUD picks the new value and updates the Score node. You may notice that the
+`Score` variable is prefixed with `$` as `$Score`, in Godot, this indicates an
+access to a child node, so from the `HUD.tscn`, `$Score` will access the child
+`Score` node. It is worth noting that scripts using the `$` prefix only work
+with nodes that have those children as nodes, if they do not then the code is
+trying to access a node that does not exist and the program will crash.
 
 ## Reseting the Score Counter
 
@@ -199,7 +196,8 @@ being reset.
 _Notice that every script shown (aside from `code/PlayerStats.gd` now has a new
 line at the very top starting with the keyword `class_name`, what this does is
 it labels any node that is using that script with the script name shown. This
-feature of GDScript is used in `code/Asteroid.gd` and `code/Player.gd`_
+feature of GDScript is used in `code/Asteroid.gd` and `code/Player.gd`. This
+effectively allows for checking what type of node a certain node is._
 
 ### `code/Asteroid.gd`
 
@@ -252,11 +250,12 @@ hence, increment the score by 2. The final action is to destroy the asteroid.
     ...
 
 The player ship script now adds the extra method `area_entered`, what this
-method does is if a `Area2D` node intersects with the player ship's `Area2D`
+method does is if an `Area2D` node intersects with the player ship's `Area2D`
 node then it first checks if the node is not a ship bullet and then calls the
 `player_dead` method from the `PlayerStats`. If it is a ship bullet, then it is
 ignored because the ship bullets initially intersect with the player ship's area
-2D, so that is a check to stop the player ship from dying by firing a bullet.
+2D, so that is a check to stop the player ship from dying by firing a bullet
+(which would be pretty funny but would make the game unplayable).
 
 ### `code/PlayerStats.gd`
 
@@ -290,6 +289,15 @@ other scripts that have a class name assigned.
 The game should now be a fully featured asteroids clone where asteroids come
 from outside the screen and the player has to shoot them. If the player gets hit
 with an asteroid, then the scene reloads and the game resets.
+
+## Challenges
+
+Here are some challenges to return to when you are more experienced with Godot:
+
+* Add a high-score counter, you will notice that half the work for implementing
+this has already been done (by creating the `PlayerStats.gd` singleton script).
+* Make the player ship move forwards and backwards with the up and down arrow
+keys.
 
 ## Project Files
 
