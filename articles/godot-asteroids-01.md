@@ -1,6 +1,7 @@
 params
 title: Godot - Asteroids Game For Complete Beginners: 1
 category: Godot - Asteroid Game For Complete Beginners
+category-image: godot-asteroids/godot_22.png
 endparams
 
 ## Introduction
@@ -81,10 +82,14 @@ aside from the 3D mode button.
 You will notice that the viewport has now changed, instead of a 3D grid,
 there's now a 2D gray surface instead, this is the 2D viewport. Also notice 
 there are some other panels aside from the viewport. Each panel in the editor
-serves an important purpose. We will cover what they do later, but for now,
-click on the _2D Scene_ button on the _Scene_ tab. Doing that will cause the
-_2D Scene_, _3D Scene_, _User Interface_ and _Other Node_ buttons to disappear
-and be replaced by a list with only one populated item named _Node2D_.
+serves an important purpose. We will cover what they do later.
+
+Click on the _2D Scene_ button on the _Scene_ tab as shown below. Doing that
+will cause the _2D Scene_, _3D Scene_, _User Interface_ and _Other Node_ buttons
+to disappear and be replaced by a list with only one populated item named
+_Node2D_.
+
+![A picture of the Scene panel before and after creating a 2D scene.](godot-asteroids/godot_30.png)
 
 The panel that this list is inside of is called the _Scene_ tab, it
 lists all of the nodes that are added into the scene. For now, think of
@@ -141,9 +146,9 @@ the assets.
 _2D_, _3D_, _Script_, and _AssetLib_ buttons at the top area of the editor.
 We were in _2D_ mode, click on _AssetLib_ to switch to _AssetLib_ mode.
 
-Switching to _AssetLib_ mode changes once more the viewport, now it is shows
-a list of assets that we can import for free into our project! All these
-assets can also be found on the Godot website's 
+Switching to _AssetLib_ mode changes once more the viewport, now it shows a list
+of assets that we can import for free into our project! All these assets can
+also be found on the Godot website's
 [Asset](https://godotengine.org/asset-library/asset) page.
 
 ![View of the AssetLib page.](godot-asteroids/godot_06.png)
