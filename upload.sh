@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
 
 SRC="Public/"
-DEST="/var/www/yiannis-charalambous/"
+DEST="/home/yiannis/website/"
 
-CHOWN="www-data:www-data"
+CHOWN="yiannis:yiannis"
 
-rsync -uvrP --delete-after $SRC root@yiannis-charalambous.com:$DEST
-
-ssh root@yiannis-charalambous.com '
-    cd /var/www/;
-    chown -R www-data:www-data yiannis-charalambous/;
-    exit;
-'
+rsync -uvrP --delete-after --chown=nginx:nginx $SRC yiannis@yiannis-charalambous.com:$DEST

@@ -1,3 +1,5 @@
+ARTICLE_COMPILER_VERSION="1.0"
+
 # Reads and removes the params ... endparams section of the article.
 # Returns 0 if everything went smoothly.
 # Returns 1 if there's no param keyword found on the first line.
@@ -36,20 +38,50 @@ preprocess_article() {
     # excluded.
     params_content="$(echo $params_content | tail -n +2)"
 
+    # Extracts a value from the param block. Arg 1 is the name.
+    # Form:
+    # Key: value
     function extract_value() {
-        local param="$(echo $params_content | grep $1)"
+        local param="$(echo $params_content | grep ^$1:)"
         local search=":"
         local index=$(expr index "$param" "$search")
         echo ${param:index} | xargs
     }
 
     # Set variables from parameters
-    local val=""
-    val=$(extract_value "title") title=${val:-$title}
-    val=$(extract_value "author") author=${val:-$author}
-    val=$(extract_value "category") category=${val:-$category}
+    for key in "${param_keys[@]}"; do
+        param_values[$key]="$(extract_value $key)"
+    done
+    
+    # ----- TODO Remove this line after cleaning other scripts.
+    # local val=""
+    # val=$(extract_value "author") author=${val:-$author} var=
+    # val=$(extract_value "category_pic") category_pic=${val:-$category_pic} var=
+    # -----
     
     unset IFS
 
     return 0
 }
+
+param_keys_to_string() {
+    echo "${param_keys[@]}" | sed "s/ /,/g"
+}
+
+param_values_to_string() {
+    local result=""
+    for param_key in "${param_keys[@]}"; do
+        param_value="${param_values[$param_key]}"
+        if [ "$result" = "" ]; then
+            result="$param_value"
+        else
+            result="$result,$param_value"
+        fi
+    done
+    echo "$result"
+}
+
+# TODO Check if following variables are defined in function above and
+# complain if called and not.
+param_keys=("title" "author" "category")
+declare -A param_values

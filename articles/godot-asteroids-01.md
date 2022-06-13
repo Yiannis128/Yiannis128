@@ -1,7 +1,7 @@
 params
 title: Godot - Asteroids Game For Complete Beginners: 1
 category: Godot - Asteroid Game For Complete Beginners
-category-image: godot-asteroids/godot_22.png
+category_pic: godot-asteroids/godot_22.png
 endparams
 
 ## Introduction

@@ -32,6 +32,7 @@ function show_help() {
         -h|--help   Display help information."
 }
 
+ARTICLE_REPLACE_SCRIPT_PATH="article-compiler/article-replace.pl"
 ARTICLES_DIR="articles"
 OUTPUT_DIR="Source/articles"
 TEMPLATE_FILE="article-compiler/article_template.html"
@@ -97,29 +98,28 @@ compile_article() {
     local output_file="$(echo $file_name | sed "s/md$/html/g")"
     local output_path="$OUTPUT_DIR/$output_file"
 
-    # Default variable values set here.
-    export title=""
-    export reading_time="$(expr $(cat $file_path | wc -w) / 200) minutes"
-
     # Run the preprocessor to extract all meta data.
     preprocess_article "$(cat $file_path)"
     preprocess_result=$?
 
+    # Create comma separated list from array and dictionary because data needs
+    # to be passed to the perl script.
+    export param_keys_string="$(param_keys_to_string)"
+    export param_values_string="$(param_values_to_string)"
+
+    # NOTE Add built in tags.
+    export time="$(expr $(cat $file_path | wc -w) / 200) minutes"
+    export html_article="$(cat $file_path | markdown)"
     # Need to remove the param block if the preprocessor found it.
-    html_article="$(cat $file_path | markdown)"
     if [ "$preprocess_result" -eq "0" ]; then
         IFS=$''
         html_article=$(echo $html_article | tail -n +$(($end_line_index+2)))
         unset IFS
     fi
-    export html_article
 
-    perl -pe '
-        s/{article}/$ENV{html_article}/g;
-        s/{time}/$ENV{reading_time}/g;
-        
-        s/{title}/$ENV{title}/g;
-    ' "$TEMPLATE_FILE" > $output_path
+    # Run the perl script that will handle all the replacing.
+    #perl "article-compiler/replace.perl"
+    perl -p "$ARTICLE_REPLACE_SCRIPT_PATH" "$TEMPLATE_FILE" > $output_path
 
     println "compiled article: $output_path"
 }

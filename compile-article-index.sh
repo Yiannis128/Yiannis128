@@ -45,6 +45,9 @@ function show_help() {
         -h|--help   Display help information."
 }
 
+ARTICLE_REPLACE_SCRIPT_PATH="article-compiler/index-article-replace.pl"
+CATEGORY_REPLACE_SCRIPT_PATH="article-compiler/index-category-replace.pl"
+
 ARTICLES_DIR="articles"
 OUTPUT_PATH="Source/articles.html"
 VERBOSE="0"
@@ -112,12 +115,12 @@ then
     show_help
 fi
 
+# NOTE
 # # Sort the array.
 # local sorted=
 # IFS=$'\n' sorted=($(sort <<<"${articles_list[*]}"))
 # Array of file paths to articles.
 articles_list=()
-
 # Map <category name, (article path)>
 # A map that holds category article array pairs.
 declare -A categories
@@ -132,14 +135,13 @@ function scan_articles() {
         # it needs to be added to the list, else ignored.
         if [[ "$file" == *".md" ]];
         then
-            export category=""
-            export title=""
-            
-            #println "found: $file"
             articles_list+=("$file")
             
             # Scan article for category.
             preprocess_article "$(cat $file)"
+
+            category="${param_values["category"]}"
+            title="${param_values["title"]}"
             
             # Check if category is not found, if not then set the default one.
             if [ "$category" = "" ]; then
@@ -177,10 +179,7 @@ function generate_index() {
             export article_title="${titles["$article_path"]}"
             export article_url="$(echo $article_path | sed "s/md$/html/g")"
             
-            local result="$(perl -pe '
-                s/{article_title}/$ENV{article_title}/g;
-                s/{article_url}/$ENV{article_url}/g;
-            ' "$ELEMENT_TEMPLATE_FILE")"
+            local result="$(perl -p "$ARTICLE_REPLACE_SCRIPT_PATH" "$ELEMENT_TEMPLATE_FILE")"
             
             articles_html="$articles_html"$'\n'"$result"
             unset result
@@ -189,10 +188,12 @@ function generate_index() {
         # Add categories to index.
         export category_name
         export category_articles="$articles_html"
-        local category_result="$(perl -pe '
-            s/{category_name}/$ENV{category_name}/g;
-            s/{category_articles}/$ENV{category_articles}/g;
-        ' "$CATEGORY_TEMPLATE_FILE")"
+        # TODO
+        
+        local category_result="$(perl -p "$CATEGORY_REPLACE_SCRIPT_PATH" "$CATEGORY_TEMPLATE_FILE")"
+
+        # NOTE Remove all lines that still contain {category_pic}
+        category_result=$(echo "$category_result" | sed '/{category_pic}/d')
 
         # Add category result to final html
         category_results="$category_results"$'\n'"$category_result"
