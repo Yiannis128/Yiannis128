@@ -10,15 +10,27 @@
 
     NOTE: ContentCardSectionLast not being applied here.-->
 
+    {{ range .RegularPages }}
+        <div class="ContentCard">
+            <div class="ContentCardSection">
+                <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+                <!-- Thumbnail for section. -->
+                {{ partial "thumbnail" . }}
+                <p>{{ .Page.Summary }}...</p>
+            </div>
+        </div>
+    {{ end }}
+
     {{ range .Sections }}
         <div class="ContentCard">
             <div class="ContentCardSection">
                 <h1>{{ .Title }}</h1>
-                <ul>
-                    {{ range .RegularPages }}
-                        <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-                    {{ end }}
-                </ul>
+                <!-- Thumbnail for section. -->
+                {{ partial "thumbnail" . }}
+                {{ range .RegularPages }}
+                    <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+                    <p>{{ .Page.Summary }}...</p>
+                {{ end }}
             </div>
         </div>
     {{ end }}

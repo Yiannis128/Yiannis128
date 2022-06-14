@@ -45,7 +45,7 @@ On the bottom left you have a summary of your currently opened file's code,
 it will currently be empty with just `_ready` being visible. On the right of
 the code editor, there is an overview map of the text in the code.
 
-![View of the script editor.](godot-asteroids/godot_11.png)
+![View of the script editor.](images/godot_11.png)
 
 The grayed out text are comments, comments are created by using the `#`, 
 anything to the right side of `#` will be a comment. It will not be processed
@@ -134,7 +134,7 @@ type of the root node of _Player.tscn_ is now a _CharacterBody2D_.
 You will notice that a yellow warning signal has appeared next to the name root
 node's name, hovering over it will reveal why the warning is there.
 
-![Picture of the warning.](godot-asteroids/godot_13.png)
+![Picture of the warning.](images/godot_13.png)
 
 > Node configuration warning:
 >
@@ -150,7 +150,7 @@ select _Add Child Node_, in the dialog that shows up, select _CollisionShape2D_
 as the type of the new node to add. Once it is added, a new warning should
 appear, this time next to the newly added node's name.
 
-![Picture of the warning.](godot-asteroids/godot_14.png)
+![Picture of the warning.](images/godot_14.png)
 
 > Node configuration warning:
 >
@@ -164,7 +164,7 @@ what shape it shall have. Resources are added from the _Inspector_ panel. While
 having the _CollisionShape2D_ node selected, the inspector panel will look like
 this:
 
-![View of the Inspector panel when CollisionShape2D is selected.](godot-asteroids/godot_15.png)
+![View of the Inspector panel when CollisionShape2D is selected.](images/godot_15.png)
 
 Notice that the _Shape_ property is marked as `[empty]`, this is the property
 that the warning was describing, it needs a shape assigned to it. Click on the
@@ -183,14 +183,14 @@ expand, revealing all the parameters that can be edited to customize the circle
 shape. Increasing the _Radius_ property to 40 covers most of the ship, this is
 how the editor should look like after the change:
 
-![View of the expanded resource property in the Inspector panel.](godot-asteroids/godot_16.png)
+![View of the expanded resource property in the Inspector panel.](images/godot_16.png)
 
 It is time to assign the script we have created previously to the _Player_ node,
 drag the script from the _FileSystem_ to the _Player_ node. Once done, a little
 scroll icon will appear next to the name, when clicked, it will open the script
 in the script editor mode.
 
-![View of the Player node in the Scene panel with the script attached.](godot-asteroids/godot_17.png)
+![View of the Player node in the Scene panel with the script attached.](images/godot_17.png)
 
 ## Running The Game
 
@@ -199,7 +199,7 @@ editor window will run the game. If all went correctly, you should see the
 meteors we placed down previously, along with the player ship. Pressing the
 left or right keys will cause it to rotate clockwise and counter-clockwise.
 
-![View of the game.](godot-asteroids/godot_19.png)
+![View of the game.](images/godot_19.png)
 
 ### Getting Help
 
@@ -210,7 +210,7 @@ revealed allowing you to search and view information on the type you are
 interested in, here is help regarding the float type that the `_physics_process`
 method took:
 
-![Picture of the "Search Help" button in the script editor.](godot-asteroids/godot_12.png)
+![Picture of the "Search Help" button in the script editor.](images/godot_12.png)
 
 ## Project Files
 

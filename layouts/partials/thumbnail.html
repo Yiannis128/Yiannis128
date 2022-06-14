@@ -1,0 +1,9 @@
+{{ if isset .Params "thumbnail"}}
+    {{ $img := resources.Get .Params.thumbnail }}
+    {{ $imgSize := "200x200" }}
+    {{ if isset .Params "thumbnail_size" }}
+        {{ $imgSize = .Params.thumbnail_size }}
+    {{ end }}
+    {{ $imgParams := printf "%s q100 Center" $imgSize }}
+    <img src="{{ ($img.Fill $imgParams).RelPermalink }}">
+{{ end }}

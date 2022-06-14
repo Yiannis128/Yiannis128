@@ -205,12 +205,12 @@ Node's properties. As observed, the `target_path` variable created in the script
 is now exposed in the inspector allowing us to set it. When clicked, we can then
 select the player ship as the target.
 
-![](godot-asteroids/godot_21.png)
+![](images/godot_21.png)
 
 After all this, running the game will show that the asteroids are being spawned
 now and are targeting the player.
 
-![](godot-asteroids/godot_22.png)
+![](images/godot_22.png)
 
 ## Project Files
 

@@ -39,7 +39,7 @@ _meteorBrown\_tiny1.png_ into the scene to use as the sprite for the bullet.
 Like before, make sure to center it to the origin of the scene so it overlaps
 with the CollisionShape2D.
 
-![View of the ship bullet scene in the editor.](godot-asteroids/godot_18.png)
+![View of the ship bullet scene in the editor.](images/godot_18.png)
 
 ## The Bullet Code
 
@@ -49,7 +49,7 @@ folder and click on _New Script_, name it `ShipBullet.gd`. Make sure it inherits
 `Area2D`. Drag and drop the newly created script from the FileSystem panel to
 the _ShipBullet_ root node in the Scene panel.
 
-![View of Scene panel with ShipBullet scene loaded.](godot-asteroids/godot_20.png)
+![View of Scene panel with ShipBullet scene loaded.](images/godot_20.png)
 
 In FileSystem, double-click the script to open it. The ship bullet code should
 look like this:

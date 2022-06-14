@@ -64,14 +64,14 @@ Inspector panel (in the `Text` property). `ScoreText` will have the value
 `Score:` assigned. `Score` will have the default value `0` assigned as that is
 going to be the default value of the score when the game starts.
 
-![](godot-asteroids/godot_25.png)
+![](images/godot_25.png)
 
 At this point, you may notice that the two labels are on top of each other,
 that's because they are both currently situated at coordinates (0,0) on the
 Control node they are a child of. Drag the number score to the right of the
 text score node as shown below.
 
-![](godot-asteroids/godot_24.png)
+![](images/godot_24.png)
 
 It is time to create and attach a script so that we can link the score to it. In
 the Scene panel, right click on the `code` folder and select `New Script`. For
@@ -115,12 +115,12 @@ that can be used to customize the way the game works and runs. The top part of
 the window should have a list of tabs that contain all the options that the
 project settings window has to offer in a categorized manner.
 
-![](godot-asteroids/godot_26.png)
+![](images/godot_26.png)
 
 Select `AutoLoad`, the window's contents should now change, the window should
 now be blank, this is where all the singleton nodes can be declared.
 
-![](godot-asteroids/godot_27.png)
+![](images/godot_27.png)
 
 In order to make the `PlayerStats.gd` script be used by a singleton node, click
 on `Path` and select the `PlayerStats.gd` script. Then, the _Name_ field should
@@ -130,7 +130,7 @@ a new singleton will be created that will use the `PlayerStats.gd` script. Make
 sure that the checkbox `Enabled` is ticked so that the singleton node is
 enabled.
 
-![](godot-asteroids/godot_28.png)
+![](images/godot_28.png)
 
 It is now time to declare the variable that will keep track of the score, open
 `code/PlayerStats.gd` and write code such that the script looks like this:
@@ -189,7 +189,7 @@ another node with the same shape. Drag that second node over the _Area2D_ to
 parent it to that node. Afterwards, the player scene outline should look like
 so:
 
-![](godot-asteroids/godot_29.png)
+![](images/godot_29.png)
 
 A few scripts will need to be tweaked in order to account for the player score
 being reset.

@@ -19,7 +19,7 @@ that, you need to know the basics. The game will be 2D as that is the easiest
 type of game for beginners to understand. At this level, the third dimension
 adds an extra layer of complexity that is unnecessary.
 
-![](godot-asteroids/godot_logo_vertical_light.png)
+![](images/godot_logo_vertical_light.png)
 
 ## Setup
 
@@ -61,14 +61,14 @@ There are more options in this dialog box, but for now, they are not necessary.
 When you are finished, click on the "Create & Edit" button to create your
 new project.
 
-![Godot's New Project Dialog](godot-asteroids/godot_01.png)
+![Godot's New Project Dialog](images/godot_01.png)
 
 ## Editor Basics
 
 The editor should appear upon creating your new project. The image below shows
 the editor once it has launched with a newly created project.
 
-![Picture of editor after just creating a blank new project.](godot-asteroids/godot_02.png)
+![Picture of editor after just creating a blank new project.](images/godot_02.png)
 
 In the center of the scene you can see your viewport, it is the large window
 that is displaying the 3D grid. In this tutorial, we will be making a 2D game,
@@ -77,7 +77,7 @@ viewport. Alongside it are other buttons, 2D, 3D, Script and AssetLib. For now
 we will be in 2D mode, however, we will go over what all the other buttons do
 aside from the 3D mode button.
 
-![A picture of the top buttons with 2D selected.](godot-asteroids/godot_05.png)
+![A picture of the top buttons with 2D selected.](images/godot_05.png)
 
 You will notice that the viewport has now changed, instead of a 3D grid,
 there's now a 2D gray surface instead, this is the 2D viewport. Also notice 
@@ -89,7 +89,7 @@ will cause the _2D Scene_, _3D Scene_, _User Interface_ and _Other Node_ buttons
 to disappear and be replaced by a list with only one populated item named
 _Node2D_.
 
-![A picture of the Scene panel before and after creating a 2D scene.](godot-asteroids/godot_30.png)
+![A picture of the Scene panel before and after creating a 2D scene.](images/godot_30.png)
 
 The panel that this list is inside of is called the _Scene_ tab, it
 lists all of the nodes that are added into the scene. For now, think of
@@ -109,14 +109,14 @@ at the bottom left of the editor window now, in the panel called "FileSystem",
 you now see the newly created "scene" folder, clicking the arrow next to it
 will expand it revealing the "Main.tscn" scene that we have just saved.
 
-![View of the FileSystem panel.](godot-asteroids/godot_03.png)
+![View of the FileSystem panel.](images/godot_03.png)
 
 The _FileSystem_ panel allows us to view all the assets and resources that
 are accessible to our project. Now that we have a scene saved, we can run
 the project. At the top right corner of the editor window, there are five
 buttons, _Play_, _Pause_, _Stop_, _Play Scene_, _Play Custom Scene_.
 
-![View of the play buttons.](godot-asteroids/godot_04.png)
+![View of the play buttons.](images/godot_04.png)
 
 All these buttons allow us to run the game, pause it, and stop it from running.
 Press the _Play_ button, which is the left-most button in the list.
@@ -151,7 +151,7 @@ of assets that we can import for free into our project! All these assets can
 also be found on the Godot website's
 [Asset](https://godotengine.org/asset-library/asset) page.
 
-![View of the AssetLib page.](godot-asteroids/godot_06.png)
+![View of the AssetLib page.](images/godot_06.png)
 
 The 2D sprite pack we want however can be found
 [here](https://opengameart.org/content/space-shooter-redux). We will manually
@@ -177,7 +177,7 @@ pack into the sprites folder:
 After importing the sprites into the project, the _FileSystem_ should look
 like this:
 
-![Picture of the FileSystem.](godot-asteroids/godot_07.png)
+![Picture of the FileSystem.](images/godot_07.png)
 
 The assets just imported can now be used in our project. It is important to
 understand the node system that Godot has in place before we continue, in the
@@ -196,7 +196,7 @@ We can drag the sprites we imported into our viewport, they will be added
 into our scene as children of _Main_. The sprites added into our scene will
 actually be added as _Sprite2D_ nodes.
 
-![View of the Scene tab after dragging some sprites to the scene.](godot-asteroids/godot_08.png)
+![View of the Scene tab after dragging some sprites to the scene.](images/godot_08.png)
 
 Clicking on one of the sprites in the _Scene_ panel changes the panel on the
 right side of the editor window named _Inspector_. The _Inspector_ panel shows
@@ -230,7 +230,7 @@ folder in our file system. You will notice that Godot has automatically chosen
 the name _Player.tscn_ for our scene, this is because the root node is named
 _Player_.
 
-![](godot-asteroids/godot_09.png)
+![](images/godot_09.png)
 
 We can now drag the Player object into the Main scene we had created before.
 If we run the game now, we can see the meteors and our player ship, however,
@@ -238,7 +238,7 @@ we cannot do anything yet because we have not programmed anything in the game
 yet. In the next section, we will program some basic behavior and attach
 it to the player scene.
 
-![](godot-asteroids/godot_10.png)
+![](images/godot_10.png)
 
 ## Project Files
 

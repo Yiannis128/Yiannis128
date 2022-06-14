@@ -8,6 +8,9 @@
             {{ $timeUnit = "minutes" }}
         {{ end }}
         <h4>Reading Time: {{ .ReadingTime }} {{ $timeUnit }}</h4>
+        {{ if .Page.Draft }}
+            <h4>Draft</h4>
+        {{ end }}
         
         {{ .Content }}
     </div>
