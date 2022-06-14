@@ -1,0 +1,27 @@
+{{ define "main" }}
+
+    <div class="HSep">
+        <h2>{{ .Title }}</h2>
+    </div>
+
+    <!-- What this will do is go through each folder in articles and then use
+    that as the category. After doing that each category is populated by the
+    articles inside it. 
+
+    NOTE: ContentCardSectionLast not being applied here.-->
+
+    {{ range .Sections }}
+        <div class="ContentCard">
+            <div class="ContentCardSection">
+                <h1>{{ .Title }}</h1>
+                <ul>
+                    {{ range .RegularPages }}
+                        <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+    {{ end }}
+
+{{ end }}
+

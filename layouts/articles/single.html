@@ -1,0 +1,15 @@
+{{ define "main" }}
+<div class="ContentCard">
+    <div class="ContentCardSection">
+        <h1>{{ .Title }}</h1>
+        <h3>Author: Yiannis Charalambous</h3>
+        {{ $timeUnit := "minute" }}
+        {{ if gt .ReadingTime 1 }}
+            {{ $timeUnit = "minutes" }}
+        {{ end }}
+        <h4>Reading Time: {{ .ReadingTime }} {{ $timeUnit }}</h4>
+        
+        {{ .Content }}
+    </div>
+</div>
+{{ end }}

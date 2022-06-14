@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ .Site.Title }} - {{ .Title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="Yiannis charalambous personal website.">
+    <meta name="keywords" content="yiannis,charalambous,programmer,cv">
+
+    {{ $ico := resources.Get "/images/logo_tab.png" }}
+    <link rel="icon" href="{{ $ico.Permalink }}">
+
+    {{ $mainStyle := resources.Get "css/main.css" | minify | fingerprint }}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ $mainStyle.Permalink }}" />
+
+    {{ $navarStyle := resources.Get "css/navbar.css" | minify | fingerprint }}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ $navarStyle.Permalink }}" />
+
+    {{ $footerStyle := resources.Get "css/footer.css" | minify | fingerprint }}
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ $footerStyle.Permalink }}" />
+
+
+</head>
+
+<body>
+    {{ partial "navbar" . }}
+
+    <main>
+        {{ block "main" . }}
+        {{ end }}
+    </main>
+
+    {{ partial "footer" }}
+
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+<!-- <h1 id="holidayText">Holiday Text</h1>
+<div id="holidayDeco"></div> -->
+<header>
+    <div>
+        <div id="logoContainer">
+            <img src="/images/logo.png"/>
+            <h1>{{ .Site.Title }}</h1>
+        </div>
+    
+        <nav>
+            {{ range .Site.Menus.main }}
+                <a class="NavBarItemText" href="{{ .URL }}">
+                    <span>{{ .Title }}</span>
+                </a>
+            {{ end }}
+        </nav>
+    </div>
+</header>

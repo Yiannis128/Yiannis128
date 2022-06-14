@@ -3,3 +3,4 @@ Public
 Source/articles/**
 !Source/articles/Templates/*
 Source/articles.html
+.hugo_build.lock

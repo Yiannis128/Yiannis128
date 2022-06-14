@@ -1,0 +1,220 @@
+{{ define "main" }}
+<div class="HSep">
+    <h2>2021</h2>
+</div>
+<div class="ContentCard">
+    <div class="ContentCardSection ContentCardSectionLast">
+        <h1>Article Compiler</h1>
+        <p>
+            Article compiler is a simple shell script that takes articles
+            written in <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a>
+            and convert them into a HTML file that is suitable to be included in websites,
+            it also supports an easy template system that will allow the output to be
+            styled as the rest of the website.
+
+            The articles in the <a href="articles.html">articles</a> page have been
+            compiled using this script.
+        </p>
+
+        <a class="LinkButton" href="https://github.com/Yiannis128/article-compiler">GitHub</a>
+        <a class="LinkButton" href="articles/article-compiler-tutorial.html">Tutorial</a>
+    </div>
+</div>
+
+<img src="images/projects/bar_splash.png" style="display: none;">
+<div class="ContentCard ContentCardShowcase" id="blenderBarShowcase">
+    <h1 class="ContentCardShowcaseText">Blender Bar Scene</h1>
+    <h2 class="ContentCardShowcaseText ShowcaseRevealText">Coming Soon</h2>
+</div>
+
+<div class="HSep">
+    <h2>2020</h2>
+</div>
+
+<div class="ContentCard">
+    <div class="ContentCardSection ContentCardSectionLast">
+        <h1 id="staticBuilder">Static Builder</h1>
+        <p>
+            StaticBuilder is the successor of WebKitBuilder. It is created using Python3 and it is much
+            better designed. Customization is currently only available by openning the source file and
+            changing the variable names.
+            <br>
+            <br>
+            StaticBuilder is a python script that allows you to re-use HTML code throughout a website
+            without the need to copy-paste the re-usable parts. Think of it as a macro in C. You define
+            your re-usable HTML in a file and then import it to different parts of the website. when
+            the website is to be viewed, run StaticBuilder and all the re-usable HTML will be placed
+            throughout the website.
+            <br>
+            <br>
+            This tool encourages code re-use in static websites and increases development efficiency.
+            <br>
+            <br>
+            <a class="LinkButton" href="https://github.com/Yiannis128/StaticBuilder">GitHub</a>
+            <a class="LinkButton" href="articles/static-builder-tutorial.html">Tutorial</a>
+        </p>
+    </div>
+</div>
+
+<div class="ContentCard">
+    <div class="ContentCardSection">
+        <h1>Particle Graphics Engine</h1>
+        <p>
+            Written in C++ using libsdl2 and glm. This was the project I had to do for my
+            computer graphics course in my 3rd year of university.
+            <br><br>
+            The graphics engine is designed very modularly. Features can be disabled and enabled
+            very easily. The following features are supporting:
+        </p>
+        <ul class="list-inside list-disc">
+            <li>
+                Highly customizable particle emitters. All particle emitters seen in the video,
+                (the smoke, the flare, the explosion particles) are using the same particle class,
+                but the property values are changed.
+            </li>
+            <li>Basic model loading support.</li>
+            <li>Model renderer.</li>
+            <li>Camera system.</li>
+            <li>Runs on Linux.</li>
+        </ul>
+    </div>
+
+    <div class="ContentCardSection ContentCardSectionLast">
+        <video controls muted>
+            <source src="videos/projects/particle-engine.webm" type="video/webm">
+
+            Your browser does not support videos.
+        </video>
+    </div>
+</div>
+
+<div class="ContentCard">
+    <div class="ContentCardSection">
+        <h1>Shinobi Arcade Bonus Level Remake</h1>
+        <p>
+            This was a remake of the ninja star throwing bonus levels of the Shinobi arcade where the Shinobi
+            would
+            throw ninja stars
+            at the on-coming ninjas. This project was built using the Godot game engine.
+            <br />
+            <br />
+            This project's source code cannot be shared as it contains copyright content from SEGA. If you are
+            interested in gaining
+            access to the source code (excluding the art and sounds) then email me.
+            <br />
+            <br />
+            This project was created for demonstration purposes and is in no way intended to replace the
+            original
+            game.
+            <br />
+            <br />
+            <a class="LinkButton" href="https://gamejolt.com/games/shinobi/544676">Game Jolt</a>
+            <a class="LinkButton" href="https://github.com/Yiannis128/ShinobiShuriken-Release">GitHub</a>
+        </p>
+    </div>
+
+    <div class="ContentCardSection ContentCardSectionLast">
+        <img src="images/projects/shinobi_01.png" />
+    </div>
+</div>
+
+<div class="HSep">
+    <h2>2019</h2>
+</div>
+
+<div class="ContentCard">
+    <div class="ContentCardSection ContentCardSectionLast">
+        <h1>WebKitBuilder</h1>
+        <p>
+            NOTE: A new version of this program has been released, called StaticBuilder. It is recommended to
+            use StaticBuilder as it is faster, newer, and cross-platform. WebKitBuilder will remain up for
+            viewing purposes.
+            <br />
+            <br />
+            This project's goal was to create a way for html developers to be able to import content into their
+            files in an easy and painless way
+            that did not affect the actual website in any way.
+            <br />
+            <br />
+            There are a lot of reasons one may want to do this, among them being, to reuse code in an easy and
+            error-free way. Imagine having a simple
+            html page, you create a navigation bar that is going to be used throughout the website; normally,
+            you
+            would have to copy-paste the navigation
+            bar html and CSS code in each page. This easily becomes a nightmare when you are constantly tweaking
+            page elements that are common throughout
+            the website. With this script, all it takes is to run it and your commonly used code, is
+            automatically
+            placed throughout the website in a matter
+            of seconds.
+            <br />
+            <br />
+            This website, is in fact, created using this script. So, it's proven to work!
+            <br />
+            <br />
+            <a class="LinkButton" href="https://github.com/Yiannis128/WebKitBuilder">GitHub</a>
+        </p>
+    </div>
+</div>
+
+<div class="ContentCard">
+    <div class="ContentCardSection ContentCardSectionLast">
+        <h1>Event-Talk</h1>
+        <p>
+            This web application was a combined effort between me and a group of 5 other people.
+            <br />
+            <br />
+            We were given complete creative freedom by the University to develop any kind of web app and
+            submit it at the end of our first year as a team project.
+            <br />
+            <br />
+            After designing some concepts for the website, and mock art, we eventually decided to create a
+            social media website that would be used to inform people about events that were happening near
+            them.
+            Event organizers could add events to the website, with relevant information, and then the users
+            could
+            upvote or downvote each event so it could gain popularity. Furthermore, users could also comment
+            on each
+            post about what their opinions were for the event.
+            <br />
+            <br />
+            The project was extremely well polished in the end and my team and I managed to surpass our
+            previous
+            expectations in terms of feature complexity and quality.
+            <br />
+            <br />
+            Throughout the whole experience, we never felt like we were losing control, and, we finished
+            the project before the deadline.
+        </p>
+    </div>
+</div>
+
+<div class="HSep">
+    <h2>2017</h2>
+</div>
+
+<div class="ContentCard">
+    <div class="ContentCardSection">
+        <h1>Text Encryption Software</h1>
+        <p>
+            This project was written in Visual Basic for my IGCSE end of year project.
+            <br />
+            <br />
+            The program allows you to load a text file and an encryption key, and it will then, encrypt/decrypt
+            the
+            file using
+            the loaded key. This was my first useful project, and as you can imagine, it was badly written.
+
+            The whole program was written in about 4 source files (excluding the automatically generated UI
+            files
+            that Visual Studio
+            generates for you). Basic programming principles have been applied; however, it is not something
+            complicated.
+        </p>
+    </div>
+    <div class="ContentCardSection ContentCardSectionLast">
+        <img src="images/projects/encrypt.png" />
+        <img class="flex" src="images/projects/decrypt.png" />
+    </div>
+</div>
+{{ end }}
