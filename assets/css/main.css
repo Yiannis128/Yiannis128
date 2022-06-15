@@ -45,6 +45,11 @@ main {
   flex-basis: calc((100% / 3) - 2rem);
 }
 
+/* The gap of FlexContent will provide spacing. */
+.FlexContent > .ContentCard {
+  margin: 0;
+}
+
 h1,
 h2,
 h3,
