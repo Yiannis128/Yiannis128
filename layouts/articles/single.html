@@ -11,6 +11,8 @@
             {{ if .Page.Draft }}
                 <h4>Draft</h4>
             {{ end }}
+
+            {{ partial "thumbnail" . }}
             
             {{ .Content }}
         </section>

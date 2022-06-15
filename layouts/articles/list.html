@@ -24,10 +24,11 @@
     <div class="ContentCard">
         <section>
             <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+            <h2>{{ len .RegularPages }} Articles</h2>
             <!-- Thumbnail for section. -->
             {{ partial "thumbnail" . }}
             {{ range .RegularPages }}
-            <h2><a href="{{ .Page.Permalink }}">{{ .Title }}</a></h2>
+            <h3><a href="{{ .Page.Permalink }}">{{ .Title }}</a></h3>
             <p>{{ .Page.Summary }}...</p>
             {{ end }}
         </section>
