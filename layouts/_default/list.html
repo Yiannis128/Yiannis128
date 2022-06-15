@@ -1,10 +1,12 @@
 {{ define "main" }}
 
-<div class="ContentCard">
-    <div class="ContentCardSection ContentCardSectionLast">
+    {{ if .Draft }}
+    <h3>_default draft</h3>
+    {{ end }}
+
+    <div class="ContentCard ContentCardSectionLast">
         LIST
 
     </div>
-</div>
 
 {{ end }}

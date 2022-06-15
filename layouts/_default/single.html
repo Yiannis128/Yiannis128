@@ -1,1 +1,11 @@
-Single
+{{ define "main" }}
+
+    {{ if .Draft }}
+    <h3>_default single</h3>
+    {{ end }}
+
+    <div class="ContentCard ContentCardSectionLast">
+        {{ .Content }}
+    </div>
+
+{{ end }}

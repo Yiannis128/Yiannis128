@@ -1,13 +1,11 @@
-body
-{
+body {
   background-color: rgb(229, 231, 235);
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
 }
 
-main
-{
+main {
   margin-top: 25px;
   padding: 3rem 4rem;
   width: auto;
@@ -15,137 +13,124 @@ main
 }
 
 /* Small screens */
-@media screen and (max-width: 800px)
-{
-  main
-  {
+@media screen and (max-width: 800px) {
+  main {
     padding: 0 1.5rem;
   }
 }
 
 /* Large screens */
-@media screen and (min-width: 1100px)
-{
-  main
-  {
+@media screen and (min-width: 1100px) {
+  main {
     padding: 3rem 0;
-    
+
     width: 1000px;
     align-self: center;
   }
 }
 
-h1, h2, h3, h4, h5, h6
-{
+.FlexContent {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.FlexContent > .Display2Row {
+  /* 2 for left and right gap */
+  flex-basis: calc((100% / 2) - 1rem);
+}
+
+.FlexContent > .Display3Row {
+  flex-basis: calc((100% / 3) - 2rem);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
 }
 
-
-.ContentCard
-{
-  margin-bottom: 3rem;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.ContentCardSection
-{
-  margin-bottom: 1rem;
-  padding: 1rem;
-
+.ContentCard {
+  margin: 2rem 0;
+  
   border-radius: 1rem;
   filter: drop-shadow(10px 15px 10px rgba(0, 0, 0, 0.1));
-
-  flex: auto;
 
   background-image: linear-gradient(to bottom right, #f3f4f6, #e5e7eb);
 }
 
-.ContentCardSectionLast
-{
-  margin-bottom: 0rem;
-}
-
-@media screen and (max-width: 800px)
-{
-  .ContentCardSection
-  {
-    margin: 1rem 0;
-
+@media screen and (max-width: 800px) {
+  .ContentCard {
     flex: 100%;
   }
-
-  .ContentCardSectionLast
-  {
-    margin-bottom: 1rem;
-  }
 }
 
-.ContentCardSection h1
-{
+.ContentCard > section > h1,
+.ContentCard > section > h2,
+.ContentCard > section > h3 {
+  margin: 0 0 1rem 0;
+}
+
+.ContentCard h1 {
   font-size: 1.875rem;
   line-height: 2.25rem;
-  margin-bottom: 1.5rem;
 }
 
-.ContentCardSection h2
-{
+.ContentCard h2 {
   font-size: 1.2rem;
   line-height: 1.85rem;
-  margin: 1rem 0;
 }
 
-.ContentCardSection h3
-{
-  font-size: 1.0rem;
+.ContentCard h3 {
+  font-size: 1rem;
   line-height: 1.25rem;
-  margin: 0.5rem 0;
+}
+
+.ContentCard section {
+  padding: 1rem;
 }
 
 /**
  * Content card but it's a button.
  */
-.ContentCardButton
-{
+.ContentCardButton {
   padding: 0;
 }
 
-.ContentCardButton > a
-{
+.ContentCardButton > a {
   padding: 1rem;
   display: block;
   align-items: center;
   text-decoration: none;
 }
 
-.ContentCardButton > a > img
-{
+.ContentCardButton > a > img {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-.ContentCardButton > a > p
-{
+.ContentCardButton > a > p {
   text-align: center;
 }
 
-img
-{
+img {
   display: inline-block;
   max-width: 100%;
   border-radius: 0.5rem;
 }
 
-video
-{
+video {
   display: inline-block;
   max-width: 100%;
   border-radius: 0.5rem;
 }
 
-.HSep
-{
+.HSep {
   margin: 0 6rem 3rem 6rem;
   padding: 1rem;
   box-shadow: 0 4px 6px inset rgba(0, 0, 0, 0.3);
@@ -153,44 +138,41 @@ video
 }
 
 /* Small screens */
-@media screen and (max-width: 800px)
-{
-  .HSep
-  {
+@media screen and (max-width: 800px) {
+  .HSep {
     margin: 0 0 3rem 0;
   }
 }
 
 /* Large screens */
-@media screen and (min-width: 1100px)
-{
-  .HSep
-  {
+@media screen and (min-width: 1100px) {
+  .HSep {
     margin-left: 12rem;
     margin-right: 12rem;
   }
 }
 
-.HSep h1, .HSep h2, .HSep h3, .HSep h4, .HSep h5, .HSep h6
-{
+.HSep h1,
+.HSep h2,
+.HSep h3,
+.HSep h4,
+.HSep h5,
+.HSep h6 {
   text-align: center;
   color: rgb(107, 114, 128);
   line-height: 1em;
 }
 
-.HSep h2
-{
+.HSep h2 {
   font-size: 1.5em;
 }
 
-a
-{
+a {
   text-decoration: none;
   color: darkslategray;
 }
 
-.LinkButton
-{
+.LinkButton {
   text-decoration: none;
   color: #f5ebeb;
   border: darkslategray solid;
@@ -202,29 +184,19 @@ a
   background-color: #2772db;
 }
 
-pre
-{
+pre {
   white-space: pre-wrap;
   background-image: linear-gradient(to bottom right, #e2e2e2, #c9c9c9);
   padding: 1rem;
   border-radius: 0.6rem;
 }
 
-code
-{
+code {
   overflow-wrap: anywhere;
   font-family: monospace;
   font-size: 0.9rem;
 }
 
-ul > li
-{
+ul > li {
   overflow-wrap: anywhere;
-}
-
-
-.HotizontalMargin2Rem
-{
-  margin-left: 2rem;
-  margin-right: 2rem;
 }

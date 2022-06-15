@@ -1,39 +1,38 @@
 {{ define "main" }}
 
-    <div class="HSep">
-        <h2>{{ .Title }}</h2>
-    </div>
+<div class="HSep">
+    <h2>{{ .Title }}</h2>
+</div>
 
-    <!-- What this will do is go through each folder in articles and then use
+<!-- What this will do is go through each folder in articles and then use
     that as the category. After doing that each category is populated by the
-    articles inside it. 
+    articles inside it. -->
 
-    NOTE: ContentCardSectionLast not being applied here.-->
-
+<div class="FlexContent">
     {{ range .RegularPages }}
-        <div class="ContentCard">
-            <div class="ContentCardSection">
-                <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
-                <!-- Thumbnail for section. -->
-                {{ partial "thumbnail" . }}
-                <p>{{ .Page.Summary }}...</p>
-            </div>
-        </div>
+    <div class="ContentCard Display2Row">
+        <section>
+            <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+            <!-- Thumbnail for section. -->
+            {{ partial "thumbnail" . }}
+            <p>{{ .Page.Summary }}...</p>
+        </section>
+    </div>
     {{ end }}
 
     {{ range .Sections }}
-        <div class="ContentCard">
-            <div class="ContentCardSection">
-                <h1>{{ .Title }}</h1>
-                <!-- Thumbnail for section. -->
-                {{ partial "thumbnail" . }}
-                {{ range .RegularPages }}
-                    <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-                    <p>{{ .Page.Summary }}...</p>
-                {{ end }}
-            </div>
-        </div>
+    <div class="ContentCard">
+        <section>
+            <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+            <!-- Thumbnail for section. -->
+            {{ partial "thumbnail" . }}
+            {{ range .RegularPages }}
+            <h2><a href="{{ .Page.Permalink }}">{{ .Title }}</a></h2>
+            <p>{{ .Page.Summary }}...</p>
+            {{ end }}
+        </section>
+    </div>
     {{ end }}
+</div>
 
 {{ end }}
-
