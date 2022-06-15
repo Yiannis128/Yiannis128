@@ -57,6 +57,10 @@ h4,
 h5,
 h6 {
   margin: 0;
+  text-align: center;
+  color: rgb(107, 114, 128);
+  line-height: 1em;
+  flex: 100%;
 }
 
 .ContentCard {
@@ -76,8 +80,15 @@ h6 {
 
 .ContentCard > section > h1,
 .ContentCard > section > h2,
-.ContentCard > section > h3 {
+.ContentCard > section > h3,
+.ContentCard > section > h4,
+.ContentCard > section > h5,
+.ContentCard > section > h6 {
   margin: 0 0 1rem 0;
+  text-align: unset;
+  color: unset;
+  line-height: unset;
+  flex: unset;
 }
 
 .ContentCard h1 {
@@ -136,6 +147,7 @@ video {
 }
 
 .HSep {
+  flex: 100%;
   margin: 0 6rem 3rem 6rem;
   padding: 1rem;
   box-shadow: 0 4px 6px inset rgba(0, 0, 0, 0.3);
@@ -155,21 +167,6 @@ video {
     margin-left: 12rem;
     margin-right: 12rem;
   }
-}
-
-.HSep h1,
-.HSep h2,
-.HSep h3,
-.HSep h4,
-.HSep h5,
-.HSep h6 {
-  text-align: center;
-  color: rgb(107, 114, 128);
-  line-height: 1em;
-}
-
-.HSep h2 {
-  font-size: 1.5em;
 }
 
 a {
