@@ -1,6 +1,7 @@
 .vscode
-Public
+public
 Source/articles/**
 !Source/articles/Templates/*
 Source/articles.html
 .hugo_build.lock
+resources/_gen
