@@ -8,8 +8,8 @@ thumbnail_size: "382x100"
 
 Up to this point, this website was using static builder and article compiler to
 build the static contents of the website while avoiding reuse of HTML. While
-they were simple scripts written in shell script, they were extremely limiting.
-As the website grows and more articles are added, along with thumbnails and
+they were simple scripts written in shell script, they were extremely limmiting.
+As the website grows and more articles are added, along with thumnails and
 summary, I have decided to move to using [Hugo](https://gohugo.io/).
 
 > Hugo is one of the most popular open-source static site generators. With its
@@ -27,5 +27,5 @@ series online teaching you how to use every aspect of it.
 As for static builder and article builder, I will be moving their articles to
 the archived section of this website, and also archiving their repositories on
 GitHub. Their code and articles can still be accessed, however, they will no
-longer be worked on/maintained. They were incredibly useful tools, I wrote many
+longer be worked on/maintained. They were incredibley useful tools, I wrote many
 articles with them, but now it's time to move forward.

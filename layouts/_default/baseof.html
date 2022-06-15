@@ -10,7 +10,7 @@
     <meta name="description" content="Yiannis charalambous personal website.">
     <meta name="keywords" content="yiannis,charalambous,programmer,cv">
 
-    {{ $ico := resources.Get "/images/logo_tab.png" }}
+    {{ $ico := resources.Get "/images/logo_tab.ico" }}
     <link rel="icon" href="{{ $ico.Permalink }}">
 
     {{ $mainStyle := resources.Get "css/main.css" | minify | fingerprint }}

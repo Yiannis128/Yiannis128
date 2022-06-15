@@ -1,4 +1,71 @@
 {{ define "main" }}
+
+<style>
+    .ContentCardShowcaseText {
+        color: white;
+        font-weight: lighter;
+        text-decoration: underline overline dashed;
+        text-shadow: 2px 2px #000000;
+    }
+
+    .ShowcaseRevealText {
+        transition: color ease-in-out 0.25s, text-shadow ease-in-out 0.25s;
+
+        color: rgba(255, 255, 255, 0);
+        text-shadow: none;
+        text-align: center;
+        margin-top: 0.1rem;
+        text-decoration: none;
+    }
+
+    .ContentCardShowcase:hover .ShowcaseRevealText {
+        color: white;
+        text-shadow: 2px 2px #000000;
+    }
+
+    .ContentCardShowcase {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+
+        border-radius: 1rem;
+        background-size: 110%;
+        background-position: center;
+
+        filter: drop-shadow(10px 15px 10px rgba(0, 0, 0, 0.1));
+
+        transition: background-size ease-in-out 0.25s;
+    }
+
+    #blenderBarShowcase {
+        /* 9 / 16 16:9 ratio padding top and bottom to align child text in the
+        center. */
+        padding-top: 24%;
+        padding-bottom: 24%;
+
+        background-image: url("/images/projects/bar_splash.png");
+    }
+
+    #blenderBarShowcase:hover {
+        background-size: 125%;
+    }
+
+    @media screen and (max-width: 800px) {
+        .ShowcaseRevealText {
+            color: white;
+            text-shadow: 2px 2px #000000;
+        }
+
+        #blenderBarShowcase {
+            background-size: 155%;
+        }
+
+        #blenderBarShowcase:hover {
+            background-size: 180%;
+        }
+    }
+</style>
+
 <div class="HSep">
     <h2>2021</h2>
 </div>
@@ -12,13 +79,13 @@
             and convert them into a HTML file that is suitable to be included in websites,
             it also supports an easy template system that will allow the output to be
             styled as the rest of the website.
-    
+
             The articles in the <a href="articles.html">articles</a> page have been
             compiled using this script.
         </p>
-    
+
         <a class="LinkButton" href="https://github.com/Yiannis128/article-compiler">GitHub</a>
-        <a class="LinkButton" href="articles/article-compiler-tutorial.html">Tutorial</a>
+        <a class="LinkButton" href="/articles/archived/article-compiler-tutorial.html">Tutorial</a>
     </section>
 </div>
 
@@ -52,7 +119,7 @@
             <br>
             <br>
             <a class="LinkButton" href="https://github.com/Yiannis128/StaticBuilder">GitHub</a>
-            <a class="LinkButton" href="articles/static-builder-tutorial.html">Tutorial</a>
+            <a class="LinkButton" href="/articles/archived/static-builder-tutorial.html">Tutorial</a>
         </p>
     </section>
 </div>
@@ -84,8 +151,8 @@
 <div class="ContentCard">
     <section>
         <video controls muted>
-            <source src="videos/projects/particle-engine.webm" type="video/webm">
-    
+            <source src="/videos/projects/particle-engine.webm" type="video/webm">
+
             Your browser does not support videos.
         </video>
     </section>
@@ -118,7 +185,7 @@
 </div>
 
 <div class="ContentCard">
-    <section><img src="images/projects/shinobi_01.png" /></section>
+    <section><img src="/images/projects/shinobi_01.png" /></section>
 </div>
 
 <div class="HSep">
@@ -208,7 +275,7 @@
             the
             file using
             the loaded key. This was my first useful project, and as you can imagine, it was badly written.
-    
+
             The whole program was written in about 4 source files (excluding the automatically generated UI
             files
             that Visual Studio

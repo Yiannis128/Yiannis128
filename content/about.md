@@ -6,5 +6,8 @@ type: about
 menu: 
     main:
         weight: 4
+sitemap:
+    changefreq: monthly
+    priority: 0.8
 ---
 

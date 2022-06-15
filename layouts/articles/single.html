@@ -2,6 +2,7 @@
     <div class="ContentCard">
         <section>
             <h1>{{ .Title }}</h1>
+            {{ partial "article_nav" . }}
             <h3>Author: Yiannis Charalambous</h3>
             {{ $timeUnit := "minute" }}
             {{ if gt .ReadingTime 1 }}

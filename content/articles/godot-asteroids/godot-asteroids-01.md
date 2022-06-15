@@ -1,6 +1,6 @@
 ---
 title: "Godot - Asteroids Game For Complete Beginners: 1"
-date: 2022-06-14T18:13:10+01:00
+date: 2022-06-14T18:13:10+00:00
 draft: false
 ---
 
@@ -268,5 +268,3 @@ the same time being able to be completed in about an hour.
 It is recommended that at some point you check the useful links section in order
 to get a better understanding of some of the concepts that appeard in this
 article. Also, check out part 2 of the tutorial series.
-
-### [Next Article: Godot Asteroids Tutorial - Part 2](godot-asteroids-02.html)

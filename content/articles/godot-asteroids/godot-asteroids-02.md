@@ -4,8 +4,6 @@ date: 2022-06-14T18:13:10+01:00
 draft: false
 ---
 
-### [Previous Article: Godot Asteroids Tutorial - Part 1](godot-asteroids-01.html)
-
 ## Introduction
 
 This is part 2 of the tutorial series for making an asteroids style game in
@@ -229,5 +227,3 @@ these files as reference material if you get stuck while following the tutorial.
 It is recommended that at some point you check the useful links section in order
 to get a better understanding of some of the concepts that appeard in this
 article. Also, check out part 3 of the tutorial series.
-
-### [Next Article: Godot Asteroids Tutorial - Part 3](godot-asteroids-03.html)

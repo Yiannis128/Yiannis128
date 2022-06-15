@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SRC="public/"
+SRC="public"
 DEST="/home/yiannis/website/"
 
 CHOWN="yiannis:yiannis"

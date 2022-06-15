@@ -186,6 +186,10 @@ a {
   background-color: #2772db;
 }
 
+/**
+ * Article stuff
+ */
+
 pre {
   white-space: pre-wrap;
   background-image: linear-gradient(to bottom right, #e2e2e2, #c9c9c9);

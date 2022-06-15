@@ -1,10 +1,8 @@
 ---
 title: "Godot - Asteroids Game For Complete Beginners: 5"
-date: 2022-06-14T18:13:10+01:00
+date: 2022-06-14T18:13:10+04:00
 draft: false
 ---
-
-### [Previous Article: Godot Asteroids Tutorial - Part 4](godot-asteroids-04.html)
 
 ## Introduction
 

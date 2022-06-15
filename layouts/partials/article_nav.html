@@ -1,0 +1,8 @@
+<h4><a href="{{ .CurrentSection.Permalink }}">Back</a></h4>
+{{ if .NextInSection }}
+    <h4><a href="{{ .NextInSection.Permalink }}">Previous Article: {{.NextInSection.Title}}</a></h4>            
+{{ end }}
+
+{{ if .PrevInSection }}
+    <h4><a href="{{ .PrevInSection.Permalink }}">Next Article: {{.PrevInSection.Title}}</a></h4>
+{{ end }}

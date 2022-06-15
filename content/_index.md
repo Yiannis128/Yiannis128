@@ -5,6 +5,9 @@ draft: false
 menu: 
     main:
         weight: 1
+sitemap:
+    changefreq: monthly
+    priority: 1.0
 ---
 
 # About
