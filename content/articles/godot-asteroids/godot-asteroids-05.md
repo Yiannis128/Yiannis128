@@ -1,7 +1,11 @@
 ---
 title: "Godot - Asteroids Game For Complete Beginners: 5"
-date: 2022-06-14T18:13:10+04:00
+date: 2022-06-18T18:13:10+04:00
 draft: false
+
+sitemap:
+    changefreq: monthly
+    priority: 0.5
 ---
 
 ## Introduction
