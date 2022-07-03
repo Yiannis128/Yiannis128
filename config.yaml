@@ -11,3 +11,5 @@ sitemap:
   filename: sitemap.xml
   changefreq: monthly
   priority: 0.5
+
+rssLimit: 20
