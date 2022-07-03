@@ -206,3 +206,15 @@ code {
 ul > li {
   overflow-wrap: anywhere;
 }
+
+/* RSS */
+.RSS {
+  background-color: #CFCFD6;
+  margin-left: 1rem;
+  display: inline-block;
+  border: transparent 1px solid;
+  border-bottom: none;
+  border-radius: 0rem 1rem 0rem 0rem;
+  padding: 0.25rem 1rem 0 1rem;
+}
+

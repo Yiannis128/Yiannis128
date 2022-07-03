@@ -8,6 +8,14 @@
     that as the category. After doing that each category is populated by the
     articles inside it. -->
 
+<!-- Due to the way index pages are laid out, that is, they are in the parent
+folder titled <name>.html while their content is inside the <name> folder,
+getting <name> without the extension and applying index.xml to the end will
+return the rss path for that page. -->
+<a href="{{ path.BaseName .Page.Permalink }}/index.xml">
+    <div class="RSS">RSS</div>
+</a>
+
 <div class="FlexContent">
     <!-- <h3>News</h3> -->
     {{ range .RegularPages }}
