@@ -13,6 +13,12 @@
                 <h4>Draft</h4>
             {{ end }}
 
+            <h4>Tags: 
+                {{ range .Params.tags }}
+                <a href="/tags/{{ lower . }}.html">{{ . }}</a>
+                {{ end }}
+            </h4>
+
             {{ partial "thumbnail" . }}
             
             {{ .Content }}

@@ -5,8 +5,28 @@
     {{ end }}
 
     <div class="ContentCard ContentCardSectionLast">
-        LIST
-
+        <section>
+        {{ if eq .Kind "taxonomy" }}
+            <!-- Taxonomy Disabled In Config -->
+            <h1>Article Tags</h1>
+            <a href="articles.html">Back To Articles</a>
+            {{ range $index, $term := .Data.Terms.Alphabetical }}
+            <a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a> ({{ .Count }})
+            {{ end }}
+        {{ else if eq .Kind "term" }}
+            <!-- Taxonomy terms -->
+            <h1>Tag: {{ .Title }}</h1>
+            <!-- <h4><a href="{{ .Parent.Permalink }}">Back</a></h4> -->
+            <ul>
+                {{ range .Data.Pages }}
+                <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
+                {{ end }}
+            </ul>
+            {{ else }}
+                <!-- Show this if page is not mapped -->
+                DEFAULT LIST
+            {{ end }}
+        </section>
     </div>
 
 {{ end }}

@@ -31,7 +31,9 @@ return the rss path for that page. -->
     {{ end }}
 
     <!-- <h3>More</h3> -->
+    {{ if gt (len .Sections) 0 }}
     <hr style="width: 100%;">
+    {{ end }}
 
     {{ range .Sections }}
     <div class="ContentCard">
@@ -47,6 +49,15 @@ return the rss path for that page. -->
         </section>
     </div>
     {{ end }}
+</div>
+
+<div class="ContentCard">
+    <section>
+        <h4>Tags</h4>
+        {{ range $index, $term := .Site.Taxonomies.tags }}
+        <a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a> ({{ .Count }})
+        {{ end }}
+    </section>
 </div>
 
 {{ end }}

@@ -3,9 +3,12 @@ languageCode: 'en-us'
 title: 'Yiannis Charalambous'
 uglyurls: true
 
+taxonomies:
+  #category: categories
+  tag: tags
+
 disableKinds:
-  - taxonomy
-  - term
+- taxonomy
 
 sitemap:
   filename: sitemap.xml
@@ -13,3 +16,8 @@ sitemap:
   priority: 0.5
 
 rssLimit: 20
+
+# This exists because disableKinds has only taxonomy instead of taxonomy and
+# term. This is because we display the tags in the articles page directly
+# instead of showing them in a separate page.
+ignoreErrors: ["error-disable-taxonomy"]

@@ -2,6 +2,9 @@
 title: "Godot - Asteroids Game For Complete Beginners: 3"
 date: 2022-06-16T18:13:10+02:00
 draft: false
+tags:
+- Tutorial
+- Godot
 
 sitemap:
     changefreq: monthly
