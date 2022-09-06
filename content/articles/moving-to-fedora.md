@@ -7,6 +7,8 @@ thumbnail_size: "100x120"
 sitemap:
     changefreq: monthly
     priority: 0.5
+tags:
+- Notes
 ---
 
 During the past week, I begun work on moving my server from Debian to Fedora.

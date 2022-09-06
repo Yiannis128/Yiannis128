@@ -4,6 +4,8 @@ date: 2022-06-15T00:16:18+01:00
 draft: false
 thumbnail: "/images/articles/hugo-logo-wide.png"
 thumbnail_size: "382x100"
+tags:
+- Notes
 ---
 
 Up to this point, this website was using static builder and article compiler to
