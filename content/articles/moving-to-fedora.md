@@ -42,6 +42,3 @@ Firewalld was another temporary obstacle because coming from a Debian
 installation; I assumed that it was turned off on install when I had
 instantiated the box. For the firewall, I had to allow ports 80 and 443 through
 only since everything is passed through NGINX.
-
-
-

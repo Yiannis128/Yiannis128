@@ -4,6 +4,12 @@
     <h2>{{ .Title }}</h2>
 </div>
 
+<!-- Category Picture: Picture is taken from the _index.md in the same 
+folder. -->
+<div style="display:flex; justify-content: center; margin-bottom: 2rem;">
+    {{ partial "thumbnail" . }}
+</div>
+
 <!-- What this will do is go through each folder in articles and then use
     that as the category. After doing that each category is populated by the
     articles inside it. -->
