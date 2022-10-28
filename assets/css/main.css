@@ -29,27 +29,6 @@ main {
   }
 }
 
-.FlexContent {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.FlexContent > .Display2Row {
-  /* 2 for left and right gap */
-  flex-basis: calc((100% / 2) - 1rem);
-}
-
-.FlexContent > .Display3Row {
-  flex-basis: calc((100% / 3) - 2rem);
-}
-
-/* The gap of FlexContent will provide spacing. */
-.FlexContent > .ContentCard {
-  margin: 0;
-}
-
 h1,
 h2,
 h3,
@@ -218,3 +197,19 @@ ul > li {
   padding: 0.25rem 1rem 0 1rem;
 }
 
+.DisplayGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.DisplayGridItem {
+  margin: 1rem !important;
+  flex-basis: 10rem;
+  text-align: center;
+}
+
+.DisplayGridItem > a {
+  display: block;
+  padding: 1rem;
+}
