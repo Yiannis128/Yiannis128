@@ -22,40 +22,38 @@ return the rss path for that page. -->
     <div class="RSS">RSS</div>
 </a>
 
-<div class="FlexContent">
-    <!-- <h3>News</h3> -->
-    {{ range .RegularPages }}
-    <div class="ContentCard Display2Row">
-        <section>
-            <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
-            <h5>{{ .Date }}</h5>
-            <!-- Thumbnail for section. -->
-            {{ partial "thumbnail" . }}
-            <p>{{ .Page.Summary }}...</p>
-        </section>
-    </div>
-    {{ end }}
-
-    <!-- <h3>More</h3> -->
-    {{ if gt (len .Sections) 0 }}
-    <hr style="width: 100%;">
-    {{ end }}
-
-    {{ range .Sections }}
-    <div class="ContentCard">
-        <section>
-            <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
-            <h2>{{ len .RegularPages }} Articles</h2>
-            <!-- Thumbnail for section. -->
-            {{ partial "thumbnail" . }}
-            {{ range .RegularPages }}
-            <h3><a href="{{ .Page.Permalink }}">{{ .Title }}</a></h3>
-            <p>{{ .Page.Summary }}...</p>
-            {{ end }}
-        </section>
-    </div>
-    {{ end }}
+<!-- <h3>News</h3> -->
+{{ range .RegularPages }}
+<div class="ContentCard">
+    <section>
+        <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+        <h5>{{ .Date }}</h5>
+        <!-- Thumbnail for section. -->
+        {{ partial "thumbnail" . }}
+        <p>{{ .Page.Summary }}...</p>
+    </section>
 </div>
+{{ end }}
+
+<!-- <h3>More</h3> -->
+{{ if gt (len .Sections) 0 }}
+<hr style="width: 100%;">
+{{ end }}
+
+{{ range .Sections }}
+<div class="ContentCard">
+    <section>
+        <h1><a href="{{ .Permalink }}">{{ .Title }}</a></h1>
+        <h2>{{ len .RegularPages }} Articles</h2>
+        <!-- Thumbnail for section. -->
+        {{ partial "thumbnail" . }}
+        {{ range .RegularPages }}
+        <h3><a href="{{ .Page.Permalink }}">{{ .Title }}</a></h3>
+        <p>{{ .Page.Summary }}...</p>
+        {{ end }}
+    </section>
+</div>
+{{ end }}
 
 <div class="ContentCard">
     <section>
