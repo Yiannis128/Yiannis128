@@ -22,6 +22,11 @@ to name a few. I'm also interested in graphics, machine learning, cybersecurity.
 I have a lot of projects that have not been made public yet, due to them still being very mature yet. Here are some public projects
 I've worked on:
 
+## [Markdown Editor](https://github.com/Yiannis128/markdown_editor/tree/master)
+
+An early in development markdown editor Flutter widget library. The aim of the project is to provide a premium editing experience in Flutter
+applications.
+
 ## [GoDo](https://github.com/Yiannis128/godo)
 
 A simple library that adds typing into Digital Ocean's serverless Go functions. This makes the API much more concrete and allows
