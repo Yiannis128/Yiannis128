@@ -44,7 +44,7 @@ h6 {
 
 .ContentCard {
   margin: 2rem 0;
-  
+
   border-radius: 1rem;
   filter: drop-shadow(10px 15px 10px rgba(0, 0, 0, 0.1));
 
@@ -62,7 +62,13 @@ h6 {
 .ContentCard > section > h3,
 .ContentCard > section > h4,
 .ContentCard > section > h5,
-.ContentCard > section > h6 {
+.ContentCard > section > h6,
+.ContentCard > article > h1,
+.ContentCard > article > h2,
+.ContentCard > article > h3,
+.ContentCard > article > h4,
+.ContentCard > article > h5,
+.ContentCard > article > h6 {
   margin: 0 0 1rem 0;
   text-align: unset;
   color: unset;
@@ -85,7 +91,8 @@ h6 {
   line-height: 1.25rem;
 }
 
-.ContentCard section {
+.ContentCard section,
+.ContentCard article {
   padding: 1rem;
 }
 
@@ -159,8 +166,11 @@ a {
   border: darkslategray solid;
   border-radius: 0.6rem;
   border-width: 2px;
-  padding: 0.6rem;
+  padding: 0.2rem 0.6rem;
+  margin: 0.2rem;
   line-height: 2rem;
+  box-sizing: border-box;
+  display: inline-block;
 
   background-color: #2772db;
 }
@@ -188,13 +198,13 @@ ul > li {
 
 /* RSS buttons */
 .RSS {
-  background-color: #CFCFD6;
+  background-color: #cfcfd6;
   margin-left: 1rem;
   display: inline-block;
   border: transparent 1px solid;
   border-bottom: none;
-  border-radius: 0rem 1rem 0rem 0rem;
-  padding: 0.25rem 1rem 0 1rem;
+  border-radius: 1rem;
+  padding: 0.25rem 1rem;
 }
 
 .DisplayGrid {

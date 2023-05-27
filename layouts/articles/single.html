@@ -1,37 +1,36 @@
 {{ define "main" }}
-    <div class="ContentCard">
-        <section>
-            <h1>{{ .Title }}</h1>
-            {{ partial "article_nav" . }}
-            <h3>Author: Yiannis Charalambous</h3>
-            {{ $timeUnit := "minute" }}
-            {{ if gt .ReadingTime 1 }}
-                {{ $timeUnit = "minutes" }}
+<div class="ContentCard">
+    <article>
+        <h1>{{ .Title }}</h1>
+        {{ partial "article_nav" . }}
+        <h3>Author: Yiannis Charalambous</h3>
+        {{ $timeUnit := "minute" }}
+        {{ if gt .ReadingTime 1 }}
+        {{ $timeUnit = "minutes" }}
+        {{ end }}
+        <h4>Reading Time: {{ .ReadingTime }} {{ $timeUnit }}</h4>
+        {{ if .Page.Draft }}
+        <h4>Draft</h4>
+        {{ end }}
+
+        <h4>Tags:
+            {{ $tags_count := 0 }}
+            {{ if isset .Params "tags" }}
+            {{ $tags_count = (len .Params.tags) }}
             {{ end }}
-            <h4>Reading Time: {{ .ReadingTime }} {{ $timeUnit }}</h4>
-            {{ if .Page.Draft }}
-                <h4>Draft</h4>
+            {{ range $index, $tag := .Params.tags }}
+            <a href="/tags/{{ lower . }}.html">{{ . }}</a>
+            {{ if lt $index (sub $tags_count 1) }}
+            &middot;
             {{ end }}
+            {{ end }}
+        </h4>
 
-            <h4>Tags:
-                {{ $tags_count := 0 }}
-                {{ if isset .Params "tags" }} 
-                    {{ $tags_count = (len .Params.tags) }}
-                {{ end }}
-                {{ range $index, $tag := .Params.tags }}
-                    <a href="/tags/{{ lower . }}.html">{{ . }}</a>
-                    {{ if lt $index (sub $tags_count 1) }}
-                    &middot;
-                    {{ end }}
-                {{ end }}
-            </h4>
+        <hr>
 
-            <hr>
+        {{ partial "thumbnail" . }}
 
-            {{ partial "thumbnail" . }}
-            
-            {{ .Content }}
-        </section>
-    </div>
+        {{ .Content }}
+    </article>
+</div>
 {{ end }}
-
