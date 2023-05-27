@@ -1,5 +1,6 @@
 {{ define "main" }}
 
+
 <style>
     .ContentCardShowcaseText {
         color: white;
@@ -68,6 +69,38 @@
 </style>
 
 <div class="HSep">
+    <h2>2023</h2>
+</div>
+
+<div class="ContentCard">
+    <section>
+        <h1 id="ESBMC-AI">ESBMC-AI</h1>
+        <p>
+            AI Augmented ESBMC processing. Passes the output from ESBMC to
+            an AI model
+            that allows the user to use
+            natural language to understand the output. As the output from ESBMC can be quite technical in nature. The AI
+            can also be asked other questions, such as suggestions on how to fix the problem outputted by ESBMC, and to
+            offer further explanations.
+            <br>
+            <br>
+            This is an area of active research.
+        </p>
+        {{ partial "link_button" (dict "context" . "title" "YouTube Video" "href" "https://youtu.be/pfXu1Y-ZdWU") }}
+        {{ partial "link_button" (dict "context" . "title" "GitHub" "href" "https://github.com/Yiannis128/ESBMC-AI")
+        }}
+        {{ partial "link_button" (dict "context" . "title" "Docs" "href"
+        "https://github.com/Yiannis128/esbmc-ai/wiki") }}
+        {{ partial "link_button" (dict "context" . "title" "Download Latest" "href"
+        "https://github.com/Yiannis128/esbmc-ai/releases/latest") }}
+        {{ partial "link_button" (dict "context" . "title" "Technical Paper" "href"
+        "https://arxiv.org/pdf/2305.14752.pdf") }}
+        {{ partial "link_button" (dict "context" . "title" "ESBMC GitHub" "href" "https://github.com/esbmc/esbmc")
+        }}
+    </section>
+</div>
+
+<div class="HSep">
     <h2>2021</h2>
 </div>
 
@@ -85,7 +118,8 @@
             compiled using this script.
         </p>
 
-        <a class="LinkButton" href="https://github.com/Yiannis128/article-compiler">GitHub</a>
+        {{ partial "link_button" (dict "context" . "title" "GitHub" "href"
+        "https://github.com/Yiannis128/article-compiler") }}
         <a class="LinkButton" href="/articles/archived/article-compiler-tutorial.html">Tutorial</a>
     </section>
 </div>
@@ -117,11 +151,11 @@
             <br>
             <br>
             This tool encourages code re-use in static websites and increases development efficiency.
-            <br>
-            <br>
-            <a class="LinkButton" href="https://github.com/Yiannis128/StaticBuilder">GitHub</a>
-            <a class="LinkButton" href="/articles/archived/static-builder-tutorial.html">Tutorial</a>
         </p>
+
+        {{ partial "link_button" (dict "context" . "title" "GitHub" "href"
+        "https://github.com/Yiannis128/StaticBuilder") }}
+        <a class="LinkButton" href="/articles/archived/static-builder-tutorial.html">Tutorial</a>
     </section>
 </div>
 
@@ -177,11 +211,11 @@
             This project was created for demonstration purposes and is in no way intended to replace the
             original
             game.
-            <br />
-            <br />
-            <a class="LinkButton" href="https://gamejolt.com/games/shinobi/544676">Game Jolt</a>
-            <a class="LinkButton" href="https://github.com/Yiannis128/ShinobiShuriken-Release">GitHub</a>
         </p>
+        {{ partial "link_button" (dict "context" . "title" "Game Jolt" "href"
+        "https://gamejolt.com/games/shinobi/544676") }}
+        {{ partial "link_button" (dict "context" . "title" "GitHub" "href"
+        "https://github.com/Yiannis128/ShinobiShuriken-Release") }}
     </section>
 </div>
 
@@ -222,10 +256,9 @@
             <br />
             <br />
             This website, is in fact, created using this script. So, it's proven to work!
-            <br />
-            <br />
-            <a class="LinkButton" href="https://github.com/Yiannis128/WebKitBuilder">GitHub</a>
         </p>
+        {{ partial "link_button" (dict "context" . "title" "GitHub" "href"
+        "https://github.com/Yiannis128/WebKitBuilder") }}
     </section>
 </div>
 
