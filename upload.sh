@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
 
-SRC="public"
-DEST="/home/yiannis/website/"
+SRC="public/"
+DEST="/var/www/yiannis-charalambous"
 
-CHOWN="yiannis:yiannis"
+CHOWN="http:http"
 
-rsync -uvrP --delete-after --chown=nginx:nginx -e \
+rsync -uvrP --delete-after -e \
 "ssh -i ~/.ssh/yiannis-charalambous.com" \
-$SRC yiannis@yiannis-charalambous.com:$DEST
+$SRC root@yiannis-charalambous.com:$DEST
+
+ssh root@yiannis-charalambous.com <<EOF
+
+chown http:http -R /var/www/yiannis-charalambous
+
+EOF
+
+echo "Complete"
