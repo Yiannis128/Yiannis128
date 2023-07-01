@@ -22,6 +22,10 @@ to name a few. I'm also interested in graphics, machine learning, cybersecurity.
 I have a lot of projects that have not been made public yet, due to them still being very mature yet. Here are some public projects
 I've worked on:
 
+## [ESBMC-AI](https://github.com/Yiannis128/esbmc-ai/tree/master)
+
+ESBMC-AI is an AI LLM powered augmentation layer that works on top of ESBMC. ESBMC is the Efficient SMT-based Bounded Model Checker.
+
 ## [Markdown Editor](https://github.com/Yiannis128/markdown_editor/tree/master)
 
 An early in development markdown editor Flutter widget library. The aim of the project is to provide a premium editing experience in Flutter
