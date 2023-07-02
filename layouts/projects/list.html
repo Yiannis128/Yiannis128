@@ -1,0 +1,132 @@
+{{ define "main" }}
+
+<style>
+    .ContentCardShowcaseText {
+        color: white;
+        font-weight: lighter;
+        text-decoration: underline overline dashed;
+        text-shadow: 2px 2px #000000;
+    }
+
+    .ShowcaseRevealText {
+        transition: color ease-in-out 0.25s, text-shadow ease-in-out 0.25s;
+
+        color: rgba(255, 255, 255, 0);
+        text-shadow: none;
+        text-align: center;
+        margin-top: 0.1rem;
+        text-decoration: none;
+    }
+
+    .ContentCardShowcase:hover .ShowcaseRevealText {
+        color: white;
+        text-shadow: 2px 2px #000000;
+    }
+
+    .ContentCardShowcase {
+        display: flex;
+        margin: 2rem 0;
+        flex-direction: column;
+        align-content: center;
+
+        border-radius: 1rem;
+        background-size: 110%;
+        background-position: center;
+
+        filter: drop-shadow(10px 15px 10px rgba(0, 0, 0, 0.1));
+
+        transition: background-size ease-in-out 0.25s;
+    }
+
+    #blenderBarShowcase {
+        /* 9 / 16 16:9 ratio padding top and bottom to align child text in the
+        center. */
+        padding-top: 24%;
+        padding-bottom: 24%;
+
+        background-image: url("/images/projects/bar_splash.png");
+    }
+
+    #blenderBarShowcase:hover {
+        background-size: 125%;
+    }
+
+    @media screen and (max-width: 800px) {
+        .ShowcaseRevealText {
+            color: white;
+            text-shadow: 2px 2px #000000;
+        }
+
+        #blenderBarShowcase {
+            background-size: 155%;
+        }
+
+        #blenderBarShowcase:hover {
+            background-size: 180%;
+        }
+    }
+</style>
+
+
+<!-- List all projects, projects are organized by year. The year is
+inside the parameter "section". -->
+
+{{ $allPages := sort .RegularPages "Params.section" "desc"}}
+
+<!-- Get all unique years -->
+{{ $years := slice }}
+{{ range $allPages }}
+    {{ $years = $years | append .Params.section }}
+{{ end }}
+{{ $years = uniq $years }}
+
+{{ range $years }}
+    <div class="HSep"><h2>{{ . }}</h2></div>
+    <!-- Get pages for the year, then sort by subsection. -->
+    {{ $yearPages := where $allPages "Params.section" . }}
+    {{ $yearPages = sort $yearPages "Params.subsection" "asc" }}
+    {{ range $yearPages }}
+        {{ if and (isset .Params "view") (eq .Params.view "showcase") }}
+            <!-- Show showcase -->
+            <img src="images/projects/bar_splash.png" style="display: none;">
+            <div class="ContentCardShowcase" id="blenderBarShowcase">
+                <h1 class="ContentCardShowcaseText">{{ .Params.title }}</h1>
+                <h2 class="ContentCardShowcaseText ShowcaseRevealText">{{ .Params.subtitle }}</h2>
+            </div>
+        {{ else }}
+            <!-- Show Article -->
+            <div class="ContentCard">
+                <section>
+                    <h1>{{ .Name }}</h1>
+                    <p>{{ .Content }}</p>
+                    
+                    {{ range .Params.links }}
+                        {{ .Scratch.Set "name" .name }}
+                        {{ .Scratch.Set "url" .url }}
+                        {{ partialCached "link_button" . .name .url }}
+                    {{ end }}
+                </section>
+                <!-- Show images -->
+                {{ if isset .Params "images" }}
+                    <section>
+
+                    </section>
+                {{ end }}
+                
+                <!-- Show videos -->
+                {{ if isset .Params "videos" }}
+                    <section>
+                        {{ range .Params.videos }}
+                            <video controls muted>
+                                <source src="{{ . }}" type="video/webm">
+                                Your browser does not support videos.
+                            </video>
+                        {{ end }}
+                    </section>
+                {{ end }}
+            </div>
+        {{ end}}
+    {{ end }}
+{{ end }}
+
+{{ end }}

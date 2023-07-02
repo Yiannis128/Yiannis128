@@ -1,11 +1,10 @@
 ---
-title: "Articles"
-date: 2022-06-14T15:05:35+01:00
+title: "Projects"
 draft: false
-type: articles
+type: projects
 menu:
   main:
-    weight: 2
+    weight: 3
 sitemap:
   changefreq: monthly
   priority: 0.8
