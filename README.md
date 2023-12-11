@@ -48,11 +48,6 @@ An in-depth tutorial series made for Godot 4.0 (a long time before it released).
 turorial series. Now it should probably be updated. The articles can be accessed on my
 [website](https://yiannis-charalambous.com/articles/godot-asteroids.html). The repository consists of the project files.
 
-## [YXMLP](https://github.com/Yiannis128/YXMLP)
-
-A simple wrapper library that provides a .NET style interface for working with XML files in Java. I made this during my first year of
-university.
-
 <!--# Contributions
 
 ## -->
