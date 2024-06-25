@@ -1,8 +1,40 @@
 {{ define "main" }}
 
-<div class="ContentCard ContentCardSectionLast">
+<div class="ContentCard">
     <section>
         {{ .Content }}
+    </section>
+</div>
+
+<div class="ContentCard">
+    <section>
+        <h1>Research Papers</h1>
+        <ul>
+            {{ range sort .Site.Data.research.paper_names "year" "desc" }}
+            <li><a href="{{ .url }}" target="_blank">{{ .title }}</a></li>
+            {{ end }}
+        </ul>
+    </section>
+    <section>
+        <h1>My Tools</h1>
+        Made by me:
+        <ul>
+            {{ range sort .Site.Data.tools.tool "name" "asc" }}
+            <li>
+                {{ .name }} <a href="{{ .url }}" target="_blank">[ Website ]</a> <a href="{{ .download }}"
+                    target="_blank">[ Download ]</a> {{ .desc }}
+            </li>
+            {{ end }}
+        </ul>
+    </section>
+    <section>
+        <h1>Software</h1>
+        A collection of software I use:
+        <ul>
+            {{ range sort .Site.Data.tools.sw_use "name" "asc" }}
+            <li><a href="{{ .url }}" target="_blank">{{ .name }}</a></li>
+            {{ end }}
+        </ul>
     </section>
 </div>
 
