@@ -1,0 +1,26 @@
+#holidayDeco 
+{
+  height: 44px;
+  background-image: repeating-linear-gradient(-45deg, red, red 40px, snow 40px, snow 80px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+#holidayText
+{
+  z-index: 2;
+  text-align: center;
+  color: white;
+  text-shadow: 0 0 8px black;
+}
+
+@media screen and (max-width: 1100px)
+{
+    #holidayDeco 
+    {
+    height: 94px;
+    }
+}

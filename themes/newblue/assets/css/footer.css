@@ -1,0 +1,58 @@
+footer
+{
+    position: relative;
+
+    padding: 10px 0;
+    margin-top: 50px;
+
+    width: 100%;
+    
+    background-color: rgb(200,200,200);
+}
+
+footer::after
+{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+footer > div
+{
+    width: 80%;
+    margin: 0 auto;
+    padding: auto;
+}
+
+footer h6
+{
+    display: inline-block;
+    color: rgb(40,40,40);
+    margin: 0;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+/* This code allows the footer to be at the bottom of the viewport
+when the page content height is less than the viewport height and
+sets it to the bottom of the content when the page is larger than
+the viewport height. */
+
+html,body
+{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+  
+main 
+{
+    flex-grow: 1;
+}
+
+.content 
+{
+    overflow: hidden;
+}
+
+/****************************************************************/
