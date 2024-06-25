@@ -1,0 +1,31 @@
+[[tool]]
+name = "ESBMC-AI"
+url = "https://www.github.com/Yiannis128/esbmc-ai"
+download = "https://pypi.org/project/esbmc-ai/"
+desc = "An automated program repair tool that uses ESBMC as the backend for verifiying the software, and an LLM of choice to conduct the repair."
+
+
+[[sw_use]]
+name = "Librewolf"
+url = "https://librewolf.net/"
+
+[[sw_use]]
+name = "Thunderbird"
+url = "https://thunderbird.net/"
+
+[[sw_use]]
+name = "ESBMC"
+url = "https://github.com/esbmc/esbmc"
+
+[[sw_use]]
+name = "NeoVim"
+url = "https://neovim.io/"
+
+[[sw_use]]
+name = "VSCodium"
+url = "https://vscodium.com/"
+
+[[sw_use]]
+name = "Zotero"
+url = "https://www.zotero.org/"
+
