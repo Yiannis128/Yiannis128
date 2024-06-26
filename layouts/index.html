@@ -32,7 +32,8 @@
         A collection of software I use:
         <ul>
             {{ range sort .Site.Data.tools.sw_use "name" "asc" }}
-            <li><a href="{{ .url }}" target="_blank">{{ .name }}</a></li>
+            {{ $descElement := cond (isset . "desc") (printf " - %s" .desc) "" }}
+            <li><a href="{{ .url }}" target="_blank">{{ .name }}</a>{{ $descElement }}</li>
             {{ end }}
         </ul>
     </section>

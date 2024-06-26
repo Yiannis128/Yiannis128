@@ -15,26 +15,32 @@ desc = "Easily deploy and manage IPyKernel for Python Environments."
 [[sw_use]]
 name = "Librewolf"
 url = "https://librewolf.net/"
+desc = "Firefox with better defaults and additional privacy addons."
 
 [[sw_use]]
 name = "Thunderbird"
 url = "https://thunderbird.net/"
+desc = "Very customizable, recent updates were pretty nice as well."
 
 [[sw_use]]
 name = "ESBMC"
 url = "https://github.com/esbmc/esbmc"
+desc = "Multi-language support software verifier. Use it to find bugs."
 
 [[sw_use]]
 name = "NeoVim"
 url = "https://neovim.io/"
+desc = "My code editor."
 
 [[sw_use]]
 name = "VSCodium"
 url = "https://vscodium.com/"
+desc = "My other code editor."
 
 [[sw_use]]
 name = "Zotero"
 url = "https://www.zotero.org/"
+desc = "Used to track all the research papers read. Can sync between devices and supports NextCloud syncing."
 
 # =============================
 
