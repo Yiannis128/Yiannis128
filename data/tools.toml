@@ -4,6 +4,13 @@ url = "https://www.github.com/Yiannis128/esbmc-ai"
 download = "https://pypi.org/project/esbmc-ai/"
 desc = "An automated program repair tool that uses ESBMC as the backend for verifiying the software, and an LLM of choice to conduct the repair."
 
+[[tool]]
+name = "ipykernel-ctl"
+url = "https://github.com/Yiannis128/ipykernel-ctl"
+download = "https://raw.githubusercontent.com/Yiannis128/ipykernel-ctl/master/ipykernel-ctl"
+desc = "Easily deploy and manage IPyKernel for Python Environments."
+
+# =============================
 
 [[sw_use]]
 name = "Librewolf"
@@ -29,3 +36,12 @@ url = "https://vscodium.com/"
 name = "Zotero"
 url = "https://www.zotero.org/"
 
+# =============================
+
+[[hw_use]]
+name = "Framework"
+url = "https://frame.work"
+
+[[hw_use]]
+name = "Pine64 Products"
+url = "https://pine64.org/"

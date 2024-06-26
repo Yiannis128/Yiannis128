@@ -36,6 +36,15 @@
             {{ end }}
         </ul>
     </section>
+    <section>
+        <h1>Hardware</h1>
+        A collection of hardware I use:
+        <ul>
+            {{ range sort .Site.Data.tools.hw_use "name" "asc" }}
+            <li><a href="{{ .url }}" target="_blank">{{ .name }}</a></li>
+            {{ end }}
+        </ul>
+    </section>
 </div>
 
 {{ end }}
