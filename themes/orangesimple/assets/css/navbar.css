@@ -1,0 +1,4 @@
+nav>a {
+  display: list-item;
+  list-style: disc inside;
+}
