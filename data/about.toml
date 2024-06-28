@@ -1,0 +1,19 @@
+[[additional_links]]
+img = "https://www.zotero.org/favicon.ico"
+url = "https://www.zotero.org/yiannis.charalambous"
+name = "Zotero"
+
+[[additional_links]]
+img = "https://orcid.org/sites/default/files/images/orcid_16x16.png"
+url = "https://orcid.org/0009-0000-5755-5099"
+name = "ORCID"
+
+[[additional_links]]
+img = "https://www.researchgate.net/favicon.ico"
+url = "https://www.researchgate.net/profile/Yiannis-Charalambous"
+name = "Research Gate"
+
+[[additional_links]]
+img = "https://xmpp.org/favicon.ico"
+name = "XMPP: yiannis@conversations.im"
+desc = "Response is not guaranteed."

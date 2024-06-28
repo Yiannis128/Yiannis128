@@ -35,15 +35,16 @@
 
 <div class="ContentCard">
   <section>
-    <h2>Additional Links...</h2>
+    <h2>Additional</h2>
     <ul>
-      <li><a id="cy-effective-orcid-url" class="underline" href="https://orcid.org/0009-0000-5755-5099"
-          target="orcid.widget" rel="me noopener noreferrer" style="vertical-align: top">
-          <img src="https://orcid.org/sites/default/files/images/orcid_16x16.png"
-            style="width: 1em; margin-inline-start: 0.5em" alt="ORCID iD icon" />
-          https://orcid.org/0009-0000-5755-5099
-        </a></li>
-      <li><a href="https://www.zotero.org/yiannis.charalambous" target="_blank">Zotero</a></li>
+      {{ range (sort .Site.Data.about.additional_links "name" "asc") }}
+      {{ $desc := cond (isset . "desc") (printf " - %s" .desc) "" }}
+      {{ if isset . "url" }}
+      <li><a href="{{ .url }}" target="_blank"><img width="16" src="{{ .img }}">{{ .name }}</a>{{ $desc }}</li>
+      {{ else }}
+      <li><img width="16" src="{{ .img }}">{{ .name }}{{ $desc }}</li>
+      {{ end }}
+      {{ end }}
     </ul>
   </section>
 </div>
