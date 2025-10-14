@@ -24,9 +24,13 @@ to name a few. I'm also interested in graphics, machine learning, cybersecurity.
 I have a lot of projects that have not been made public yet, due to them still being very mature yet. Here are some public projects
 I've worked on:
 
-## [ESBMC-AI](https://github.com/Yiannis128/esbmc-ai/tree/master)
+## [ESBMC-AI](https://github.com/esbmc/esbmc-ai)
 
 ESBMC-AI is an AI LLM powered augmentation layer that works on top of ESBMC. ESBMC is the Efficient SMT-based Bounded Model Checker.
+
+## [Compile Flags](https://github.com/esbmc/compile-flags)
+
+Aimed to automatically detect and provide compilation flags for a variety of languages. Preferably ones targetted by ESBMC.
 
 ## [Markdown Editor](https://github.com/Yiannis128/markdown_editor/tree/master)
 
