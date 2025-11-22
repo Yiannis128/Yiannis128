@@ -2,8 +2,19 @@
 title: "ClamAV Setup and Configuration Tutorial - Fedora 41"
 date: 2025-02-16T17:56:55Z
 draft: false
-tags:
+categories:
 - Tutorial
+tags:
+- ClamAV
+- Fedora
+- Linux
+- SELinux
+- antivirus
+- clamd
+- clamdscan
+- clamonacc
+- configuration
+- freshclam
 ---
 
 Guide based on [this blog post by Daniel Aleksandersen](https://www.ctrl.blog/entry/how-to-periodic-clamav-scan.html) and the [ArchLinux Wiki](https://wiki.archlinux.org/title/ClamAV). None of these worked perfectly on their own and some modifications were made to accommodate for that. The setup that this configuration belongs to is:

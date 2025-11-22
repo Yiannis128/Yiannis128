@@ -11,6 +11,8 @@ sitemap:
   priority: 0.8
 ---
 
+<span>[Tags](/tags.html)</span>
+<span>[Categories](/categories.html)</span>
 
 Here is a list of articles I've written. They are usually answers to very niche
 problems I've faced. You might face them too, I might face them again in the

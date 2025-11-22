@@ -3,9 +3,10 @@ title: "Installing SAModManager on Linux Bottles"
 date: 2025-02-02T23:10:00+00:00
 author: Yiannis Charalambous
 draft: false
+categories:
+- Tutorial
 tags: 
 - Games
-- Tutorial
 ---
 
 ![Banner Image Source: SAModInstaller](images/samodinstaller.jpg)

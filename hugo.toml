@@ -11,6 +11,7 @@ footer = "&copy; [Yiannis](https://yiannis.site) 2018 -- {Year} | [Github](https
 
 [taxonomies]
 tag = "tags"
+category = "categories"
 
 [taxonomy]
 rssLimit = 20

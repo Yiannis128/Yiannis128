@@ -3,9 +3,26 @@ title: "Formal Methods of Language Modelling"
 date: 2024-10-25T13:55:24+01:00
 math: true
 draft: false
+categories:
+- Notes
 tags:
-  - PhD
-  - Notes
+- automata theory
+- context-free grammar
+- finite-state automata
+- formal methods
+- gradient descent
+- hidden states
+- language model
+- machine learning
+- mathematics
+- natural language processing
+- PhD
+- probabilistic fsa
+- programming
+- push down automata
+- rnn
+- theory of computation
+- transformer
 ---
 
 The following are notes that have been written for the paper:  	[arXiv:2311.04329](https://arxiv.org/abs/2311.04329). I will update the article with future notes. Please let me know if you find any mistakes, as there are probably many.

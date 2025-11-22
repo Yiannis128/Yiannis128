@@ -2,8 +2,10 @@
 title: "LaTeX Stuff"
 date: 2024-07-04T13:16:47+01:00
 draft: false
-tags:
+categories:
 - Notes
+tags:
+- LaTeX
 ---
 
 This article is split into two sections. My favorite Linux [Templates](#templates) and [Definitions](#definitions).

@@ -2,9 +2,11 @@
 title: "Federal University of Amazonas (UFAM) Seminar: AICodeRepair"
 date: 2024-07-10T16:50:04+01:00
 draft: false
+categories:
+- PhD
 tags:
-  - AI
-  - Security
+- AI
+- Security
 ---
 
 I recently presented our [group's](https://ssvlab.github.io/esbmc/) latest research to the Federal University of Amazonas (UFAM). The experiments were conducted from January 2024 and April 2024. The video can be watched below.
