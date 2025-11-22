@@ -10,3 +10,8 @@ sitemap:
   changefreq: monthly
   priority: 0.8
 ---
+
+
+Here is a list of articles I've written. They are usually answers to very niche
+problems I've faced. You might face them too, I might face them again in the
+future; so I am keeping a catalogue.

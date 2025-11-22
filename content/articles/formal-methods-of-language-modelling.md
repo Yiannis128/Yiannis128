@@ -1,8 +1,8 @@
 ---
 title: "Formal Methods of Language Modelling"
 date: 2024-10-25T13:55:24+01:00
+math: true
 draft: false
-mathjax: true
 tags:
   - PhD
   - Notes

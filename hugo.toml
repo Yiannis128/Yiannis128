@@ -2,13 +2,15 @@ baseURL = "https://yiannis-charalambous.com/"
 languageCode = "en-us"
 title = "Yiannis Charalambous"
 uglyurls = true
-theme = "newblue"
+theme = "hugo-xmin"
 
-[[taxonomies]]
-#category = "categories"
+[params]
+description = "Welcome to my website, my name is Yiannis Charalambous."
+footer = "&copy; [Yiannis](https://yiannis.site) 2018 -- {Year} | [Github](https://github.com/Yiannis128) | [X](https://x.com/Yiannis128)"
+# math = true
+
+[taxonomies]
 tag = "tags"
-
-disableKinds = ["taxonomy" ]
 
 [taxonomy]
 rssLimit = 20
@@ -30,18 +32,25 @@ unsafe = true
 #ignoreErrors = ["error-disable-taxonomy"]
 
 
-
 [markup.highlight]
-noHl = false
-anchorLineNos = false
+anchorLineNos = true
 codeFences = true
-guessSyntax = false
-hl_Lines = ''
 hl_inline = false
-lineAnchors = ''
-lineNoStart = 1
 lineNos = true
-lineNumbersInTable = true
-noClasses = true
-style = 'monokai'
+lineNumbersInTable = false # Setting to true causes overflow
+# # style = 'algol'
+style = 'autumn'
+# # style = 'borland'
+# # style = 'bw'
+# # style = 'emacs'
 tabWidth = 4
+
+
+[markup]
+[markup.goldmark]
+[markup.goldmark.extensions]
+[markup.goldmark.extensions.passthrough]
+enable = true
+[markup.goldmark.extensions.passthrough.delimiters]
+block = [['\[', '\]'], ['$$', '$$']]
+inline = [['\(', '\)']]
