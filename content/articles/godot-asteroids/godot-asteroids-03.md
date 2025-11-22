@@ -59,13 +59,15 @@ the _ShipBullet_ root node in the Scene panel.
 In FileSystem, double-click the script to open it. The ship bullet code should
 look like this:
 
-    extends Area2D
+```gd
+extends Area2D
 
-    var speed : float = 500
+var speed : float = 500
 
-    # Called every frame. 'delta' is the elapsed time since the previous frame.
-    func _process(delta: float) -> void:
-        position += Vector2(speed * delta, 0).rotated(rotation)
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+    position += Vector2(speed * delta, 0).rotated(rotation)
+```
 
 This code will cause the bullet to move forward, the `_process` function will be
 called repeatedly, and so, the position of the ship will be updated from its
@@ -95,26 +97,28 @@ button is pressed. First start by openning the `code/Player.gd` file in the
 FileSystem panel. This is the code that should be added to the player ship
 script to allow it to fire bullets:
 
-    @export var fire_cooldown : float = 0.75
-    var fire_cooldown_left : float = 0
-    const bulletPackedScene : PackedScene = preload("res://objects/ShipBullet.tscn")
+```gd
+@export var fire_cooldown : float = 0.75
+var fire_cooldown_left : float = 0
+const bulletPackedScene : PackedScene = preload("res://objects/ShipBullet.tscn")
 
-    func fire_bullet():
-        var bullet : Node = bulletPackedScene.instantiate()
-        add_sibling(bullet)
-        bullet.global_rotation = global_rotation - PI / 2
-        bullet.global_position = global_position
+func fire_bullet():
+    var bullet : Node = bulletPackedScene.instantiate()
+    add_sibling(bullet)
+    bullet.global_rotation = global_rotation - PI / 2
+    bullet.global_position = global_position
 
-    func _process(delta: float) -> void:
-        # If space is pressed and the timer has reached or is less than 0, then
-        # fire the bullet and reset the timer.
-        if Input.is_key_pressed(KEY_SPACE) and fire_cooldown_left <= 0:
-            fire_bullet()
-            fire_cooldown_left = fire_cooldown
-        
-        # If the timer is not less than 0, then decrement it by the delta.
-        if fire_cooldown_left > 0:
-            fire_cooldown_left -= delta
+func _process(delta: float) -> void:
+    # If space is pressed and the timer has reached or is less than 0, then
+    # fire the bullet and reset the timer.
+    if Input.is_key_pressed(KEY_SPACE) and fire_cooldown_left <= 0:
+        fire_bullet()
+        fire_cooldown_left = fire_cooldown
+    
+    # If the timer is not less than 0, then decrement it by the delta.
+    if fire_cooldown_left > 0:
+        fire_cooldown_left -= delta
+```
 
 The script first declares some variables which are accessible by every method in
 the script. This is because the variables `fire_cooldown`, `fire_cooldown_left`,
@@ -195,13 +199,15 @@ drop the `Asteroid.gd` script from the FileSystem panel to the Scene panel and
 onto the _Asteroid_ node. The code that `Asteroid.gd` now contains is shown
 below:
 
-    extends Area2D
+```gd
+extends Area2D
 
-    func _ready() -> void:
-        connect("area_entered", area_entered)
+func _ready() -> void:
+    connect("area_entered", area_entered)
 
-    func area_entered(area : Area2D) -> void:
-        queue_free()
+func area_entered(area : Area2D) -> void:
+    queue_free()
+```
 
 This is a very simple script. In the `_ready` method, the script initializes a
 _signal_. Signals are a fundumental element of _event driven programming_, when

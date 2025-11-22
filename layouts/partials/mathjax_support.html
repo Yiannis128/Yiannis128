@@ -1,0 +1,77 @@
+<style>
+    .has-jax {
+        -webkit-font-smoothing: antialiased;
+        background: inherit !important;
+        /* No borders is not !important because formulas can be included in tables. */
+        border: none;
+        font-size: 100%;
+    }
+
+    td.has-jax {
+        border: 1px solid black;
+    }
+
+    .CtxtMenu_MenuFrame div.CtxtMenu_ContextMenu.CtxtMenu_Menu {
+        backdrop-filter: blur(1.0rem);
+        background-color: #ffffff2c;
+    }
+</style>
+
+<script>
+    window.MathJax = {
+        tex: {
+            //tags: 'none',
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'em', 'strong'],
+            ignoreHtmlClass: "tex2jax_ignore"  // Optionally ignore certain classes if needed
+        }
+    };
+
+    const findNodesWithDelimiters = (delimiter) => {
+        const matchingNodes = [];
+
+        // Traverse all text nodes in the body
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+
+        let node;
+        while (node = walker.nextNode()) {
+            if (node.nodeValue.includes(delimiter)) {
+                matchingNodes.push(node.parentNode);
+            }
+        }
+
+        return matchingNodes;
+    };
+
+    // Remove em tags from inside mathnjax
+    document.addEventListener("DOMContentLoaded", function () {
+        const flattenTextNodes = (element) => {
+            element.childNodes.forEach(node => {
+                if (node.nodeType === Node.ELEMENT_NODE && ['EM', 'STRONG'].includes(node.tagName)) {
+                    // Replace the tag with its text content
+                    const textNode = document.createTextNode(node.textContent);
+                    node.parentNode.replaceChild(textNode, node);
+                } else if (node.nodeType === Node.ELEMENT_NODE) {
+                    flattenTextNodes(node);  // Recursively process child elements
+                }
+            });
+        };
+
+        // Find all elements where MathJax might be used and flatten their content
+        const nodesWithDelimiters = findNodesWithDelimiters('$$').map(element => element.parentNode);
+        nodesWithDelimiters.forEach(flattenTextNodes);
+    });
+
+    // Apply CSS styling
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function (x) {
+            x.parentElement.classList += 'has-jax'
+        })
+    });
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>

@@ -1,13 +1,8 @@
 #!/usr/bin/env sh
 
+echo "Deleting public directory"
 rm -r public
 
+echo "Rebuilding website"
 hugo
-
-# Removing 
-
-for file in $(find public/projects -maxdepth 1 -type f); do
-    echo "Removing: $file"
-    rm $file
-done
 

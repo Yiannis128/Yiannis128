@@ -22,19 +22,18 @@
     {{ $footerStyle := resources.Get "css/footer.css" | minify | fingerprint }}
     <link rel="stylesheet" type="text/css" media="screen" href="{{ $footerStyle.Permalink }}" />
 
-
+    {{ if .Params.mathjax }}
+    {{ partial "mathjax_support.html" . }}
+    {{ end }}
 </head>
 
 <body>
     {{ partial "navbar" . }}
-
     <main>
         {{ block "main" . }}
         {{ end }}
     </main>
-
     {{ partial "footer" }}
-
 </body>
 
 </html>

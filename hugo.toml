@@ -8,15 +8,40 @@ theme = "newblue"
 #category = "categories"
 tag = "tags"
 
-[[disableKinds.taxonomy]]
+disableKinds = ["taxonomy" ]
+
+[taxonomy]
 rssLimit = 20
 
-[[disableKinds.taxonomy.sitemap]]
+[taxonomy.sitemap]
 filename = "sitemap.xml"
 changefreq = "monthly"
 priority = 0.5
 
+[markup.goldmark.renderer]
+# Enable embedding unsafe HTML into content.
+# If this is disabled, you will get a comment instead
+# of the HTML "Raw html omitted"
+unsafe = true
+
 # This exists because disableKinds has only taxonomy instead of taxonomy and
 # term. This is because we display the tags in the articles page directly
 # instead of showing them in a separate page.
-ignoreErrors = ["error-disable-taxonomy"]
+#ignoreErrors = ["error-disable-taxonomy"]
+
+
+
+[markup.highlight]
+noHl = false
+anchorLineNos = false
+codeFences = true
+guessSyntax = false
+hl_Lines = ''
+hl_inline = false
+lineAnchors = ''
+lineNoStart = 1
+lineNos = true
+lineNumbersInTable = true
+noClasses = true
+style = 'monokai'
+tabWidth = 4

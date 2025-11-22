@@ -140,38 +140,44 @@ enabled.
 It is now time to declare the variable that will keep track of the score, open
 `code/PlayerStats.gd` and write code such that the script looks like this:
 
-    extends Node
+```gd
+extends Node
 
-    var player_score : int = 0
+var player_score : int = 0
+```
 
 This script will need to simply keep track of the `player_score` variable. Next,
 the asteroid script will be modified to increment the score. Open
 `code/Asteroid.gd` and add the following `PlayerStats.player_score += 1` line in
 the `area_entered` function. The script should now look like this:
 
-    extends Area2D
+```gd
+extends Area2D
 
-    var move_dir : Vector2 = Vector2.ZERO
+var move_dir : Vector2 = Vector2.ZERO
 
-    func _ready() -> void:
-        connect("area_entered", area_entered)
+func _ready() -> void:
+    connect("area_entered", area_entered)
 
-    func area_entered(area : Area2D) -> void:
-        PlayerStats.player_score += 1
-        queue_free()
+func area_entered(area : Area2D) -> void:
+    PlayerStats.player_score += 1
+    queue_free()
 
-    func _physics_process(delta: float) -> void:
-        position += move_dir * delta
+func _physics_process(delta: float) -> void:
+    position += move_dir * delta
+```
 
 The extra line increments the `player_score` variable in the `PlayerStats`
 singleton that was just added in the previous section. This line executes when
 the asteroid is to be destroyed. Now, in order to make the HUD update when the
 score changes, open `code/HUD.gd` and make the script contain the following:
 
-    extends Control
+```gd
+extends Control
 
-    func _process(delta: float) -> void:
-        $Score.text = str(PlayerStats.player_score)
+func _process(delta: float) -> void:
+    $Score.text = str(PlayerStats.player_score)
+```
 
 This simply sets the `text` property of the `Score` label node in `HUD.tscn` to
 constantly update to the current score. So when an asteroid comes in contact
@@ -207,25 +213,27 @@ effectively allows for checking what type of node a certain node is._
 
 ### `code/Asteroid.gd`
 
-    class_name Asteroid
-    extends Area2D
+```gd
+class_name Asteroid
+extends Area2D
 
-    var move_dir : Vector2 = Vector2.ZERO
+var move_dir : Vector2 = Vector2.ZERO
 
-    func _ready() -> void:
-        connect("area_entered", area_entered)
+func _ready() -> void:
+    connect("area_entered", area_entered)
 
-    func area_entered(area : Area2D) -> void:
-        if area.get_parent() is PlayerShip:
-            return
-        
-        if !(area is Asteroid):
-            PlayerStats.player_score += 1
-        
-        queue_free()
+func area_entered(area : Area2D) -> void:
+    if area.get_parent() is PlayerShip:
+        return
+    
+    if !(area is Asteroid):
+        PlayerStats.player_score += 1
+    
+    queue_free()
 
-    func _physics_process(delta: float) -> void:
-        position += move_dir * delta
+func _physics_process(delta: float) -> void:
+    position += move_dir * delta
+```
 
 The asteroid script's collision checking function (`area_entered`) has been
 modified. Upon collision, it now first checks if the node that it has
@@ -237,23 +245,25 @@ hence, increment the score by 2. The final action is to destroy the asteroid.
 
 ### `code/Player.gd`
 
-    class_name PlayerShip
-    extends CharacterBody2D
+```gd
+class_name PlayerShip
+extends CharacterBody2D
 
-    @export var turn_speed : float = 3
+@export var turn_speed : float = 3
 
-    @export var fire_cooldown : float = 0.75
-    var fire_cooldown_left : float = 0
-    const bulletPackedScene : PackedScene = preload("res://objects/ShipBullet.tscn")
+@export var fire_cooldown : float = 0.75
+var fire_cooldown_left : float = 0
+const bulletPackedScene : PackedScene = preload("res://objects/ShipBullet.tscn")
 
-    func _ready() -> void:
-        $Area2D.connect("area_entered", area_entered)
+func _ready() -> void:
+    $Area2D.connect("area_entered", area_entered)
 
-    func area_entered(node : Area2D) -> void:
-        if !(node is ShipBullet):
-            PlayerStats.player_dead()
-    
-    ...
+func area_entered(node : Area2D) -> void:
+    if !(node is ShipBullet):
+        PlayerStats.player_dead()
+
+...
+```
 
 The player ship script now adds the extra method `area_entered`, what this
 method does is if an `Area2D` node intersects with the player ship's `Area2D`
@@ -265,27 +275,31 @@ ignored because the ship bullets initially intersect with the player ship's area
 
 ### `code/PlayerStats.gd`
 
-    extends Node
+```gd
+extends Node
 
-    var player_score : int = 0
+var player_score : int = 0
 
-    func player_dead() -> void:
-        PlayerStats.player_score = 0
-        get_tree().reload_current_scene()
+func player_dead() -> void:
+    PlayerStats.player_score = 0
+    get_tree().reload_current_scene()
+```
 
 A new method has been added called `player_dead` that when invoked will cause
 the level to reset, along with the player score variable. 
 
 ### `code/ShipBullet.gd`
 
-    class_name ShipBullet
-    extends Area2D
+```gd
+class_name ShipBullet
+extends Area2D
 
-    var speed : float = 500
+var speed : float = 500
 
-    # Called every frame. 'delta' is the elapsed time since the previous frame.
-    func _process(delta: float) -> void:
-        position += Vector2(speed * delta, 0).rotated(rotation)
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+    position += Vector2(speed * delta, 0).rotated(rotation)
+```
 
 The player ship bullet script just adds a class name for this script. There are
 other scripts that have a class name assigned.

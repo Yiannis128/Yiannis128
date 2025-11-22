@@ -57,18 +57,18 @@ h6 {
   }
 }
 
-.ContentCard > section > h1,
-.ContentCard > section > h2,
-.ContentCard > section > h3,
-.ContentCard > section > h4,
-.ContentCard > section > h5,
-.ContentCard > section > h6,
-.ContentCard > article > h1,
-.ContentCard > article > h2,
-.ContentCard > article > h3,
-.ContentCard > article > h4,
-.ContentCard > article > h5,
-.ContentCard > article > h6 {
+.ContentCard>section>h1,
+.ContentCard>section>h2,
+.ContentCard>section>h3,
+.ContentCard>section>h4,
+.ContentCard>section>h5,
+.ContentCard>section>h6,
+.ContentCard>article>h1,
+.ContentCard>article>h2,
+.ContentCard>article>h3,
+.ContentCard>article>h4,
+.ContentCard>article>h5,
+.ContentCard>article>h6 {
   margin: 0 0 1rem 0;
   text-align: unset;
   color: unset;
@@ -103,20 +103,20 @@ h6 {
   padding: 0;
 }
 
-.ContentCardButton > a {
+.ContentCardButton>a {
   padding: 1rem;
   display: block;
   align-items: center;
   text-decoration: none;
 }
 
-.ContentCardButton > a > img {
+.ContentCardButton>a>img {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-.ContentCardButton > a > p {
+.ContentCardButton>a>p {
   text-align: center;
 }
 
@@ -180,21 +180,12 @@ a {
  * Article stuff
  */
 
-pre {
-  white-space: pre-wrap;
-  background-image: linear-gradient(to bottom right, #e2e2e2, #c9c9c9);
-  padding: 1rem;
-  border-radius: 0.6rem;
+.highlight {
+  margin-bottom: 1rem;
 }
 
-code {
-  overflow-wrap: anywhere;
-  font-family: monospace;
-  font-size: 0.9rem;
-}
-
-ul > li {
-  overflow-wrap: anywhere;
+.highlight * {
+  overflow: auto;
 }
 
 /* RSS buttons */
@@ -220,7 +211,18 @@ ul > li {
   text-align: center;
 }
 
-.DisplayGridItem > a {
+.DisplayGridItem>a {
   display: block;
   padding: 1rem;
+}
+
+article iframe {
+  max-width: 100%;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
 }

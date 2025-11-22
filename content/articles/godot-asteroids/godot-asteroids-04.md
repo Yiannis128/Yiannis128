@@ -31,14 +31,18 @@ This section will cover how to make the asteroids move towards the player ship.
 Begin, by opening the asteroid script (`code/Asteroid.gd`). The additional
 script variable will need to be declared:
 
-    var move_dir : Vector2 = Vector2.ZERO
+```gd
+var move_dir : Vector2 = Vector2.ZERO
+```
 
 The `move_dir` variable will tell the asteroid which direction to move. When the
 asteroid is spawned, it will be set to move towards the player ship. Along, with
 the variable comes this method:
 
-    func _physics_process(delta: float) -> void:
-        position += move_dir * delta
+```gd
+func _physics_process(delta: float) -> void:
+    position += move_dir * delta
+```
 
 In the asteroid's physics process method, the position is updated by `delta`
 multiplied with the `move_dir` variable we set earlier. The `move_dir`
@@ -58,64 +62,66 @@ attach the script to the root node, by dragging it from the FileSystem panel to
 the root node in the Scene panel. Open the `AsteroidManager.gd` script and edit
 it so that it contains the following code:
 
-    extends Node
+```gd
+extends Node
 
-    @export var spawn_rate : float = 2
-    var spawn_rate_left : float = 0
+@export var spawn_rate : float = 2
+var spawn_rate_left : float = 0
 
-    @export_node_path(Node) var target_path : NodePath = ""
-    var target : Node = null
+@export_node_path(Node) var target_path : NodePath = ""
+var target : Node = null
 
-    var asteroid_scene : PackedScene = preload("res://objects/Asteroid.tscn")
-    var asteroid_speed : float = 150
-    var spawn_distance_offset : float = 500
+var asteroid_scene : PackedScene = preload("res://objects/Asteroid.tscn")
+var asteroid_speed : float = 150
+var spawn_distance_offset : float = 500
 
-    func _ready() -> void:
-        randomize()
+func _ready() -> void:
+    randomize()
+    spawn_rate_left = spawn_rate
+    target = get_node_or_null(target_path)
+
+func _process(delta : float) -> void:
+    if target == null:
+        return
+
+    # If spawn_rate_left hits 0, then spawn an asteroid, and reset the timer.
+    if spawn_rate_left <= 0:
+        spawn_asteroid()
         spawn_rate_left = spawn_rate
-        target = get_node_or_null(target_path)
+    
+    # If the spawn_rate_left is higher than 0, then decrement it.
+    if spawn_rate_left > 0:
+        spawn_rate_left -= delta
 
-    func _process(delta : float) -> void:
-        if target == null:
-            return
+func get_new_asteroid_position() -> Vector2:
+    # Get the size of the screen.
+    var size : Vector2 = get_viewport().size
+    
+    var rand_ang : float = randf_range(0, 2 * PI)
+    var center : Vector2 = size / 2
+    
+    var spawn_offset : Vector2 = Vector2.RIGHT.rotated(rand_ang) * spawn_distance_offset
+    var spawn_location : Vector2 = center + spawn_offset
+    
+    return spawn_location
 
-        # If spawn_rate_left hits 0, then spawn an asteroid, and reset the timer.
-        if spawn_rate_left <= 0:
-            spawn_asteroid()
-            spawn_rate_left = spawn_rate
-        
-        # If the spawn_rate_left is higher than 0, then decrement it.
-        if spawn_rate_left > 0:
-            spawn_rate_left -= delta
+func spawn_asteroid() -> void:
+    if target == null:
+        return
 
-    func get_new_asteroid_position() -> Vector2:
-        # Get the size of the screen.
-        var size : Vector2 = get_viewport().size
-        
-        var rand_ang : float = randf_range(0, 2 * PI)
-        var center : Vector2 = size / 2
-        
-        var spawn_offset : Vector2 = Vector2.RIGHT.rotated(rand_ang) * spawn_distance_offset
-        var spawn_location : Vector2 = center + spawn_offset
-        
-        return spawn_location
-
-    func spawn_asteroid() -> void:
-        if target == null:
-            return
-
-        # Spawn the asteroid.
-        var asteroid : Node = asteroid_scene.instantiate()
-        
-        # Find a random position to spawn the asteroid to.
-        asteroid.position = get_new_asteroid_position()
-        
-        # Set the asteroid move_dir towards target.
-        var offset : Vector2 = target.position - asteroid.position
-        asteroid.move_dir = offset.normalized() * asteroid_speed
-        
-        # Add the asteroid to the scene.
-        add_sibling(asteroid) 
+    # Spawn the asteroid.
+    var asteroid : Node = asteroid_scene.instantiate()
+    
+    # Find a random position to spawn the asteroid to.
+    asteroid.position = get_new_asteroid_position()
+    
+    # Set the asteroid move_dir towards target.
+    var offset : Vector2 = target.position - asteroid.position
+    asteroid.move_dir = offset.normalized() * asteroid_speed
+    
+    # Add the asteroid to the scene.
+    add_sibling(asteroid) 
+```
 
 Perhaps this is the longest script in the entire project, however, when broken
 down, it is simple to understand. The following script variables are declared:

@@ -8,4 +8,9 @@ menu:
 sitemap:
   changefreq: monthly
   priority: 0.8
+cascade:
+- build:
+  list: local
+  publishResources: false
+  render: never
 ---

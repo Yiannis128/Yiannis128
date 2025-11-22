@@ -70,24 +70,26 @@ method in order to make the player ship rotate.
 
 The code for the player ship script (it is responsible for rotating the ship):
 
-    extends CharacterBody2D
+```gd
+extends CharacterBody2D
 
-    @export var turn_speed : float = 3 
+@export var turn_speed : float = 3 
 
-    func _physics_process(delta: float) -> void:
-        var move_dir : int = 0
+func _physics_process(delta: float) -> void:
+    var move_dir : int = 0
+    
+    # If left is pressed, then move direction will be set to -1
+    if Input.is_key_pressed(KEY_LEFT):
+        move_dir = -turn_speed
+    
+    # If right is pressed, then move direction will be set to 1.
+    if Input.is_key_pressed(KEY_RIGHT):
+        move_dir = turn_speed
         
-        # If left is pressed, then move direction will be set to -1
-        if Input.is_key_pressed(KEY_LEFT):
-            move_dir = -turn_speed
-        
-        # If right is pressed, then move direction will be set to 1.
-        if Input.is_key_pressed(KEY_RIGHT):
-            move_dir = turn_speed
-            
-        # We now rotate the ship left or right depending on if move_dir is a
-        # positive or negative number.
-        rotate(move_dir * delta)
+    # We now rotate the ship left or right depending on if move_dir is a
+    # positive or negative number.
+    rotate(move_dir * delta)
+```
     
 The `func _physics_process(delta: float) -> void:` is a method declaration, also
 known as a function declaration. The node that this script extends,

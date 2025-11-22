@@ -38,6 +38,11 @@ url = "https://vscodium.com/"
 desc = "My other code editor."
 
 [[sw_use]]
+name = "Lapce"
+url = "https://lapce.dev"
+desc = "Still really early in development but is shaping up to be a powerful and extensible code editor."
+
+[[sw_use]]
 name = "Zotero"
 url = "https://www.zotero.org/"
 desc = "Used to track all the research papers read. Can sync between devices and supports NextCloud syncing."

@@ -71,62 +71,64 @@
 <!-- List all projects, projects are organized by year. The year is
 inside the parameter "section". -->
 
-{{ $allPages := sort .RegularPages "Params.section" "desc"}}
+{{ $allPages := sort .Pages "Params.section" "desc"}}
 
 <!-- Get all unique years -->
 {{ $years := slice }}
 {{ range $allPages }}
-    {{ $years = $years | append .Params.section }}
+{{ $years = $years | append .Params.section }}
 {{ end }}
 {{ $years = uniq $years }}
 
 {{ range $years }}
-    <div class="HSep"><h2>{{ . }}</h2></div>
-    <!-- Get pages for the year, then sort by subsection. -->
-    {{ $yearPages := where $allPages "Params.section" . }}
-    {{ $yearPages = sort $yearPages "Params.subsection" "asc" }}
-    {{ range $yearPages }}
-        {{ if and (isset .Params "view") (eq .Params.view "showcase") }}
-            <!-- Show showcase -->
-            <img src="images/projects/bar_splash.png" style="display: none;">
-            <div class="ContentCardShowcase" id="blenderBarShowcase">
-                <h1 class="ContentCardShowcaseText">{{ .Params.title }}</h1>
-                <h2 class="ContentCardShowcaseText ShowcaseRevealText">{{ .Params.subtitle }}</h2>
-            </div>
-        {{ else }}
-            <!-- Show Article -->
-            <div class="ContentCard">
-                <section>
-                    <h1>{{ .Name }}</h1>
-                    <p>{{ .Content }}</p>
-                    
-                    {{ range .Params.links }}
-                        {{ .Scratch.Set "name" .name }}
-                        {{ .Scratch.Set "url" .url }}
-                        {{ partialCached "link_button" . .name .url }}
-                    {{ end }}
-                </section>
-                <!-- Show images -->
-                {{ if isset .Params "images" }}
-                    <section>
+<div class="HSep">
+    <h2>{{ . }}</h2>
+</div>
+<!-- Get pages for the year, then sort by subsection. -->
+{{ $yearPages := where $allPages "Params.section" . }}
+{{ $yearPages = sort $yearPages "Params.subsection" "asc" }}
+{{ range $yearPages }}
+{{ if and (isset .Params "view") (eq .Params.view "showcase") }}
+<!-- Show showcase -->
+<img src="images/projects/bar_splash.png" style="display: none;">
+<div class="ContentCardShowcase" id="blenderBarShowcase">
+    <h1 class="ContentCardShowcaseText">{{ .Params.title }}</h1>
+    <h2 class="ContentCardShowcaseText ShowcaseRevealText">{{ .Params.subtitle }}</h2>
+</div>
+{{ else }}
+<!-- Show Article -->
+<div class="ContentCard">
+    <section>
+        <h1>{{ .Name }}</h1>
+        <p>{{ .Content }}</p>
 
-                    </section>
-                {{ end }}
-                
-                <!-- Show videos -->
-                {{ if isset .Params "videos" }}
-                    <section>
-                        {{ range .Params.videos }}
-                            <video controls muted>
-                                <source src="{{ . }}" type="video/webm">
-                                Your browser does not support videos.
-                            </video>
-                        {{ end }}
-                    </section>
-                {{ end }}
-            </div>
-        {{ end}}
+        {{ range .Params.links }}
+        {{ .Scratch.Set "name" .name }}
+        {{ .Scratch.Set "url" .url }}
+        {{ partialCached "link_button" . .name .url }}
+        {{ end }}
+    </section>
+    <!-- Show images -->
+    {{ if isset .Params "images" }}
+    <section>
+
+    </section>
     {{ end }}
+
+    <!-- Show videos -->
+    {{ if isset .Params "videos" }}
+    <section>
+        {{ range .Params.videos }}
+        <video controls muted>
+            <source src="{{ . }}" type="video/webm">
+            Your browser does not support videos.
+        </video>
+        {{ end }}
+    </section>
+    {{ end }}
+</div>
+{{ end}}
+{{ end }}
 {{ end }}
 
 {{ end }}

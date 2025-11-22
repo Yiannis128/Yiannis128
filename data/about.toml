@@ -1,3 +1,18 @@
+[[links]]
+img = "images/external/linkedin.png"
+url = "https://www.linkedin.com/in/yiannis-charalambous-504b60197/"
+name = "LinkedIn"
+
+[[links]]
+img = "images/external/email.png"
+url = "mailto:yiannis128@hotmail.com"
+name = "Email"
+
+[[links]]
+img = "images/external/github.png"
+url = "https://github.com/Yiannis128/"
+name = "GitHub"
+
 [[additional_links]]
 img = "https://www.zotero.org/favicon.ico"
 url = "https://www.zotero.org/yiannis.charalambous"
@@ -14,6 +29,7 @@ url = "https://www.researchgate.net/profile/Yiannis-Charalambous"
 name = "Research Gate"
 
 [[additional_links]]
-img = "https://xmpp.org/favicon.ico"
-name = "XMPP: yiannis@conversations.im"
-desc = "Response is not guaranteed."
+img = "https://simplex.chat/img/favicon.ico"
+name = "Simplex"
+url = "https://simplex.chat/contact#/?v=2-6&smp=smp%3A%2F%2Fh--vW7ZSkXPeOUpfxlFGgauQmXNFOzGoizak7Ult7cw%3D%40smp15.simplex.im%2Fghbqt7SJrke03DvNyXPbmSlT0GWCvr7Z%23%2F%3Fv%3D1-3%26dh%3DMCowBQYDK2VuAyEABZSKczY_jFaNT0621VdrNPPat8aXlU_Khm5jsx_wzEQ%253D%26srv%3Doauu4bgijybyhczbnxtlggo6hiubahmeutaqineuyy23aojpih3dajad.onion"
+desc = "Message responses are not guaranteed."

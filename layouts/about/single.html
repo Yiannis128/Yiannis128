@@ -10,28 +10,17 @@
       please contact my main email.
     </p>
   </section>
+  <span class="DisplayGrid">
+    {{ range sort .Site.Data.about.links }}
+    <div class="DisplayGridItem">
+      <a href="{{ .url }}">
+        <img width="64" src="{{ .img }}" />
+        <p>{{ .name }}</p>
+      </a>
+    </div>
+    {{ end }}
+  </span>
 </div>
-
-<span class="DisplayGrid">
-  <div class="ContentCard DisplayGridItem">
-    <a href="https://www.linkedin.com/in/yiannis-charalambous-504b60197/">
-      <img width="64" src="images/external/linkedin.png" />
-      <p>LinkedIn</p>
-    </a>
-  </div>
-  <div class="ContentCard DisplayGridItem">
-    <a href="mailto:yiannis128@hotmail.com">
-      <img width="64" height="64" src="images/external/email.png" />
-      <p>Email</p>
-    </a>
-  </div>
-  <div class="ContentCard DisplayGridItem">
-    <a href="https://github.com/Yiannis128/">
-      <img width="64" src="images/external/github.png" />
-      <p>GitHub</p>
-    </a>
-  </div>
-</span>
 
 <div class="ContentCard">
   <section>

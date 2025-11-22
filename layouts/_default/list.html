@@ -1,32 +1,32 @@
 {{ define "main" }}
 
-    {{ if .Draft }}
-    <h3>_default draft</h3>
-    {{ end }}
+{{ if .Draft }}
+<h3>_default draft</h3>
+{{ end }}
 
-    <div class="ContentCard ContentCardSectionLast">
-        <section>
+<div class="ContentCard">
+    <section>
         {{ if eq .Kind "taxonomy" }}
-            <!-- Taxonomy Disabled In Config -->
-            <h1>Article Tags</h1>
-            <a href="articles.html">Back To Articles</a>
-            {{ range $index, $term := .Data.Terms.Alphabetical }}
-            <a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a> ({{ .Count }})
-            {{ end }}
+        <!-- Taxonomy Disabled In Config -->
+        <h1>Article Tags</h1>
+        <a href="articles.html">Back To Articles</a>
+        {{ range $index, $term := .Data.Terms.Alphabetical }}
+        <a href="{{ .Page.Permalink }}">{{ .Page.Title }}</a> ({{ .Count }})
+        {{ end }}
         {{ else if eq .Kind "term" }}
-            <!-- Taxonomy terms -->
-            <h1>Tag: {{ .Title }}</h1>
-            <!-- <h4><a href="{{ .Parent.Permalink }}">Back</a></h4> -->
-            <ul>
-                {{ range .Data.Pages }}
-                <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
-                {{ end }}
-            </ul>
-            {{ else }}
-                <!-- Show this if page is not mapped -->
-                DEFAULT LIST
+        <!-- Taxonomy terms -->
+        <h1>Tag: {{ .Title }}</h1>
+        <!-- <h4><a href="{{ .Parent.Permalink }}">Back</a></h4> -->
+        <ul>
+            {{ range .Data.Pages }}
+            <li><a href="{{ .Permalink }}">{{ .Title }}</a></li>
             {{ end }}
-        </section>
-    </div>
+        </ul>
+        {{ else }}
+        <!-- Show this if page is not mapped -->
+        DEFAULT LIST
+        {{ end }}
+    </section>
+</div>
 
 {{ end }}
