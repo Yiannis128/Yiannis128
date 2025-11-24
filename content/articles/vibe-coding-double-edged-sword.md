@@ -15,7 +15,7 @@ uses an LLM as an intermediate processor to transform intent expressed in
 natural language to source code. This is usually done by a vague prompt
 expressing what the person wants to achieve, followed by the LLM trying to
 accommodate for that and generating the code. Oftentimes this results in not
-what the vibe coder intended. Vibe coding is a double edged sword that emplowers
+what the vibe coder intended. Vibe coding is a double edged sword that empowers
 programmers but is actually detremental to the average person.
 
 ## How LLMs Work
