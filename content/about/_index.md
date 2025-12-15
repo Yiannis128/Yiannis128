@@ -9,8 +9,6 @@ sitemap:
     priority: 0.8
 ---
 
-# About
-
 <div style="display: flex; justify-content: center; margin: 1rem 0;">
 {{< gravatar >}}
 </div>
