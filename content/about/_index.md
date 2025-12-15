@@ -13,26 +13,11 @@ sitemap:
 
 For consultant services and general business inquiries please contact my main email.
 
-<div style="text-align: center; display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 20px; margin: 20px 0;">
-  <div>
-    <a href="">
-      <img width="64" src="/images/external/linkedin.png" alt="LinkedIn" />
-      <p>LinkedIn</p>
-    </a>
-  </div>
-  <div>
-    <a href="mailto:yiannis128@hotmail.com">
-      <img width="64" src="/images/external/email.png" alt="Email" />
-      <p>Email</p>
-    </a>
-  </div>
-  <div>
-    <a href="https://github.com/Yiannis128/">
-      <img width="64" src="/images/external/github.png" alt="GitHub" />
-      <p>GitHub</p>
-    </a>
-  </div>
+<div style="display: flex; justify-content: center; margin: 1rem 0;">
+{{< gravatar >}}
 </div>
+
+<!-- <iframe src="https://gravatar.com/yiannis128.card" width="100%" height="450" style="border:0; margin:0; padding:0; max-width: 350px;" scrolling="no"></iframe> -->
 
 ## Additional
 
