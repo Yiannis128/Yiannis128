@@ -9,9 +9,7 @@ sitemap:
     priority: 0.8
 ---
 
-## Contact
-
-For consultant services and general business inquiries please contact my main email.
+# About
 
 <div style="display: flex; justify-content: center; margin: 1rem 0;">
 {{< gravatar >}}
