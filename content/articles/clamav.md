@@ -3,29 +3,35 @@ title: "ClamAV Setup and Configuration Tutorial - Fedora 41"
 date: 2025-02-16T17:56:55Z
 draft: false
 categories:
-- Tutorial
+  - Tutorial
 tags:
-- ClamAV
-- Fedora
-- Linux
-- SELinux
-- antivirus
-- clamd
-- clamdscan
-- clamonacc
-- configuration
-- freshclam
+  - ClamAV
+  - Fedora
+  - Linux
+  - SELinux
+  - antivirus
+  - clamd
+  - clamdscan
+  - clamonacc
+  - configuration
+  - freshclam
 ---
 
-Guide based on [this blog post by Daniel Aleksandersen](https://www.ctrl.blog/entry/how-to-periodic-clamav-scan.html) and the [ArchLinux Wiki](https://wiki.archlinux.org/title/ClamAV). None of these worked perfectly on their own and some modifications were made to accommodate for that. The setup that this configuration belongs to is:
+Guide based on
+[this blog post by Daniel Aleksandersen](https://www.ctrl.blog/entry/how-to-periodic-clamav-scan.html)
+and the [ArchLinux Wiki](https://wiki.archlinux.org/title/ClamAV). None of these
+worked perfectly on their own and some modifications were made to accommodate
+for that. The setup that this configuration belongs to is:
 
-* Laptop (This guide is not meant for servers, additional configuration is most likely required)
-* Fedora 41
+- Laptop (This guide is not meant for servers, additional configuration is most
+  likely required)
+- Fedora 41
 
-Fedora has some extra configuration that needs to happen before setting up ClamAV to work properly. The components are:
+Fedora has some extra configuration that needs to happen before setting up
+ClamAV to work properly. The components are:
 
-* `clamd`
-* `freshclam`
+- `clamd`
+- `freshclam`
 
 Install the packages:
 
@@ -36,12 +42,13 @@ sudo dnf install clamav freshclam clamd
 Start by enabling the antivirus scanning option of SELinux:
 
 ```sh
-sudo setsebool -P antivirus_can_scan_system 1 
+sudo setsebool -P antivirus_can_scan_system 1
 ```
 
 ## freshclam
 
-Start by generating initial configuration for freshclam. Freshclam is ran under the user `clamupdate`.
+Start by generating initial configuration for freshclam. Freshclam is ran under
+the user `clamupdate`.
 
 ```sh
 clamconf -g freshclam.conf > freshclam.conf
@@ -56,7 +63,7 @@ Apply the following diff:
 5,7d4
 < # Comment out or remove the line below.
 < Example
-< 
+<
 14c11
 < #LogFileMaxSize 5M
 ---
@@ -83,7 +90,6 @@ Apply the following diff:
 > Bytecode yes
 ```
 
-
 Run a virus definition update and additionally enable the freshclam service:
 
 ```sh
@@ -91,11 +97,13 @@ sudo freshclam
 sudo systemctl enable --now clamav-freshclam.service
 ```
 
-Enabling the service will perform periodic updating. This is in contrast to the blog post that used cron for this functionality.
+Enabling the service will perform periodic updating. This is in contrast to the
+blog post that used cron for this functionality.
 
 ## clamd
 
-Start by generating initial configuration for the daemon. The scanning service will be ran under the user `clamscan`.
+Start by generating initial configuration for the daemon. The scanning service
+will be ran under the user `clamscan`.
 
 ```sh
 clamconf -g clamd.d/scan.conf > scan.conf
@@ -104,13 +112,14 @@ sudo chown root:root /etc/clamd.d/scan.conf
 sudo chmod u=rw,go=r /etc/clamd.d/scan.conf
 ```
 
-The following options were changed in my file, which are based of the ArchLinux guide's recommended settings, however, not exact:
+The following options were changed in my file, which are based of the ArchLinux
+guide's recommended settings, however, not exact:
 
 ```diff
 5,7d4
 < # Comment out or remove the line below.
 < Example
-< 
+<
 35c32
 < #LogFileMaxSize 5M
 ---
@@ -255,7 +264,9 @@ The following options were changed in my file, which are based of the ArchLinux 
 
 ### VirusEvent
 
-You might have noticed the `VirusEvent` option that triggers when a virus is found is set to execute `/opt/clamav/virus-event.sh`. Set it up by running the following commands:
+You might have noticed the `VirusEvent` option that triggers when a virus is
+found is set to execute `/opt/clamav/virus-event.sh`. Set it up by running the
+following commands:
 
 ```sh
 sudo mkdir /opt/clamav
@@ -275,7 +286,9 @@ sudo chown clamscan:clamscan /opt/clamav/virus-event.sh
 
 ### Starting the Daemon
 
-Controlled through SystemD unit files. The daemon has the possibility to freeze your system (a lot of times), so the blog post recommends to set system resource limits by overriding the systemd files.
+Controlled through SystemD unit files. The daemon has the possibility to freeze
+your system (a lot of times), so the blog post recommends to set system resource
+limits by overriding the systemd files.
 
 ```sh
 sudo systemctl edit clamd@
@@ -300,7 +313,10 @@ systemctl status clamd@scan
 
 ### Enabling OnAccessScan
 
-OnAccessScan allows ClamAV to scan files on demand as the users access them. This is useful to have as it provides constant security at the cost of speed. To enable the service that runs the OnAccessScan, edit the service to add passing file-descriptors instead of paths:
+OnAccessScan allows ClamAV to scan files on demand as the users access them.
+This is useful to have as it provides constant security at the cost of speed. To
+enable the service that runs the OnAccessScan, edit the service to add passing
+file-descriptors instead of paths:
 
 ```sh
 sudo systemctl edit clamav-clamonacc.service
@@ -321,10 +337,10 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now clamav-clamonacc.service
 ```
 
-
 ## Testing
 
-This will test if a fake virus is detected. The file in the URL is harmless (it's a txt file).
+This will test if a fake virus is detected. The file in the URL is harmless
+(it's a txt file).
 
 ### Manual
 
@@ -346,11 +362,14 @@ Check the logs:
 journalctl -eu clamav-clamonacc.service
 ```
 
-If a notification did not appear, then please look at the workaround for VirusEvent below, as you may have encountered a ClamAV bug.
+If a notification did not appear, then please look at the workaround for
+VirusEvent below, as you may have encountered a ClamAV bug.
 
 ## Using clamdscan
 
-With clamd running in the background, we can use clamdscan. It's like clamscan but uses the config from `/etc/clamd.d/scan.conf` as it uses the `clamd@scan` daemon we enabled previously:
+With clamd running in the background, we can use clamdscan. It's like clamscan
+but uses the config from `/etc/clamd.d/scan.conf` as it uses the `clamd@scan`
+daemon we enabled previously:
 
 ```sh
 clamdscan --multiscan --infected --log clamav.log $HOME
@@ -372,7 +391,10 @@ Start Date: 2025:02:17 23:45:20
 End Date:   2025:02:17 23:45:20
 ```
 
-In order to fix this issue, the parameter `--fdpass` needs to be included; `clamdscan -mil clamav.log --fdpass $HOME`. This will make clamscan (ran under the `$USER`) pass the file descriptor to clamd (ran under clamscan), allowing the clamscan user to bypass the file permissions of the home folder.
+In order to fix this issue, the parameter `--fdpass` needs to be included;
+`clamdscan -mil clamav.log --fdpass $HOME`. This will make clamscan (ran under
+the `$USER`) pass the file descriptor to clamd (ran under clamscan), allowing
+the clamscan user to bypass the file permissions of the home folder.
 
 ### LocalSocket Issues
 
@@ -382,17 +404,25 @@ At this point, another error with local socket permissions should appear:
 ERROR: Could not connect to clamd on LocalSocket /var/run/clamd.scan/clamd.socket
 ```
 
-This is caused because the clamdscan process (ran under `$USER`) does not have permissions to access the socket; owned by clamscan and part of the virusgroup group. The solution to this:
+This is caused because the clamdscan process (ran under `$USER`) does not have
+permissions to access the socket; owned by clamscan and part of the virusgroup
+group. The solution to this:
 
 ```sh
 sudo usermod -aG virusgroup $USER
-``` 
+```
 
-Log out and log back in. Now clamdscan should work (don't forget to pass `--fdpass`.
+Log out and log back in. Now clamdscan should work (don't forget to pass
+`--fdpass`.
 
 ## VirusEvent Workaround
 
-There's an [issue](https://github.com/Cisco-Talos/clamav/issues/1062) that ClamAV is facing where `VirusEvent` is not working. A [user](https://github.com/Cisco-Talos/clamav/issues/1062#issuecomment-1771546865) suggested a workaround where we deploy an extra script to read the logs and trigger the virus event manually. Keep this while the issue is open. After the issue is resolved, you can delete all the work done in this section.
+There's an [issue](https://github.com/Cisco-Talos/clamav/issues/1062) that
+ClamAV is facing where `VirusEvent` is not working. A
+[user](https://github.com/Cisco-Talos/clamav/issues/1062#issuecomment-1771546865)
+suggested a workaround where we deploy an extra script to read the logs and
+trigger the virus event manually. Keep this while the issue is open. After the
+issue is resolved, you can delete all the work done in this section.
 
 ### Notifier Script
 
@@ -402,19 +432,21 @@ Start by creating a script the notifier script:
 sudo nvim /opt/clamav/clamonacc-log-notifier.sh
 ```
 
-This script is responsible for scanning the log file and creating the virus events.
+This script is responsible for scanning the log file and creating the virus
+events.
 
 <script src="https://gist.github.com/Yiannis128/2ad4e9d1c78dbda97d9711941540e7e1.js"></script>
 
 ### Monitor Script
 
-Create the monitor script that will feed the log file to the notifier script. 
+Create the monitor script that will feed the log file to the notifier script.
 
 ```sh
 sudo nvim /opt/clamav/clamonacc-log-monitor.sh
 ```
 
-This script pipes the output of the journal which contains the logs from the OnAccessScan service to the notifier script.
+This script pipes the output of the journal which contains the logs from the
+OnAccessScan service to the notifier script.
 
 <script src="https://gist.github.com/Yiannis128/665b0cecb9bb0dc0ffaf57a55311b7d9.js"></script>
 
@@ -458,7 +490,8 @@ sudo systemctl enable --now clamav-clamonacc-notifier
 
 ### Reversing the Workaround
 
-Effort was put to make the VirusEvent workaround changes as minimal as possible. When the issue is fixed, reverse the changes by running the following commands:
+Effort was put to make the VirusEvent workaround changes as minimal as possible.
+When the issue is fixed, reverse the changes by running the following commands:
 
 ```sh
 sudo systemctl stop clamav-clamonacc-notifier
@@ -467,11 +500,15 @@ sudo systemctl daemon-reload
 sudo rm /etc/systemd/system/clamav-clamonacc-notifier.service /opt/clamav/clamonacc-log-monitor.sh /opt/clamav/clamonacc-log-notifier.sh
 ```
 
-These commands stop and delete the service from the system and delete the remaining scripts that were created.
+These commands stop and delete the service from the system and delete the
+remaining scripts that were created.
 
 ## Install GUI - ClamTK
 
-ClamTK is a GUI front-end for ClamAV. Its main limitation is that it doesn't allow you to configure ClamAV in any meaningful way. It contains some basic utilities such as scanning files and directories. To install it run the following command:
+ClamTK is a GUI front-end for ClamAV. Its main limitation is that it doesn't
+allow you to configure ClamAV in any meaningful way. It contains some basic
+utilities such as scanning files and directories. To install it run the
+following command:
 
 ```sh
 sudo dnf install clamtk
@@ -481,11 +518,15 @@ I personally don't find it that useful.
 
 ## Existing Issues
 
-While my research into this program has resolved most of the issues, I have still am facing the following problems. **If you know how to resolve them, please get in touch.**
+While my research into this program has resolved most of the issues, I have
+still am facing the following problems. **If you know how to resolve them,
+please get in touch.**
 
 ### Duplicate Reports in clamav-clamonacc
 
-* It can be observed that when running: `journalctl --follow -eu clamav-clamonacc`, and an infected file is accessed, multiple entries are created. I don't think this is intended behaviour.
+- It can be observed that when running:
+  `journalctl --follow -eu clamav-clamonacc`, and an infected file is accessed,
+  multiple entries are created. I don't think this is intended behaviour.
 
 ### Running clamdscan
 
@@ -497,10 +538,14 @@ clamdscan --quiet -mil clamav.log --fdpass -i $HOME
 
 #### STDOUT
 
-* The output of the command is a lot of these lines: `LibClamAV Warning: cli_realpath: Invalid arguments.`
+- The output of the command is a lot of these lines:
+  `LibClamAV Warning: cli_realpath: Invalid arguments.`
 
 #### LOG FILE
 
-* When running clamdscan, I get a `WARNING: [FILE]: Not supported file type` on some entries. I thought that the `--infected` in conjunction with `--quiet` option would work. This is not the case!
-* When running clamdscan, I get a `[FILE]: Failed to open file` on some entries. I thought that the `--infected` in conjunction with `--quiet` option would work. This is not the case!
-
+- When running clamdscan, I get a `WARNING: [FILE]: Not supported file type` on
+  some entries. I thought that the `--infected` in conjunction with `--quiet`
+  option would work. This is not the case!
+- When running clamdscan, I get a `[FILE]: Failed to open file` on some entries.
+  I thought that the `--infected` in conjunction with `--quiet` option would
+  work. This is not the case!

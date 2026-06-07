@@ -5,3 +5,4 @@ Source/articles/**
 Source/articles.html
 .hugo_build.lock
 resources/_gen
+content/.obsidian
